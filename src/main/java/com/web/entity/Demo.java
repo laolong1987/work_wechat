@@ -13,10 +13,9 @@ import javax.persistence.Table;
 @Table(name = "demo")
 public class Demo{
     @Id
-    @Basic(optional = false)
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name ="name")
     private String name;
