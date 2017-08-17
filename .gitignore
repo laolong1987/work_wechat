@@ -3,6 +3,9 @@ out
 target
 /.idea/*
 /.idea/
+.idea/*
+.idea*
+\.idea*
 POJOUtil.java
 *.iml
 POJOUtil
