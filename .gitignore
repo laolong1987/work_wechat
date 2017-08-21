@@ -9,3 +9,6 @@ target
 POJOUtil.java
 *.iml
 POJOUtil
+src\main\resources\spring-common.xml
+\src\main\resources\spring-common.xml
+spring-common.xml
