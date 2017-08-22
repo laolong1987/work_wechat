@@ -63,7 +63,7 @@
     }
 
     html, body {
-      background: #ddd url(${ctx}/images/login.gif);
+      background: #ddd url(${ctx}/images/loginnologo.gif);
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
