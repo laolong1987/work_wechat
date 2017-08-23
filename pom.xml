@@ -45,6 +45,7 @@
     <!-- log4j日志文件管理包版本 -->
     <!-- <slf4j.version>1.7.10</slf4j.version> -->
     <log4j.version>1.2.17</log4j.version>
+    <springfox.version>2.5.0</springfox.version>
   </properties>
 
   <dependencies>
@@ -59,10 +60,11 @@
     <!-- servlet api jar -->
     <dependency>
       <groupId>javax.servlet</groupId>
-      <artifactId>servlet-api</artifactId>
-      <version>3.0-alpha-1</version>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.0.1</version>
       <scope>provided</scope>
     </dependency>
+
     <!-- jstl -->
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -214,7 +216,6 @@
     </dependency>
 
 
-
     <!-- ws -->
     <dependency>
       <groupId>org.apache.axis</groupId>
@@ -237,6 +238,39 @@
       <version>1.6.3</version>
     </dependency>
 
+    <!--HttpClient-->
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>4.3.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient-cache</artifactId>
+      <version>4.3.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpmime</artifactId>
+      <version>4.3.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>fluent-hc</artifactId>
+      <version>4.3.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger2</artifactId>
+      <version>${springfox.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger-ui</artifactId>
+      <version>${springfox.version}</version>
+    </dependency>
+
   </dependencies>
   <build>
     <finalName>simple</finalName>
@@ -250,16 +284,16 @@
         </configuration>
       </plugin>
       <!-- Tomcat Run Mojo -->
-           <plugin>
-             <groupId>org.apache.tomcat.maven</groupId>
-             <artifactId>tomcat7-maven-plugin</artifactId>
-             <version>2.2</version>
-             <configuration>
-               <port>80</port>
-               <path>/wechat</path>
-               <uriEncoding>UTF-8</uriEncoding>
-             </configuration>
-           </plugin>
+      <plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <version>2.2</version>
+        <configuration>
+          <port>80</port>
+          <path>/wechat</path>
+          <uriEncoding>UTF-8</uriEncoding>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 </project>

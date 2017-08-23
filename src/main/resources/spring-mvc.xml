@@ -16,17 +16,22 @@
 
   <!-- 开启注解 -->
   <mvc:annotation-driven />
-  <aop:aspectj-autoproxy/>  <!-- 要添加本行 -->
+  <aop:aspectj-autoproxy />  <!-- 要添加本行 -->
   <!-- 静态资源(js/image)的访问 -->
   <mvc:resources location="/js/" mapping="/js/**" />
-    <mvc:resources location="/images/" mapping="/images/**" />
-    <mvc:resources location="/img/" mapping="/img/**" />
-    <mvc:resources location="/fonts/" mapping="/fonts/**" />
-    <mvc:resources location="/bower_components/" mapping="/bower_components/**" />
-    <mvc:resources location="/css/" mapping="/css/**" />
-    <mvc:resources location="/ligerUI/" mapping="/ligerUI/**" />
-    <mvc:resources location="/jsp/" mapping="/jsp/**" />
-    <mvc:resources location="/advance_medical/" mapping="/advance_medical/**" />
+  <mvc:resources location="/images/" mapping="/images/**" />
+  <mvc:resources location="/ligerUI/" mapping="/ligerUI/**" />
+  <mvc:resources location="/jsp/" mapping="/jsp/**" />
+
+  <mvc:resources mapping="swagger-ui.html"
+                 location="classpath:/META-INF/resources/" />
+  <mvc:resources mapping="/webjars/**"
+                 location="classpath:/META-INF/resources/webjars/" />
+
+  <mvc:resources mapping="swagger-ui.html"
+                 location="classpath:/META-INF/resources/" />
+  <mvc:resources mapping="/webjars/**"
+                 location="classpath:/META-INF/resources/webjars/" />
   <!-- 拦截器 -->
   <mvc:interceptors>
     <!-- 多个拦截器,顺序执行 -->

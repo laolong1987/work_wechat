@@ -360,7 +360,7 @@
       //////////////////////////////////////////////////////////////////
       
       //////////////////////////////////////////////////////////////////
-      //FlexSlider: Destroy the slider entity
+      //FlexSlider: Destroy the slider model
       //Destory is not included in the minified version right now, but this is a working function for anyone who wants to include it.
       //Simply bind the actions you need from this function into a function in the start() callback to the event of your chosing
       /*
