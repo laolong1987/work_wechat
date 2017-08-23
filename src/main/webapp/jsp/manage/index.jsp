@@ -79,10 +79,9 @@
     function iniMenu() {
       var data = [];
       data.push({id: 1, value: '${ctx}/case/showlist', text: 'Cases'});
-      <c:if test="${user.role !=4}">
       data.push({id: 3, value: '${ctx}/doctor/showlist', text: 'Managers'});
       data.push({id: 4, value: '${ctx}/patient/showlist', text: 'Customers'});
-      </c:if>
+      
       var tree = $("#tree").ligerTree({
         data: data,
         nodeWidth: 120,
@@ -596,12 +595,12 @@
     <div class="name">Service Admin Plaform</div>
 
     <div class="loginbox" style="color: #4a4a4a;font: 16px Microsoft Yahei;right: 30px;position: absolute;top: 44px;">
-      <div
-        style="text-align: center;float: left;font-weight: bold">
-        <a href="javascript:openPwd()">
-          password
-        </a>
-      </div>
+      <%--<div--%>
+        <%--style="text-align: center;float: left;font-weight: bold">--%>
+        <%--<a href="javascript:openPwd()">--%>
+          <%--password--%>
+        <%--</a>--%>
+      <%--</div>--%>
       <div  style="text-align: center;float: left;margin: 0 10px" >
         |
       </div>

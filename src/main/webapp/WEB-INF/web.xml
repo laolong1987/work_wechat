@@ -78,7 +78,7 @@
 
 
   <welcome-file-list>
-    <welcome-file>/advance_medical/index.html</welcome-file>
+    <welcome-file>/jsp/login.jsp</welcome-file>
   </welcome-file-list>
   <session-config>
     <session-timeout>600</session-timeout>
