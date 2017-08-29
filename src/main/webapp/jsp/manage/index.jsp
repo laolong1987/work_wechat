@@ -11,7 +11,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 
-  <title>Case Management System</title>
+  <title>Management System</title>
   <link rel="stylesheet" type="text/css" id="mylink"/>
   <script type="text/javascript">
     var savePwdWindow = null;

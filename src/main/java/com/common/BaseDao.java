@@ -134,7 +134,7 @@ public abstract class BaseDao {
         // 总条数
         query = sessionFactory.getCurrentSession().createSQLQuery(template.getCountSql());
         query.setProperties(param);
-        template.setCount(((BigInteger) query.uniqueResult()).intValue());
+        template.setCount(((Integer) query.uniqueResult()).intValue());
         return template;
     }
 
@@ -161,7 +161,7 @@ public abstract class BaseDao {
         // 总条数
         query = sessionFactory.getCurrentSession().createSQLQuery(template.getCountSql());
         query.setProperties(param);
-        template.setCount(((BigInteger) query.uniqueResult()).intValue());
+        template.setCount(((Integer) query.uniqueResult()).intValue());
         return template;
     }
 

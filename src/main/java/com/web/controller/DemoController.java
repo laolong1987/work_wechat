@@ -6,6 +6,7 @@ import com.utils.ConvertUtil;
 import com.utils.StringUtil;
 import com.web.entity.Demo;
 import com.web.service.DemoService;
+import com.web.service.OrgService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringArrayPropertyEditor;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,9 @@ public class DemoController {
 
     @Autowired
     DemoService demoService;
+
+    @Autowired
+    OrgService orgService;
 
     @RequestMapping(value = "/show")
     public String show(HttpServletRequest request,
@@ -66,6 +70,9 @@ public class DemoController {
     @RequestMapping(value = "/httpclient")
     public String httpclient(HttpServletRequest request,
                        HttpServletResponse response) {
+
+        orgService.updateEmp();
+
         String url= ConvertUtil.safeToString(request.getParameter("url"),"");
         String content= ConvertUtil.safeToString(request.getParameter("content"),"");
         if(!"".equals(content)){

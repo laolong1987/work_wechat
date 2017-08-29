@@ -9,7 +9,7 @@
 <%@ include file="head.jsp" %>
 <html>
 <head>
-  <title>Case Management System</title>
+  <title>Management System</title>
   <style type="text/css">
     .overlay {
       -webkit-box-align: center;
