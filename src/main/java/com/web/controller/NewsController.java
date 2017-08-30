@@ -40,4 +40,11 @@ public class NewsController {
         return newsService.searchNews(param).getResult();
     }
 
+    @RequestMapping(value = "/showaddnews", method = RequestMethod.GET)
+    public String showaddnews(HttpServletRequest request,HttpServletResponse response) {
+        int id= ConvertUtil.safeToInteger(request.getParameter(""),0);
+
+        return "/jsp/manage/addnews";
+    }
+
 }

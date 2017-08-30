@@ -33,8 +33,8 @@
 
     function addnews()
     {
-        var url='${ctx}/admin/news/list';
-        top.f_addTab('bj_','编辑',url);
+        var url='${ctx}/admin/news/showaddnews';
+        top.f_addTab('addnews_0','编辑新闻',url);
     }
 
 
