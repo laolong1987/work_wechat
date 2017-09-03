@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.alibaba.fastjson.JSONObject;
 import com.web.component.wechat.api.WechatComponent;
+import com.web.service.ws.ApprovalService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +29,10 @@ public class TestApi {
     @Autowired
     WechatComponent wechatComponent;
 
-    @Test
+    @Autowired
+    private  ApprovalService approvalService;
+
+
     public void testMpNews() {
         JSONObject data = new JSONObject();
 
@@ -86,6 +90,13 @@ public class TestApi {
         }
 
 
+    }
+
+    @Test
+    public void getWaitProcessNotice(){
+
+        String res = approvalService.getWaitProcessNotice("220238");
+        System.out.println(res);
     }
 
 }

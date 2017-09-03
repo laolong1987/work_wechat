@@ -57,6 +57,41 @@ public class WebServiceBase {
         return result;
     }
 
+    public static String call(String function,List<WSbean> wSbeans,String serviceEpr){
+        String result="";
+
+        try {
+            Service service = new Service();
+            Call call = (Call) service.createCall();
+            call.setTargetEndpointAddress(new java.net.URL(serviceEpr));
+            // 服务名
+            call.setOperationName(new QName("http://tempuri.org/",function));
+            // 定义入口参数和参数类型
+            Object[] params= new Object[wSbeans.size()];
+            int i=0;
+            for (WSbean wSbean : wSbeans ) {
+                call.addParameter(new QName("http://tempuri.org/", wSbean.getParametername()), wSbean.getXMLType(), ParameterMode.IN);
+                params[i]=wSbean.getParametervalue();
+                i++;
+            }
+            call.setUseSOAPAction(true);
+            // Action地址
+            call.setSOAPActionURI("http://tempuri.org/"+function);
+            // 定义返回值类型
+            call.setReturnType(XMLType.XSD_STRING);
+            // 调用服务获取返回值
+            result = String.valueOf(call.invoke(params));
+
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
 //		调用 demo
         List<WSbean> list = new ArrayList<>();
