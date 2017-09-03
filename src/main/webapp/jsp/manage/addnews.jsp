@@ -57,7 +57,8 @@
             描述
         </td>
         <td class="bd" width="auto" colspan="3">
-            <textarea rows="5" style="width: 99%"></textarea>
+            <%--<textarea rows="5" style="width: 99%"></textarea>--%>
+            <textarea name="contents" cols="100" rows="8" style="width:700px;height:200px;visibility:hidden;"></textarea>
         </td>
     </tr>
     <tr>
@@ -72,10 +73,33 @@
 </table>
 </body>
 <jsp:include page="jscommon.jsp" />
+<script src="${ctx}/ligerUI/js/plugins/ligerDateEditor.js" type="text/javascript"></script>
+<script src="${ctx}/ligerUI/js/plugins/ligerDateEditor.js" type="text/javascript"></script>
+<script src="${ctx}/ligerUI/js/plugins/ligerDateEditor.js" type="text/javascript"></script>
 <script type="text/javascript">
+    KindEditor.ready(function(K) {
+        var editor1 = K.create('textarea[name="content1"]', {
+            cssPath : '../plugins/code/prettify.css',
+            uploadJson : '../jsp/upload_json.jsp',
+            fileManagerJson : '../jsp/file_manager_json.jsp',
+            allowFileManager : true,
+            afterCreate : function() {
+                var self = this;
+                K.ctrl(document, 13, function() {
+                    self.sync();
+                    document.forms['example'].submit();
+                });
+                K.ctrl(self.edit.doc, 13, function() {
+                    self.sync();
+                    document.forms['example'].submit();
+                });
+            }
+        });
+        prettyPrint();
+    });
+
     $(function () {
         $("#txt1").ligerDateEditor({ showTime: true});
-
     });
 </script>
 
