@@ -11,7 +11,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 
-  <title>Case Management System</title>
+  <title>Management System</title>
   <link rel="stylesheet" type="text/css" id="mylink"/>
   <script type="text/javascript">
     var savePwdWindow = null;
@@ -78,10 +78,8 @@
 
     function iniMenu() {
       var data = [];
-      data.push({id: 1, value: '${ctx}/case/showlist', text: 'Cases'});
-      data.push({id: 3, value: '${ctx}/doctor/showlist', text: 'Managers'});
-      data.push({id: 4, value: '${ctx}/patient/showlist', text: 'Customers'});
-      
+      data.push({id: 1, value: '${ctx}/admin/news/list', text: '新闻管理'});
+
       var tree = $("#tree").ligerTree({
         data: data,
         nodeWidth: 120,
@@ -568,8 +566,9 @@
 </div> -->
 <div class="top">
   <div class="left">
-			<span><img style="margin-top: 1px;" src="${ctx}/images/logo.gif"
-                 width="215" height="76">
+			<span>
+              <%--<img style="margin-top: 1px;" src="${ctx}/images/logo.gif"--%>
+                 <%--width="215" height="76">--%>
 			</span>
   </div>
   <div class="right">
@@ -634,9 +633,9 @@
 
   </div>
   <div position="center" id="framecenter">
-    <div tabid="home" title="Cases" style="height:300px">
+    <div tabid="home" title="新闻管理" style="height:300px">
       <iframe frameborder="0" name="home" id="home"
-              src="${ctx}/case/showlist"></iframe>
+              src="${ctx}/admin/news/list"></iframe>
     </div>
   </div>
 </div>

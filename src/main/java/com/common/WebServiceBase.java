@@ -97,7 +97,7 @@ public class WebServiceBase {
         List<WSbean> list = new ArrayList<>();
         WSbean wSbean = new WSbean();
         wSbean.setParametername("userName");
-        wSbean.setParametervalue("220345");
+        wSbean.setParametervalue("220309");
         wSbean.setXMLType(XMLType.XSD_STRING);
         list.add(wSbean);
         String r1 = WebServiceBase.call("GetWaitProcessNotice", list);
@@ -111,7 +111,6 @@ public class WebServiceBase {
             for (Map.Entry<String, Object> entry : job.entrySet()) {
                 System.out.println(entry.getKey() + ":" + entry.getValue());
             }
-
 
             list = new ArrayList<>();
             wSbean = new WSbean();

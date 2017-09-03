@@ -1,8 +1,12 @@
 package com.web.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.common.HttpHelper;
+import com.utils.ConvertUtil;
 import com.utils.StringUtil;
 import com.web.entity.Demo;
 import com.web.service.DemoService;
+import com.web.service.OrgService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringArrayPropertyEditor;
 import org.springframework.stereotype.Controller;
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by gaoyang on 16/2/28.
@@ -21,6 +26,9 @@ public class DemoController {
 
     @Autowired
     DemoService demoService;
+
+    @Autowired
+    OrgService orgService;
 
     @RequestMapping(value = "/show")
     public String show(HttpServletRequest request,
@@ -59,4 +67,22 @@ public class DemoController {
 
     }
 
+    @RequestMapping(value = "/httpclient")
+    public String httpclient(HttpServletRequest request,
+                       HttpServletResponse response) {
+
+        orgService.updateEmp();
+
+        String url= ConvertUtil.safeToString(request.getParameter("url"),"");
+        String content= ConvertUtil.safeToString(request.getParameter("content"),"");
+        if(!"".equals(content)){
+            Map params= JSON.parseObject(content,Map.class);
+            String ret = HttpHelper.fetchUTF8StringByPost(url, params, null, 0, 0);
+            System.out.println(ret);
+            request.setAttribute("ret",ret);
+        }
+
+
+        return "/jsp/httpclient";
+    }
 }

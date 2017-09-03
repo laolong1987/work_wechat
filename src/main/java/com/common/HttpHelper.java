@@ -3,6 +3,7 @@ package com.common;
 /**
  * Created by gaoyang on 17/8/22.
  */
+import com.alibaba.fastjson.JSON;
 import org.apache.commons.httpclient.*;
 import org.apache.commons.httpclient.cookie.CookiePolicy;
 import org.apache.commons.httpclient.methods.GetMethod;
@@ -703,11 +704,19 @@ public final class HttpHelper {
 
     public static void main(String[] args) {
         String url="http://d.bm21.com.cn:20006/token";
+//         http://d.bm21.com.cn:20006/info
+//         http://d.bm21.com.cn:20006/employee/list
         Map params = new HashMap();
         params.put("Appid","0170822001");
-        params.put("Username","220342");
-        params.put("Passwd","123456");
-        String ret = HttpHelper.fetchUTF8StringByPost(url, params, null, 0, 0);
-        System.out.println(ret);
+//        params.put("Username","220342");
+//        params.put("Passwd","123456");
+        params.put("Token","c8e5f6bf0d74ade9e1419ded0e40cc69");
+//{"Appid":"0170822001","Passwd":"123456","Username":"220342"}
+// {"state":0,"token":"c8e5f6bf0d74ade9e1419ded0e40cc69","expire":3600}
+//        {"Appid":"0170822001","Token":"8c433691fa5bc08246546f37b71f6d00"}
+
+        System.out.println(JSON.toJSONString(params));
+//        String ret = HttpHelper.fetchUTF8StringByPost(url, params, null, 0, 0);
+//        System.out.println(ret);
     }
 }

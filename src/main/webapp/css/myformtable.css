@@ -1,0 +1,10 @@
+.table_css{
+    font-size: 12px;
+}
+.table_css tr{border-bottom:1px dotted #999;}
+.table_css tr td{ padding:5px;}
+.hd{ background:#eee;text-align: right;width: 100px}
+.table_css em{
+    color: red;
+}
+.bd{width: auto}
