@@ -114,6 +114,11 @@
         }
       });
     }
+
+    function f_reloadTab(tabid) {
+      tab.reload(tabid);
+    }
+
     function showCodeView(src) {
       $.ligerDialog.open({
         title: '源码预览',
@@ -455,7 +460,7 @@
       position: absolute;
       left: 0px;
       top: 0px;
-      background: white url("./resources/lib/images/loading.gif") no-repeat center;
+      /*background: white url("../../images/loading.gif") no-repeat center;*/
       width: 100%;
       height: 100%;
       z-index: 99999;

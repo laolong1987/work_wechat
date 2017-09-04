@@ -99,6 +99,10 @@ public class SearchTemplate {
 
 	public String getCountSql() {
 		StringBuilder _sql = new StringBuilder(this.sql);
+		if(-1!=this.sql.indexOf("order")){
+			String a= _sql.substring(0,this.sql.indexOf("order"));
+			_sql=new StringBuilder(a);
+		}
 		_sql.insert(0, "select count(*) from (");
 		_sql.append(") t");
 		return _sql.toString();

@@ -15,7 +15,6 @@
 
 <!-- ligerUI css -->
 <link href="${ctx}/ligerUI/skins/Aqua/css/ligerui-all.css" rel="stylesheet" type="text/css" />
-<link href="${ctx}/css/myformtable.css" rel="stylesheet" type="text/css" />
 
 <!-- ligerui -->
 <script src="${ctx}/ligerUI/js/core/base.js" type="text/javascript"></script>
