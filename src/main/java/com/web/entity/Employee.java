@@ -45,6 +45,17 @@ public class Employee {
     @Column(name ="status")
     private Integer status;
 
+    @Column(name ="type")
+    private Integer type;
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
     public Integer getId() {
         return id;
     }

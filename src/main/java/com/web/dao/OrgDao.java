@@ -99,4 +99,16 @@ public class OrgDao extends BaseDao{
         System.out.println(sql);
         return sql.toString().substring(0,sql.length() - 1);
     }
+
+    public List<Employee> findEmployee(){
+        StringBuffer sql = new StringBuffer();
+        sql.append("select * from employee ");
+        Map map = new HashMap();
+        List<Employee> list = super.findObjects(sql.toString(), map, Employee.class);
+        return list;
+    }
+
+    public void saveEmployee(Employee employee){
+        super.save(employee);
+    }
 }
