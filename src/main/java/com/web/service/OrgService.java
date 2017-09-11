@@ -74,7 +74,7 @@ public class OrgService {
                 }
                 if (upflag) {// 新增
                     e1.setType(1);
-                    e1.setStatus(1);
+                    e1.setStatus(0); //新增的用户默认是在职
                     e1.setCreatetime(new Date());
                     orgDao.saveEmployee(e1);
                 }
@@ -90,9 +90,25 @@ public class OrgService {
                 }
                 if(upflag){ //删除
                     e2.setType(1);
-                    e2.setStatus(2);
+                    e2.setStatus(1);//删除的用户默认是在离职
                     e2.setUpdatetime(new Date());
                     orgDao.saveEmployee(e2);
+                }
+            }
+
+            //循环访问 更新人员状态
+            List<Employee> list3 = orgDao.findEmployee(); //获取全部人员
+            for (Employee e3:list3 ) {
+                Map p = new HashMap();
+                p.put("Appid", APPID);
+                p.put("Username", e3.getYgbh());
+                p.put("Passwd", "123456");
+                String ret3 = HttpHelper.fetchUTF8StringByPost(tokenurl, p, null, 0, 0);
+                JSONObject jo3 = JSON.parseObject(ret3);
+                if(e3.getStatus()!=jo3.getInteger("state")){
+                    e3.setType(1);
+                    e3.setStatus(jo3.getInteger("state"));
+                    orgDao.saveEmployee(e3);
                 }
             }
 

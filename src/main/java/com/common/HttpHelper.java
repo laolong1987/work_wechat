@@ -711,9 +711,9 @@ public final class HttpHelper {
 //        params.put("Username","220342");
 //        params.put("Passwd","123456");
         params.put("Token","c8e5f6bf0d74ade9e1419ded0e40cc69");
-//{"Appid":"0170822001","Passwd":"123456","Username":"220342"}
+//{"Appid":"0170822001","Passwd":"123456","Username":"22000338"}
 // {"state":0,"token":"c8e5f6bf0d74ade9e1419ded0e40cc69","expire":3600}
-//        {"Appid":"0170822001","Token":"8c433691fa5bc08246546f37b71f6d00"}
+//        {"Appid":"0170822001","Token":"ba13c53efb7388948ac4f1245632cd8a"}
 
         System.out.println(JSON.toJSONString(params));
 //        String ret = HttpHelper.fetchUTF8StringByPost(url, params, null, 0, 0);

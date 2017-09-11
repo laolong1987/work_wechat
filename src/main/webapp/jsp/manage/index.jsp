@@ -599,23 +599,22 @@
     <div class="name">Service Admin Plaform</div>
 
     <div class="loginbox" style="color: #4a4a4a;font: 16px Microsoft Yahei;right: 30px;position: absolute;top: 44px;">
-      <%--<div--%>
-        <%--style="text-align: center;float: left;font-weight: bold">--%>
-        <%--<a href="javascript:openPwd()">--%>
-          <%--password--%>
-        <%--</a>--%>
-      <%--</div>--%>
+      <div
+        style="text-align: center;float: left;font-weight: bold">
+        <a href="javascript:openPwd()">
+          修改密码
+        </a>
+      </div>
       <div  style="text-align: center;float: left;margin: 0 10px" >
         |
       </div>
-      <!--
-      <img src="../images/changepassword.png" onmouseover="this.style.cursor='pointer'" onclick="" title="修改密码">&nbsp;&nbsp;&nbsp;&nbsp;
-      -->
+
+      <%--<img src="../images/changepassword.png" onmouseover="this.style.cursor='pointer'" onclick="" title="修改密码">&nbsp;&nbsp;&nbsp;&nbsp;--%>
       <div
         style="text-align: center;float: left;font-weight: bold;">
         <a href="${ctx}/admin/logout">
-          <!--       <img src="../images/logout.png" onmouseover="this.style.cursor='pointer'" title="注销"/> -->
-          logout
+          <%--<img src="../images/logout.png" onmouseover="this.style.cursor='pointer'" title="注销"/>--%>
+          注销
         </a>
       </div>
 
@@ -628,7 +627,7 @@
      -->
     <div
       style=" color: #4a4a4a;font-size:16px;right: 220px;position: absolute;top: 45px;">
-      你好,${user.name}</div>
+      你好,${user.username}</div>
     <div class="weizhi"></div>
   </div>
 </div>
