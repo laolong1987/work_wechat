@@ -33,9 +33,7 @@
     <mvc:interceptor>
       <!-- 后台配置拦截 -->
       <mvc:mapping path="/admin/index" />
-      <mvc:mapping path="/case/**" />
-      <mvc:mapping path="/doctor/**" />
-      <mvc:mapping path="/patient/**" />
+      <mvc:mapping path="/admin/news/**" />
       <bean class="com.web.interceptor.FreeMarkerViewInterceptorAdmin"></bean>
     </mvc:interceptor>
 

@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.common.HttpHelper;
+import com.common.SearchTemplate;
 import com.web.dao.OrgDao;
 import com.web.entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,15 @@ public class OrgService {
 
     @Autowired
     OrgDao orgDao;
+
+    /**
+     * 查询
+     * @param map
+     * @return
+     */
+    public SearchTemplate searchEmployee(Map map){
+        return orgDao.searchEmployee(map);
+    }
 
     private static String APPID = "0170822001";
 

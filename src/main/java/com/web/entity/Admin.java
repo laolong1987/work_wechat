@@ -14,6 +14,9 @@ public class Admin {
     @Column(name ="username")
     private String username;
 
+    @Column(name ="name")
+    private String name;
+
     @Column(name ="password")
     private String password;
 
@@ -25,6 +28,14 @@ public class Admin {
 
     @Column(name ="status")
     private Integer status;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Integer getId() {
         return id;

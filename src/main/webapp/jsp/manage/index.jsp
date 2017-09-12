@@ -79,6 +79,7 @@
     function iniMenu() {
       var data = [];
       data.push({id: 1, value: '${ctx}/admin/news/list', text: '新闻管理'});
+      data.push({id: 2, value: '${ctx}/admin/employee/list', text: '员工管理'});
 
       var tree = $("#tree").ligerTree({
         data: data,
@@ -237,7 +238,7 @@
         } else {
 
           var params = JSON.stringify($("#pwdForm").serializeJson());
-          alert(params)
+//          alert(params)
           $.ajax({
             type: "POST",
             url: "${ctx}/admin/savepassword",
@@ -627,7 +628,7 @@
      -->
     <div
       style=" color: #4a4a4a;font-size:16px;right: 220px;position: absolute;top: 45px;">
-      你好,${user.username}</div>
+      你好,${user.name}</div>
     <div class="weizhi"></div>
   </div>
 </div>

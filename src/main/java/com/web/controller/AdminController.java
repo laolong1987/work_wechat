@@ -69,7 +69,7 @@ public class AdminController {
     public String removeuser(HttpServletRequest request,
                              HttpServletResponse response) {
         request.getSession().removeAttribute("user");
-        return "redirect:/admin/login";
+        return "/jsp/manage/tologin";
     }
 
     @RequestMapping(value = "/savepassword", method = RequestMethod.POST)
@@ -92,5 +92,7 @@ public class AdminController {
         }
         return result;
     }
+
+
 
 }

@@ -3,6 +3,7 @@ package com.web.interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.web.entity.Admin;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -38,16 +39,14 @@ public class FreeMarkerViewInterceptorAdmin implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
                              Object object) throws Exception {
 //		// TODO Auto-generated method stub
-//		User user = (User) request.getSession().getAttribute("user");
-//
-//		if(user!=null){
-//			return true;
-//		}
-//		else{
-//			response.sendRedirect(request.getContextPath()+"/admin/logout");
-//			return false;
-//		}
-        return true;
+		Admin user = (Admin) request.getSession().getAttribute("user");
+		if(null!=user){
+			return true;
+		}
+		else{
+			response.sendRedirect(request.getContextPath()+"/admin/logout");
+			return false;
+		}
     }
 
 }

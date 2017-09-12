@@ -32,7 +32,7 @@ public class OrgDao extends BaseDao{
         StringBuffer sql =new StringBuffer();
         Map p=new HashMap();
         sql.append("select  * from employee ");
-        return super.search(sql.toString(),map);
+        return super.search(sql.toString(),p);
     }
 
 
