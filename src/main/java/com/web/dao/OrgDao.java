@@ -30,9 +30,8 @@ public class OrgDao extends BaseDao{
      */
     public SearchTemplate searchEmployee(Map map){
         StringBuffer sql =new StringBuffer();
-        Map p=new HashMap();
-        sql.append("select  * from employee ");
-        return super.search(sql.toString(),p);
+        sql.append("select t.*,a.id as aid from employee t left join admin a on a.username=t.Ygbh and a.status<>0 ");
+        return super.search(sql.toString(),map);
     }
 
 

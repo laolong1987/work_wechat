@@ -144,11 +144,19 @@
         if (item.id) {
             switch (item.id) {
                 case "add":
-                    initSaveForm('text');
-                    showWindow();
-                    saveForm.setData({
-                        settingid : null
-                    });
+                    var data = gridManager.getCheckedRows();
+                    if (data.length == 0) {
+                        $.ligerDialog.waitting('请选择行');
+                        setTimeout(function() {
+                            $.ligerDialog.closeWaitting();
+                        }, 500);
+                    } else {
+                        $.ligerDialog.confirm('确认要授权?', function(yes) {
+                            if (yes) {
+                                addData(data);
+                            }
+                        });
+                    }
                     return;
                 case "delete":
                     var data = gridManager.getCheckedRows();
@@ -158,7 +166,7 @@
                             $.ligerDialog.closeWaitting();
                         }, 500);
                     } else {
-                        $.ligerDialog.confirm('确认要删除?', function(yes) {
+                        $.ligerDialog.confirm('确认要取消授权?', function(yes) {
                             if (yes) {
                                 removeData(data);
                             }
@@ -186,7 +194,27 @@
             success : function(result) {
                 if (result == 'success') {
                     search();
-                    $.ligerDialog.waitting('删除成功');
+                    $.ligerDialog.waitting('操作成功');
+                    setTimeout(function() {
+                        $.ligerDialog.closeWaitting();
+                    }, 500);
+                } else {
+                    $.ligerDialog.warn(result);
+                }
+            }
+        });
+    }
+    function addData(data) {
+        $.ajax({
+            type : "POST",
+            url : "add",
+            data : JSON.stringify(data),
+            contentType : "application/json; charset=utf-8",
+            dataType : "text",
+            success : function(result) {
+                if (result == 'success') {
+                    search();
+                    $.ligerDialog.waitting('操作成功');
                     setTimeout(function() {
                         $.ligerDialog.closeWaitting();
                     }, 500);

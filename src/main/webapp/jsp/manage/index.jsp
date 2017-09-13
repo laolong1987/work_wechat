@@ -77,9 +77,13 @@
     });
 
     function iniMenu() {
+      var aa='${user.username}';
       var data = [];
       data.push({id: 1, value: '${ctx}/admin/news/list', text: '新闻管理'});
-      data.push({id: 2, value: '${ctx}/admin/employee/list', text: '员工管理'});
+      if(aa=='admin'){
+        data.push({id: 2, value: '${ctx}/admin/employee/list', text: '员工管理'});
+
+      }
 
       var tree = $("#tree").ligerTree({
         data: data,
