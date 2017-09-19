@@ -48,6 +48,29 @@ public class Employee {
     @Column(name ="type")
     private Integer type;
 
+    @Column(name ="Sjhm")
+    private String Sjhm;
+
+    @Column(name ="Yx")
+    private String Yx;
+
+
+    public String getSjhm() {
+        return Sjhm;
+    }
+
+    public void setSjhm(String sjhm) {
+        Sjhm = sjhm;
+    }
+
+    public String getYx() {
+        return Yx;
+    }
+
+    public void setYx(String yx) {
+        Yx = yx;
+    }
+
     public Integer getType() {
         return type;
     }

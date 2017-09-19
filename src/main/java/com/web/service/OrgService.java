@@ -65,6 +65,13 @@ public class OrgService {
                     emp.setZzdwbm(job.getString("Zzdwbm"));
                     emp.setZzdwmc(job.getString("Zzdwmc"));
                     emp.setStatus(1);
+
+                    //部门信息
+                    if(job.containsKey("Bmxx")){
+                        JSONObject job2 =JSON.parseObject(job.getString("Bmxx"));
+                        emp.setSjhm(job2.getString("Sjhm"));
+                        emp.setYx(job2.getString("Yx"));
+                    }
                     list.add(emp);
                 }
             }
