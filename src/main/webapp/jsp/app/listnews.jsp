@@ -20,6 +20,7 @@
                                      user-scalable=no">
     <title>公告列表</title>
     <%@ include file="csscommon.jsp" %>
+    <link rel="stylesheet" href="${ctx}/font-awesome/css/font-awesome.min.css">
     <style>
         body{
             background-color:  #FBFBFB;
@@ -132,7 +133,7 @@
             <%--</div>--%>
         <%--</div>--%>
             <c:forEach items="${list}" var="l">
-                <div class="row box read">
+                <div class="row box read" onclick="shownews('${l.id}')">
                     <div class="col-xs-3 imgdiv">
                         <img src="${ctx}/file/doDownload/${l.topimg}"  class="">
                     </div>
@@ -152,6 +153,9 @@
 <script type="text/javascript" src='${ctx}/js/app/jquery.min.js'></script>
 <script src="${ctx}/js/bootstrap.min.js" type="text/javascript"></script>
 <script>
+    function shownews(id){
+        window.location.href="detailnews?id="+id;
+    }
 
 </script>
 </html>

@@ -120,6 +120,7 @@
 <script type="text/javascript" src='${ctx}/js/app/jquery.min.js'></script>
 <script src="${ctx}/js/bootstrap.min.js" type="text/javascript"></script>
 <script>
+
     $('#demo').on('show.bs.collapse', function () {
         $(".glyphicon").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
     })

@@ -26,6 +26,7 @@
     <mvc:resources location="/jsp/" mapping="/jsp/**" />
     <mvc:resources location="/attached/" mapping="/attached/**" />
     <mvc:resources location="/fonts/" mapping="/fonts/**" />
+    <mvc:resources location="/font-awesome/" mapping="/font-awesome/**" />
   <!-- 拦截器 -->
   <mvc:interceptors>
     <!-- 多个拦截器,顺序执行 -->
