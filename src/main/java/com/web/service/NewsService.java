@@ -39,4 +39,8 @@ public class NewsService {
     public List<Newsflag> findNewsidByNewsId(String newsid){
         return newsDao.findNewsidByNewsId(newsid);
     }
+
+    public List<Map> searchNewsByEmpid(Map map){
+        return newsDao.searchNewsByEmpid(map);
+    }
 }

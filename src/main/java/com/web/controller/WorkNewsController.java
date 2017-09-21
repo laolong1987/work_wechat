@@ -3,6 +3,7 @@ package com.web.controller;
 
 import com.utils.ConvertUtil;
 import com.utils.DateUtil;
+import com.utils.StringUtil;
 import com.web.entity.News;
 import com.web.entity.Newsflag;
 import com.web.service.NewsService;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -55,6 +57,20 @@ public class WorkNewsController {
         }
 
         return "/jsp/app/detailnews";
+    }
+
+
+    @RequestMapping(value = "/listnews")
+    public String listnews(HttpServletRequest request,HttpServletResponse response) {
+        String title = ConvertUtil.safeToString(request.getParameter("title"),"");
+        Map p=new HashMap<>();
+        p.put("title",title);
+        List<Map> list=newsService.searchNewsByEmpid(p);
+        for (Map map:list) {
+            map.put("cont", StringUtil.Html2Text(ConvertUtil.safeToString(map.get("content"),"")));
+        }
+        request.setAttribute("list",list);
+        return "/jsp/app/listnews";
     }
 
 }

@@ -98,8 +98,6 @@
                    class="l-button l-button-submit" onclick="addnews('0')" />
             <input type="button" value="提交"
                    class="l-button l-button-submit" onclick="addnews('1')" />
-            <input type="button" value="预览"
-                   class="l-button l-button-submit" />
         </td>
     </tr>
 </table>

@@ -64,14 +64,16 @@ public class OrgService {
                     emp.setGzfw(job.getString("Gzfw"));
                     emp.setZzdwbm(job.getString("Zzdwbm"));
                     emp.setZzdwmc(job.getString("Zzdwmc"));
+                    emp.setSjhm(job.getString("Sjhm"));
+                    emp.setYx(job.getString("Yx"));
                     emp.setStatus(1);
 
                     //部门信息
-                    if(job.containsKey("Bmxx")){
-                        JSONObject job2 =JSON.parseObject(job.getString("Bmxx"));
-                        emp.setSjhm(job2.getString("Sjhm"));
-                        emp.setYx(job2.getString("Yx"));
-                    }
+//                    if(job.containsKey("Bmxx")){
+//                        JSONObject job2 =JSON.parseObject(job.getString("Bmxx"));
+//                        emp.setSjhm(job2.getString("Sjhm"));
+//                        emp.setYx(job2.getString("Yx"));
+//                    }
                     list.add(emp);
                 }
             }
