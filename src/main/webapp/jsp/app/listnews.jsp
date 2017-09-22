@@ -98,7 +98,7 @@
                 <%--<span class="badge" style="background-color: red;position: absolute ;right: -5px;top: 0">5</span>--%>
             </div>
         </div>
-        <div class="col-xs-11" style="padding-right: 0px;">
+        <div class="col-xs-10" style="padding-right: 0px;">
             <form action="listnews" method="post" id="form1" name="form1">
             <div class="form-group has-feedback">
                 <div>
@@ -137,7 +137,7 @@
                     <div class="col-xs-3 imgdiv">
                         <img src="${ctx}/file/doDownload/${l.topimg}"  class="">
                     </div>
-                    <div class="col-xs-9" style="">
+                    <div class="col-xs-8" style="">
                         <div class="cut">${l.title}</div>
                         <div><p class="content">${l.cont}</p></div>
                         <div class="time">发布于
