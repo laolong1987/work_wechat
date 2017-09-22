@@ -17,11 +17,19 @@ public class WebServiceApiConfig {
     @Value("${GetWaitProcessNotice}")
     private String getWaitProcessNotice;
 
+    @Value("${GetProcessedNotice}")
+        private String getProcessedNotice;
+
     @Value("${GetFormInstance}")
     private String getFormInstance;
 
     @Value("${GetMayProcessItems}")
     private String getMayProcessItems;
+
+
+    @Value("${GetNoticeList}")
+    private String GetNoticeList;
+
 
     public String getGetWaitProcessNotice() {
         return getWaitProcessNotice;
@@ -53,5 +61,21 @@ public class WebServiceApiConfig {
 
     public void setBase(String base) {
         this.base = base;
+    }
+
+    public String getGetNoticeList() {
+        return GetNoticeList;
+    }
+
+    public void setGetNoticeList(String getNoticeList) {
+        GetNoticeList = getNoticeList;
+    }
+
+    public String getGetProcessedNotice() {
+        return getProcessedNotice;
+    }
+
+    public void setGetProcessedNotice(String getProcessedNotice) {
+        this.getProcessedNotice = getProcessedNotice;
     }
 }

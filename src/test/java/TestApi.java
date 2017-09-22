@@ -1,10 +1,10 @@
 
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import com.alibaba.fastjson.JSONObject;
 import com.web.component.wechat.api.WechatComponent;
+import com.web.model.WaitProcessModel;
 import com.web.service.ws.ApprovalService;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,7 +30,7 @@ public class TestApi {
     WechatComponent wechatComponent;
 
     @Autowired
-    private  ApprovalService approvalService;
+    private ApprovalService approvalService;
 
 
     public void testMpNews() {
@@ -93,10 +93,30 @@ public class TestApi {
     }
 
     @Test
-    public void getWaitProcessNotice(){
-
-        String res = approvalService.getWaitProcessNotice("220238");
+    public void getWaitProcessNotice() {
+        List<WaitProcessModel> res = approvalService.getWaitProcessNotice("220238","1","100");
         System.out.println(res);
     }
+
+
+    public void GetFormInstance() {
+        String res = approvalService.getFormInstance("322", "293");
+        System.out.println(res);
+    }
+
+
+    public void getMayProcessItems() {
+
+        String res = approvalService.getMayProcessItems("500", "1", "220238");
+        System.out.println(res);
+    }
+
+
+    public void getGetNoticeList() {
+
+         approvalService.getNoticeList("500", "1");
+
+    }
+
 
 }
