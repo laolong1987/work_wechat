@@ -16,22 +16,17 @@
 
   <!-- 开启注解 -->
   <mvc:annotation-driven />
-  <aop:aspectj-autoproxy />  <!-- 要添加本行 -->
+  <aop:aspectj-autoproxy/>  <!-- 要添加本行 -->
   <!-- 静态资源(js/image)的访问 -->
   <mvc:resources location="/js/" mapping="/js/**" />
-  <mvc:resources location="/images/" mapping="/images/**" />
-  <mvc:resources location="/ligerUI/" mapping="/ligerUI/**" />
-  <mvc:resources location="/jsp/" mapping="/jsp/**" />
-
-  <mvc:resources mapping="swagger-ui.html"
-                 location="classpath:/META-INF/resources/" />
-  <mvc:resources mapping="/webjars/**"
-                 location="classpath:/META-INF/resources/webjars/" />
-
-  <mvc:resources mapping="swagger-ui.html"
-                 location="classpath:/META-INF/resources/" />
-  <mvc:resources mapping="/webjars/**"
-                 location="classpath:/META-INF/resources/webjars/" />
+    <mvc:resources location="/images/" mapping="/images/**" />
+    <mvc:resources location="/jsp/" mapping="/jsp/**" />
+    <mvc:resources location="/css/" mapping="/css/**" />
+    <mvc:resources location="/ligerUI/" mapping="/ligerUI/**" />
+    <mvc:resources location="/jsp/" mapping="/jsp/**" />
+    <mvc:resources location="/attached/" mapping="/attached/**" />
+    <mvc:resources location="/fonts/" mapping="/fonts/**" />
+    <mvc:resources location="/font-awesome/" mapping="/font-awesome/**" />
   <!-- 拦截器 -->
   <mvc:interceptors>
     <!-- 多个拦截器,顺序执行 -->
@@ -39,9 +34,7 @@
     <mvc:interceptor>
       <!-- 后台配置拦截 -->
       <mvc:mapping path="/admin/index" />
-      <mvc:mapping path="/case/**" />
-      <mvc:mapping path="/doctor/**" />
-      <mvc:mapping path="/patient/**" />
+      <mvc:mapping path="/admin/news/**" />
       <bean class="com.web.interceptor.FreeMarkerViewInterceptorAdmin"></bean>
     </mvc:interceptor>
 

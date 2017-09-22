@@ -77,8 +77,13 @@
     });
 
     function iniMenu() {
+      var aa='${user.username}';
       var data = [];
       data.push({id: 1, value: '${ctx}/admin/news/list', text: '新闻管理'});
+      if(aa=='admin'){
+        data.push({id: 2, value: '${ctx}/admin/employee/list', text: '员工管理'});
+
+      }
 
       var tree = $("#tree").ligerTree({
         data: data,
@@ -114,6 +119,11 @@
         }
       });
     }
+
+    function f_reloadTab(tabid) {
+      tab.reload(tabid);
+    }
+
     function showCodeView(src) {
       $.ligerDialog.open({
         title: '源码预览',
@@ -232,7 +242,7 @@
         } else {
 
           var params = JSON.stringify($("#pwdForm").serializeJson());
-          alert(params)
+//          alert(params)
           $.ajax({
             type: "POST",
             url: "${ctx}/admin/savepassword",
@@ -455,7 +465,7 @@
       position: absolute;
       left: 0px;
       top: 0px;
-      background: white url("./resources/lib/images/loading.gif") no-repeat center;
+      /*background: white url("../../images/loading.gif") no-repeat center;*/
       width: 100%;
       height: 100%;
       z-index: 99999;
@@ -594,23 +604,22 @@
     <div class="name">Service Admin Plaform</div>
 
     <div class="loginbox" style="color: #4a4a4a;font: 16px Microsoft Yahei;right: 30px;position: absolute;top: 44px;">
-      <%--<div--%>
-        <%--style="text-align: center;float: left;font-weight: bold">--%>
-        <%--<a href="javascript:openPwd()">--%>
-          <%--password--%>
-        <%--</a>--%>
-      <%--</div>--%>
+      <div
+        style="text-align: center;float: left;font-weight: bold">
+        <a href="javascript:openPwd()">
+          修改密码
+        </a>
+      </div>
       <div  style="text-align: center;float: left;margin: 0 10px" >
         |
       </div>
-      <!--
-      <img src="../images/changepassword.png" onmouseover="this.style.cursor='pointer'" onclick="" title="修改密码">&nbsp;&nbsp;&nbsp;&nbsp;
-      -->
+
+      <%--<img src="../images/changepassword.png" onmouseover="this.style.cursor='pointer'" onclick="" title="修改密码">&nbsp;&nbsp;&nbsp;&nbsp;--%>
       <div
         style="text-align: center;float: left;font-weight: bold;">
         <a href="${ctx}/admin/logout">
-          <!--       <img src="../images/logout.png" onmouseover="this.style.cursor='pointer'" title="注销"/> -->
-          logout
+          <%--<img src="../images/logout.png" onmouseover="this.style.cursor='pointer'" title="注销"/>--%>
+          注销
         </a>
       </div>
 

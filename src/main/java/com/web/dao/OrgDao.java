@@ -30,8 +30,7 @@ public class OrgDao extends BaseDao{
      */
     public SearchTemplate searchEmployee(Map map){
         StringBuffer sql =new StringBuffer();
-        Map p=new HashMap();
-        sql.append("select  * from employee ");
+        sql.append("select t.*,a.id as aid from employee t left join admin a on a.username=t.Ygbh and a.status<>0 ");
         return super.search(sql.toString(),map);
     }
 
@@ -98,5 +97,17 @@ public class OrgDao extends BaseDao{
         }
         System.out.println(sql);
         return sql.toString().substring(0,sql.length() - 1);
+    }
+
+    public List<Employee> findEmployee(){
+        StringBuffer sql = new StringBuffer();
+        sql.append("select * from employee ");
+        Map map = new HashMap();
+        List<Employee> list = super.findObjects(sql.toString(), map, Employee.class);
+        return list;
+    }
+
+    public void saveEmployee(Employee employee){
+        super.save(employee);
     }
 }

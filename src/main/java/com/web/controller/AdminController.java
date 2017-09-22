@@ -1,7 +1,9 @@
 package com.web.controller;
 
 
+import com.utils.ConvertUtil;
 import com.utils.MD5Util;
+import com.web.entity.Admin;
 import com.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,18 +33,19 @@ public class AdminController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(HttpServletRequest request,
                         HttpServletResponse response) {
-//        if (user.getUsername() != null && !"".equals(user.getUsername()) && user.getPwd() != null && !"".equals(user.getPwd())) {
-//            String pwd = MD5Util.string2MD5(user.getPwd() + user.getUsername());
-//            user.setPwd(pwd);
-//            User admin = userService.findUser(user);
-//            if (admin != null) {
-//                request.getSession().setAttribute("user", admin);
-//                return "redirect:index";
-//            } else {
-//                request.setAttribute("tip", "用户名或密码错误");
-//                return "/jsp/manage/login";
-//            }
-//        }
+        String username= ConvertUtil.safeToString(request.getParameter("username"),"");
+        String password= ConvertUtil.safeToString(request.getParameter("pwd"),"");
+
+        if (!"".equals(username) && !"".equals(password)) {
+            Admin admin = userService.findUser(username,password);
+            if (admin != null) {
+                request.getSession().setAttribute("user", admin);
+                return "redirect:index";
+            } else {
+                request.setAttribute("tip", "用户名或密码错误");
+                return "/jsp/manage/login";
+            }
+        }
 
         return "/jsp/manage/login";
     }
@@ -66,7 +69,30 @@ public class AdminController {
     public String removeuser(HttpServletRequest request,
                              HttpServletResponse response) {
         request.getSession().removeAttribute("user");
-        return "redirect:/admin/login";
+        return "/jsp/manage/tologin";
     }
+
+    @RequestMapping(value = "/savepassword", method = RequestMethod.POST)
+    @ResponseBody
+    public String save_password( HttpServletRequest request,HttpServletResponse response) {
+        String result="";
+        Admin user= (Admin) request.getSession().getAttribute("user");
+        String password = request.getParameter("password");
+        String confirmPwd =request.getParameter("confirmPwd");
+        if( !"".equals(confirmPwd) && !"".equals(password) && password!=null && confirmPwd!=null ){
+            if(password.equals(confirmPwd)){
+                user.setPassword(password);
+                userService.saveUser(user);
+                result="success";
+            }else{
+                result="The passwords you typed do not match. Type the same password in both text boxes.";
+            }
+        }else{
+            result="password can't be null";
+        }
+        return result;
+    }
+
+
 
 }

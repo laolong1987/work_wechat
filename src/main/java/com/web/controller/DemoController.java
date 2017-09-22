@@ -35,6 +35,7 @@ public class DemoController {
                                 HttpServletResponse response) {
 
         request.setAttribute("list",demoService.searchList(new HashMap()));
+        orgService.updateEmp();
 
         return "/jsp/demo";
     }
@@ -71,7 +72,6 @@ public class DemoController {
     public String httpclient(HttpServletRequest request,
                        HttpServletResponse response) {
 
-        orgService.updateEmp();
 
         String url= ConvertUtil.safeToString(request.getParameter("url"),"");
         String content= ConvertUtil.safeToString(request.getParameter("content"),"");

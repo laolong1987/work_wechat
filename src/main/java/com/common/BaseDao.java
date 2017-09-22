@@ -110,7 +110,13 @@ public abstract class BaseDao {
     public Object getObjectById(Integer id, Object entity) {
         return sessionFactory.getCurrentSession().get((Class) entity, id);
     }
-
+    /**
+     * 根据id查询对象
+     * @return
+     */
+    public Object getObjectById(String id, Object entity) {
+        return  sessionFactory.getCurrentSession().get((Class) entity, id);
+    }
     /**
      * 查询方法（页面表格用）
      *
@@ -121,7 +127,7 @@ public abstract class BaseDao {
      */
     public SearchTemplate search(String sql, Map param) {
         SearchTemplate template = new SearchTemplate(sql);
-        Query query = sessionFactory.getCurrentSession().createSQLQuery(template.getOrderSql(param));
+        Query query = sessionFactory.getCurrentSession().createSQLQuery(sql);
         if (param.get("page") != null && param.get("pageSize") != null) {
             int page = Integer.parseInt(param.get("page").toString());
             int pageSize = Integer.parseInt(param.get("pageSize").toString());

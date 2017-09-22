@@ -36,8 +36,15 @@
         var url='${ctx}/admin/news/showaddnews';
         top.f_addTab('addnews_0','编辑新闻',url);
     }
-
-
+    function xiugai(id)
+    {
+        var url='${ctx}/admin/news/showaddnews?id='+id;
+        top.f_addTab('addnews_'+id,'编辑新闻',url);
+    }
+    function yulan(id)
+    {
+        window.open("${ctx}/news/detailnews?id="+id);
+    }
     function setGrid(){
         //表格
         gridManager = $("#maingrid").ligerGrid({
@@ -46,41 +53,49 @@
                     display: '操作',
                     isSort: false,
                     isExport: false,
-                    width: 50,
-                    align : 'right',
+                    width: 80,
+                    align : 'center',
                     render: function (rowdata, rowindex, value)
                     {
-                        return "<img title='修改' onclick='editColumn("+JSON.stringify(rowdata)+");' style='margin-top:5px;cursor:pointer;' src='${ctx}/ligerUI/skins/icons/editform.png'/>&nbsp;&nbsp;&nbsp;";
+                        var xiugai="<a href='' onclick='xiugai("+rowdata.id+");return false'>修改</a>";
+                        var yulan="<a href='' onclick='yulan("+rowdata.id+");return false'>预览</a>";
+//                        var shanchu="<a href=''>删除</a>";
+                        return xiugai+"&nbsp;&nbsp;&nbsp;"+yulan;
                     }
                 },
                 {
-                    display : 'name',
-                    name : 'name',
-                    align : 'center',
-                    width : 100,
-                    minWidth : 30
+                    display : '标题',
+                    name : 'title',
+                    align : 'left'
                 },{
-                    display : 'userId',
-                    name : 'username',
-                    align : 'center',
+                    display : '来源',
+                    name : 'source',
+                    align : 'left',
                     width : 150,
                     minWidth : 60
                 }, {
-                    display : 'domain',
-                    name : 'phone1',
-                    width : 100,
+                    display : '发布时间',
+                    name : 'puttime1',
+                    width : 150,
                     minWidth : 30,
                     align : 'center'
                 },
                 {
-                    display : 'company',
-                    name : 'address',
-                    align : 'left'
-                },
-                {
-                    display : 'email',
-                    name : 'email',
-                    align : 'left'
+                    display : '状态',
+                    name : 'status',
+                    align : 'center',
+                    width : 100,
+                    render : function(rowdata, rowindex, value) {
+                        if(rowdata.status==0){
+                            return "草稿"
+                        }else if(rowdata.status==1){
+                            return "发布";
+                        }else if(rowdata.status==2){
+                            return "删除";
+                        }else{
+                            return ""
+                        }
+                    }
                 }
             ],
             pageSize : 50,
@@ -174,7 +189,7 @@
     <div class="l-panel-search">
         <div class="l-panel-search-item">标题</div>
         <div class="l-panel-search-item">
-            <input type="text" id="queryname" name="queryname"  class="liger-textbox" />
+            <input type="text" id="title" name="title"  class="liger-textbox" />
         </div>
         <div class="l-panel-search-item">
             <input type="button" id="searchbtn" value="查询" />

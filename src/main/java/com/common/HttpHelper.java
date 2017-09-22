@@ -708,12 +708,12 @@ public final class HttpHelper {
 //         http://d.bm21.com.cn:20006/employee/list
         Map params = new HashMap();
         params.put("Appid","0170822001");
-//        params.put("Username","220342");
-//        params.put("Passwd","123456");
-        params.put("Token","c8e5f6bf0d74ade9e1419ded0e40cc69");
-//{"Appid":"0170822001","Passwd":"123456","Username":"220342"}
-// {"state":0,"token":"c8e5f6bf0d74ade9e1419ded0e40cc69","expire":3600}
-//        {"Appid":"0170822001","Token":"8c433691fa5bc08246546f37b71f6d00"}
+        params.put("Username","220342");
+        params.put("Passwd","123456");
+//      params.put("Token","c8e5f6bf0d74ade9e1419ded0e40cc69");
+//        {"Appid":"0170822001","Passwd":"123456","Username":"22000338"}
+//        {"state":0,"token":"c8e5f6bf0d74ade9e1419ded0e40cc69","expire":3600}
+//        {"Appid":"0170822001","Token":"67a7b29a0ac229fc0b23326ed965ba44"}
 
         System.out.println(JSON.toJSONString(params));
 //        String ret = HttpHelper.fetchUTF8StringByPost(url, params, null, 0, 0);
