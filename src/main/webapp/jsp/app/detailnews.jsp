@@ -86,14 +86,14 @@
 <body>
 <div class="container">
     <div class="topdiv">
-        <img src="../file/doDownload/${news.topimg}" class="img-responsive">
+        <img src="../file/doDownload/${news.topimg}" class="img-responsive" style="max-height: 260px">
     </div>
     <div class="titlediv row">
         <div class="col-xs-6 text-left">
             来源于:${news.source}
         </div>
         <div class="col-xs-6 text-right">
-            发布于:2${puttime}
+            发布于:${puttime}
         </div>
     </div>
     <div class="titledivc text-center">${news.title}</div>
