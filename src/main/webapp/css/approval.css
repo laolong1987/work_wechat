@@ -1,0 +1,329 @@
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  width: 100%;
+
+  background: url(../images/bg.jpg) repeat-y center center/cover;
+}
+
+.info-row {
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: .2rem 0;
+  font-size: .22rem;
+  color: #000;
+  box-shadow: 2px 2px 16px 0 rgba(0, 0, 0, 0.1);
+  line-height: .48rem;
+
+}
+
+.info-row .attr-name {
+  width: 25%;
+  text-align: right;
+  color: #7C7C7C;
+}
+
+.info-row .attr-value {
+  width: 70%;
+  text-align: left;
+  padding-left: .2rem;
+}
+
+.subject {
+  height: 1.58rem;
+  padding: .48rem 0;
+  font-size: .3rem;
+  font-weight: 500;
+}
+
+.vehicle-middle {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.mgt-20 {
+  margin-top: .2rem;
+}
+
+.clearfloat:after {
+  display: block;
+  clear: both;
+  content: "";
+  visibility: hidden;
+  height: 0
+}
+
+.clearfloat {
+  zoom: 1
+}
+
+.apply-info {
+  text-align: right;
+  padding: .2rem 0;
+  font-size: .24rem;
+  color: #000;
+  line-height: .48rem;
+}
+
+.apply-info .attr-name {
+  display: inline-block;
+  width: 10%;
+  text-align: right;
+  color: #7C7C7C;
+}
+
+.apply-info .attr-value {
+  display: inline-block;
+  padding-right: .32rem;
+  text-align: left;
+}
+
+.process-1, .process-2, .process-3, .process-4 {
+  position: relative;
+  padding: 0 .2rem;
+  font-weight: bold;
+}
+
+.process-1 .flow {
+  width: .6rem;
+  height: 1rem;
+  background: url(../images/flow.png) no-repeat 0 -4.8rem/cover;
+}
+
+.process-1 .process-text {
+  position: absolute;
+  bottom: -0.05rem;
+  left: 1.08rem;
+  font-weight: bold;
+}
+
+.process-1 .process-date {
+  position: absolute;
+  bottom: -0.05rem;
+  right: 0.32rem;
+  color: #7c7c7c;
+  letter-spacing: .03rem;
+}
+
+.process-2 .flow {
+  width: .6rem;
+  height: 1.8rem;
+  background: url(../images/flow.png) no-repeat 0 -3rem/cover;
+}
+
+.process-2 .process-text {
+  position: absolute;
+  top: .64rem;
+  left: 1.08rem;
+}
+
+.process-2 .process-date {
+  position: absolute;
+  top: .64rem;
+  right: 0.32rem;
+  color: #7c7c7c;
+  letter-spacing: .03rem;
+}
+
+.process-3 .flow {
+  width: .6rem;
+  height: 1.8rem;
+  background: url(../images/flow.png) no-repeat 0 -1.2rem/cover;
+}
+
+.process-3 .process-text {
+  position: absolute;
+  top: .64rem;
+  left: 1.08rem;
+}
+
+.process-3 .process-date {
+  position: absolute;
+  top: .64rem;
+  right: 0.32rem;
+  font-weight: bold;
+  color: #7c7c7c;
+  letter-spacing: .08rem;
+}
+
+.process-4 .flow {
+  width: .6rem;
+  height: 1.2rem;
+  background: url(../images/flow.png) no-repeat 0 0/cover;
+}
+
+.process-4 .process-text {
+  position: absolute;
+  top: 0;
+  left: 1.03rem;
+}
+
+.process-4 .process-date {
+  position: absolute;
+  top: 0;
+  right: 0.32rem;
+  color: #7c7c7c;
+  letter-spacing: .03rem;
+}
+
+.process-button {
+  padding-top: 1.2rem;
+  background: rgba(255, 255, 255, 0.2);
+  line-height: 1rem;
+  text-align: center;
+  font-size: .34rem;
+  color: #fff;
+  font-weight: 600;
+}
+
+.process-button .refuse {
+  float: left;
+  width: 3.75rem;
+  height: 1rem;
+  background: linear-gradient(135deg, #f10000, #990000);
+}
+
+.process-button .agree {
+  float: left;
+  width: 3.75rem;
+  height: 1rem;
+  background: linear-gradient(135deg, #00aaf1, #006f9d);
+}
+
+.pd-lr {
+  padding: 0 0.15rem 0.48rem 0.15rem;
+}
+
+.approach-nav {
+  margin-top: .3rem;
+  width: 3.6rem;
+  background: url("../images/navbg.png") no-repeat center center/cover;
+  float: left;
+  height: .8rem;
+  line-height: .8rem;
+  text-align: center;
+  font-size: .3rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.approach-nav-choose {
+
+  background: url("../images/choose-navbg.png") no-repeat center center/cover !important;
+}
+
+.approach-list {
+  position: relative;
+  width: 7.2rem;
+  background: url(../images/approach-list-bg.png) no-repeat center center/cover;
+  height: 1.84rem;
+  margin: 0.12rem 0;
+  font-size: .22rem;
+}
+
+.approach-list .attr-name {
+  float: left;
+  width: 1.2rem;
+  text-align: right;
+  display: block;
+
+}
+
+.approach-list .attr-value {
+  float: left;
+  text-align: left;
+  display: block;
+  padding-left: .2rem;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  width:4.2rem;
+
+}
+
+.approach-list .doc-date {
+  float: right;
+  color: #7c7c7c;
+  padding-right: .48rem;
+
+}
+
+.approach-list .title {
+  font-size: .24rem;
+  font-weight: bold;
+  color: #000;
+  line-height: .8rem;
+}
+
+.approach-list .content {
+  padding-top: .1rem;
+  line-height: .4rem;
+}
+
+.approach-list .status {
+  position: absolute;
+  right: .96rem;
+  top: 1.08rem;
+  font-size: .3rem;
+  font-weight: 500;
+  color: #1FB10C;
+}
+
+.f-dn {
+  display: none;
+}
+
+.approach-reason {
+  position: fixed;
+  bottom: 0;
+  box-shadow: 2px 2px 16px 0 rgba(0, 0, 0, 0.1);
+  font-size: .26rem;
+  background: rgba(255,255,255,0.9);
+}
+
+.approach-reason .tip {
+  padding: 0  .3rem;
+  color: #a5a5a5;
+  height: .96rem;
+  line-height: .96rem;
+  font-weight: 500;
+  letter-spacing: .05rem;
+}
+
+.approach-reason .reason{
+  padding: 0  .3rem;
+  height: 3.2rem;
+  width: 100%;
+  border:none;
+
+  background: rgba(255,255,255,0.5);
+}
+
+.approach-reason .close {
+  float: left;
+  width: 3.75rem;
+  height: 1rem;
+  background: linear-gradient(135deg, #3a3a3a, #000000);
+  line-height: 1rem;
+  text-align: center;
+  font-size: .32rem;
+  color: #fff;
+ letter-spacing: .1rem;
+}
+
+.approach-reason .submit {
+  float: left;
+  width: 3.75rem;
+  height: 1rem;
+  background: linear-gradient(135deg, #00ddf1, #007399);
+  line-height: 1rem;
+  text-align: center;
+  font-size: .32rem;
+  color: #fff;
+  letter-spacing: .1rem;
+
+}
+
