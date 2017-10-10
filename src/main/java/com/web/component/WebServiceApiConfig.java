@@ -18,7 +18,7 @@ public class WebServiceApiConfig {
     private String getWaitProcessNotice;
 
     @Value("${GetProcessedNotice}")
-        private String getProcessedNotice;
+    private String getProcessedNotice;
 
     @Value("${GetFormInstance}")
     private String getFormInstance;

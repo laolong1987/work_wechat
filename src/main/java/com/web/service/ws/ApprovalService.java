@@ -22,8 +22,8 @@ public class ApprovalService {
     @Autowired
     private WebServiceApiConfig config;
 
-    public List<WaitProcessModel> getWaitProcessNotice(String username, String nStartPage, String nPageSize) {
-
+    public List<WaitProcessModel> getWaitProcessNotice(String username, String nStartPage, String apiType) {
+        String nPageSize = "10";
         Set<Integer> standardTemple = new HashSet<>();
         // standardTemple.add(316);//工作督办单
         standardTemple.add(321);//用车申请单
@@ -48,32 +48,41 @@ public class ApprovalService {
         wSbean.setParametername("userName");
         wSbean.setParametervalue(username);
         wSbean.setXMLType(XMLType.XSD_STRING);
+
+        WSbean page = new WSbean();
+        page.setParametername("nStartPage");
+        page.setParametervalue(nStartPage);
+        page.setXMLType(XMLType.XSD_INT);
+
+        WSbean pageSize = new WSbean();
+        pageSize.setParametername("nPageSize");
+        pageSize.setParametervalue(nPageSize);
+        pageSize.setXMLType(XMLType.XSD_INT);
+        wSbeans.add(page);
+        wSbeans.add(pageSize);
         wSbeans.add(wSbean);
-        String response ="";
-        if (nStartPage != null && nPageSize != null) {
-            url = config.getBase() + config.getGetProcessedNotice();
-            WSbean template = new WSbean();
-            template.setParametername("nStartPage");
-            template.setParametervalue(nStartPage);
-            template.setXMLType(XMLType.XSD_INT);
+        String response = "";
+        if ("waitProcess".equalsIgnoreCase(apiType)) {
 
-            WSbean data = new WSbean();
-            data.setParametername("nPageSize");
-            data.setParametervalue(nPageSize);
-            data.setXMLType(XMLType.XSD_INT);
-            wSbeans.add(data);
-            wSbeans.add(template);
-            response = WebServiceBase.call(config.getGetProcessedNotice(), wSbeans, url);
-        }else{
             response = WebServiceBase.call(config.getGetWaitProcessNotice(), wSbeans, url);
-        }
+        } else if ("processed".equalsIgnoreCase(apiType)) {
 
+            url = config.getBase() + config.getGetProcessedNotice();
+            WSbean type = new WSbean();
+            type.setParametername("nType");
+            type.setParametervalue("1");
+            type.setXMLType(XMLType.XSD_INT);
+
+            wSbeans.add(type);
+
+            response = WebServiceBase.call(config.getGetProcessedNotice(), wSbeans, url);
+        }
         JSONObject jsonObject = JSONObject.parseObject(response);
         List<WaitProcessModel> waitProcessModelList = new ArrayList<>();
         if (jsonObject.getString("success").equals("true")) {
             JSONArray dataArray = jsonObject.getJSONArray("data");
             if (dataArray.size() > 0) {
-                for (int i = 0; i <dataArray.size() ; i++) {
+                for (int i = 0; i < dataArray.size(); i++) {
                     JSONObject object = dataArray.getJSONObject(i);
                     WaitProcessModel model = new WaitProcessModel(object);
                     if (!standardTemple.contains(model.getTemplateId()))
@@ -82,9 +91,6 @@ public class ApprovalService {
                     String status = getMayProcessItems(model.getTemplateId(), model.getDataId(), username);
                     model.setStatus(status);
 
-                    //获取单号
-                    String orderNum = getFormInstanceID(model.getTemplateId(), model.getDataId());
-                    model.setOrderNum(orderNum);
                     waitProcessModelList.add(model);
                 }
             }

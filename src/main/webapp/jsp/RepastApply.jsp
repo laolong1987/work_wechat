@@ -47,45 +47,81 @@
   </div>
 
   <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">部门：</div>
+    <div class="attr-name f-fl  ">申请人：</div>
+    <div class="attr-value f-fl  ">${object.applicant}</div>
+  </div>
+
+  <div class="info-row mgt-20 clearfloat">
+    <div class="attr-name f-fl  ">申请部门：</div>
     <div class="attr-value f-fl  ">${object.department}</div>
   </div>
-
   <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">申请日期：</div>
-    <div class="attr-value f-fl  ">${object.applyDate}</div>
+    <div class="attr-name f-fl  ">事由：</div>
+    <div class="attr-value f-fl  ">
+      ${object.reason}
+    </div>
   </div>
 
   <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">附件类型：</div>
+    <div class="attr-name f-fl  ">附件信息：</div>
     <div class="attr-value f-fl  ">${object.attachment}</div>
   </div>
 
   <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">预计工作时间：</div>
-    <div class="attr-value f-fl  ">${object.estimatedTime}</div>
-  </div>
-  <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">工作内容：</div>
-    <div class="attr-value f-fl  ">
-      ${object.content}
-    </div>
-  </div>
-  <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">加班人员姓名：</div>
-    <div class="attr-value f-fl  ">${object.staff}</div>
-  </div>
-  <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">部门主任：</div>
-    <div class="attr-value f-fl  ">${object.divisionChief}</div>
+    <div class="attr-name f-fl  ">用餐种类：</div>
+    <div class="attr-value f-fl  ">${object.repastType}</div>
   </div>
 
-  <div class="apply-info">
-    <span class="attr-name ">制单：</span>
-    <span class="attr-value">${object.operator}</span>
-    <span class="attr-name ">日期：</span>
-    <span class="attr-value ">${object.orderDate}</span>
+  <div class="info-row mgt-20 clearfloat">
+    <div class="attr-name f-fl  ">用餐时间：</div>
+    <div class="attr-value f-fl  ">${object.repastTime}</div>
   </div>
+
+  <div class="info-row mgt-20 clearfloat">
+    <div class="attr-name f-fl  ">用餐日期：</div>
+    <div class="attr-value f-fl  ">${object.repastDate}</div>
+  </div>
+
+
+  <div class="info-row mgt-20 clearfloat">
+    <div class="attr-name f-fl  ">用餐标准：</div>
+    <div class="attr-value f-fl  ">${object.standard}</div>
+  </div>
+  <div class="info-row mgt-20 clearfloat">
+    <div class="attr-name f-fl  ">用餐地点：</div>
+    <div class="attr-value f-fl  ">${object.address}</div>
+  </div>
+  <div class="info-row mgt-20 clearfloat">
+    <div class="attr-name f-fl  ">用餐数量：</div>
+    <div class="attr-value f-fl  ">${object.foodNumber}</div>
+  </div>
+  <div class="info-row mgt-20 clearfloat">
+    <div class="attr-name f-fl  ">备注：</div>
+    <div class="attr-value f-fl  ">${object.remark}</div>
+  </div>
+  <div class="sub-head">
+    以下由食堂填写
+  </div>
+  <div class="info-row mgt-20 clearfloat">
+    <div class="attr-name f-fl  ">实际用餐标准：</div>
+    <div class="attr-value f-fl  ">${object.actuallyStandard}</div>
+  </div>
+  <div class="info-row mgt-20 clearfloat">
+    <div class="attr-name f-fl  ">实际用用餐数量：</div>
+    <div class="attr-value f-fl  ">${object.actuallyFoodNumber}</div>
+  </div>
+  <div class="info-row mgt-20 clearfloat">
+    <div class="attr-name f-fl  ">共消费金额：</div>
+    <div class="attr-value f-fl  ">${object.totalConsumption}</div>
+  </div>
+  <div class="info-row mgt-20 clearfloat">
+    <div class="attr-name f-fl  ">部门审核：</div>
+    <div class="attr-value f-fl  ">${object.approachResult}</div>
+  </div>
+  <div class="remark">
+    注：中餐请于11点前提交申请，晚餐请于16点前提交申请。
+  </div>
+
   <div class="info-row">
     <c:forEach var="item" items="${noticeList}" varStatus="status">
       <div class="process-${fn:length(noticeList)-status.index} clearfloat">

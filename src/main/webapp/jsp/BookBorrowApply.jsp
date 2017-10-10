@@ -33,15 +33,16 @@
   </script>
 </head>
 <body>
-<div class="container">
+<div class="container-detail">
   <div class="info-row subject ">
-    <div class="clearfloat">
-      <div class="attr-name f-fl vehicle-middle ">单号：</div>
-      <div class="attr-value f-fl vehicle-middle ">${object.orderNum}</div>
-    </div>
+
     <div class="clearfloat">
       <div class="attr-name f-fl vehicle-middle ">类型：</div>
       <div class="attr-value f-fl vehicle-middle ">${object.subject}</div>
+    </div>
+    <div class="clearfloat">
+      <div class="attr-name f-fl vehicle-middle ">单号：</div>
+      <div class="attr-value f-fl vehicle-middle ">${object.orderNum}</div>
     </div>
   </div>
 
@@ -122,8 +123,8 @@
     <div class="tip">请填写您拒绝的原因：</div>
     <textarea class="reason"></textarea>
 
-      <div class="close">取消</div>
-      <div class="submit">提交</div>
+    <div class="close">取消</div>
+    <div class="submit">提交</div>
 
   </div>
 
@@ -131,11 +132,11 @@
 <script type="text/javascript" src='<%=webRoot%>/js/jquery.min.js'></script>
 <script>
   $(function () {
-    $(".refuse").on("click",function () {
-        $("#refuse-reason").removeClass("f-dn");
+    $(".refuse").on("click", function () {
+      $("#refuse-reason").removeClass("f-dn");
     })
 
-    $(".close").on("click",function () {
+    $(".close").on("click", function () {
       $("#refuse-reason").addClass("f-dn");
     })
 

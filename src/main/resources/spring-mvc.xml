@@ -38,6 +38,12 @@
       <bean class="com.web.interceptor.FreeMarkerViewInterceptorAdmin"></bean>
     </mvc:interceptor>
 
+    <mvc:interceptor>
+      <!-- 后台配置拦截 -->
+      <mvc:mapping path="/approval/**" />
+      <bean class="com.web.interceptor.FreeMarkerViewInterceptor4Approval"></bean>
+    </mvc:interceptor>
+
   </mvc:interceptors>
 
   <!-- 定义视图解析器 -->

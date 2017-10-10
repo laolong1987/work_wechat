@@ -168,5 +168,7 @@ public class WaitProcessModel {
         this.subject = object.getString("subject");
         this.templateId = object.getInteger("templateid");
 
+        this.orderNum=object.getString("_FORMNO");
+
     }
 }

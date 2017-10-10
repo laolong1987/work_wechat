@@ -16,7 +16,7 @@
 %>
 <html>
 <head>
-  <title>加班申请单</title>
+  <title>印章申请单</title>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport"
@@ -42,50 +42,60 @@
     </div>
     <div class="clearfloat">
       <div class="attr-name f-fl vehicle-middle ">单号：</div>
-      <div class="attr-value f-fl vehicle-middle ">${object.orderNum}</div>
+      <div class="attr-value f-fl vehicle-middle ">${object.orderNum}</div
     </div>
   </div>
 
   <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">部门：</div>
+    <div class="attr-name f-fl  ">类别：</div>
+    <div class="attr-value f-fl  ">${object.useType}</div>
+  </div>
+
+  <div class="info-row mgt-20 clearfloat">
+    <div class="attr-name f-fl  ">申请人：</div>
+    <div class="attr-value f-fl  ">${object.applicant}</div>
+  </div>
+
+  <div class="info-row mgt-20 clearfloat">
+    <div class="attr-name f-fl  ">申请部门：</div>
     <div class="attr-value f-fl  ">${object.department}</div>
+  </div>
+  <div class="info-row mgt-20 clearfloat">
+    <div class="attr-name f-fl  ">印章名称：</div>
+    <div class="attr-value f-fl  ">
+      ${object.sealName}
+    </div>
+  </div>
+  <div class="info-row mgt-20 clearfloat">
+    <div class="attr-name f-fl  ">印章管理员：</div>
+    <div class="attr-value f-fl  ">
+      ${object.keeper}
+    </div>
+  </div>
+
+  <div class="info-row mgt-20 clearfloat">
+    <div class="attr-name f-fl  ">附件信息：</div>
+    <div class="attr-value f-fl  ">${object.attachment}</div>
   </div>
 
   <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">申请日期：</div>
     <div class="attr-value f-fl  ">${object.applyDate}</div>
   </div>
-
   <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">附件类型：</div>
-    <div class="attr-value f-fl  ">${object.attachment}</div>
-  </div>
-
-  <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">预计工作时间：</div>
-    <div class="attr-value f-fl  ">${object.estimatedTime}</div>
+    <div class="attr-name f-fl  ">分管领导：</div>
+    <div class="attr-value f-fl  ">${object.leader}</div>
   </div>
   <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">工作内容：</div>
-    <div class="attr-value f-fl  ">
-      ${object.content}
-    </div>
+    <div class="attr-name f-fl  ">用印事项：</div>
+    <div class="attr-value f-fl  ">${object.purpose}</div>
   </div>
   <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">加班人员姓名：</div>
-    <div class="attr-value f-fl  ">${object.staff}</div>
-  </div>
-  <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">部门主任：</div>
-    <div class="attr-value f-fl  ">${object.divisionChief}</div>
+    <div class="attr-name f-fl  ">用印情况：</div>
+    <div class="attr-value f-fl  ">${object.circs}</div>
   </div>
 
-  <div class="apply-info">
-    <span class="attr-name ">制单：</span>
-    <span class="attr-value">${object.operator}</span>
-    <span class="attr-name ">日期：</span>
-    <span class="attr-value ">${object.orderDate}</span>
-  </div>
+
   <div class="info-row">
     <c:forEach var="item" items="${noticeList}" varStatus="status">
       <div class="process-${fn:length(noticeList)-status.index} clearfloat">
