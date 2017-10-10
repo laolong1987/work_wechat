@@ -59,41 +59,48 @@ public class WebServiceBase {
 
     public static void main(String[] args) {
 //		调用 demo
+//        List<WSbean> list = new ArrayList<>();
+//        WSbean wSbean = new WSbean();
+//        wSbean.setParametername("userName");
+//        wSbean.setParametervalue("220309");
+//        wSbean.setXMLType(XMLType.XSD_STRING);
+//        list.add(wSbean);
+//        String r1 = WebServiceBase.call("GetWaitProcessNotice", list);
+//        JSONObject resultJson = JSON.parseObject(r1);
+//        JSONArray jsonArray1 = JSON.parseArray(resultJson.getString("data"));
+//        for (int i = 0; i < jsonArray1.size(); i++) {
+//            System.out.println("---------审批明细数据---开始-----------------");
+//            JSONObject job = jsonArray1.getJSONObject(i);
+////			System.out.println("templateid:"+job.getString("templateid")) ;
+////			System.out.println("dataid:"+job.getString("dataid")) ;
+//            for (Map.Entry<String, Object> entry : job.entrySet()) {
+//                System.out.println(entry.getKey() + ":" + entry.getValue());
+//            }
+//
+//            list = new ArrayList<>();
+//            wSbean = new WSbean();
+//            wSbean.setParametername("templateid");
+//            wSbean.setParametervalue(job.getString("templateid"));
+//            wSbean.setXMLType(XMLType.XSD_INT);
+//            list.add(wSbean);
+//            wSbean = new WSbean();
+//            wSbean.setParametername("dataid");
+//            wSbean.setParametervalue(job.getString("dataid"));
+//            wSbean.setXMLType(XMLType.XSD_INT);
+//            list.add(wSbean);
+//            String r2 = WebServiceBase.call("GetFormInstance", list);
+//            JSONObject resultJson2 = JSON.parseObject(r2);
+//            for (Map.Entry<String, Object> entry : resultJson2.entrySet()) {
+//                System.out.println(entry.getKey() + ":" + entry.getValue());
+//            }
+//            System.out.println("-----------------------------------------");
+//        }
         List<WSbean> list = new ArrayList<>();
         WSbean wSbean = new WSbean();
-        wSbean.setParametername("userName");
-        wSbean.setParametervalue("220309");
-        wSbean.setXMLType(XMLType.XSD_STRING);
-        list.add(wSbean);
-        String r1 = WebServiceBase.call("GetWaitProcessNotice", list);
-        JSONObject resultJson = JSON.parseObject(r1);
-        JSONArray jsonArray1 = JSON.parseArray(resultJson.getString("data"));
-        for (int i = 0; i < jsonArray1.size(); i++) {
-            System.out.println("---------审批明细数据---开始-----------------");
-            JSONObject job = jsonArray1.getJSONObject(i);
-//			System.out.println("templateid:"+job.getString("templateid")) ;
-//			System.out.println("dataid:"+job.getString("dataid")) ;
-            for (Map.Entry<String, Object> entry : job.entrySet()) {
-                System.out.println(entry.getKey() + ":" + entry.getValue());
-            }
-
-            list = new ArrayList<>();
-            wSbean = new WSbean();
-            wSbean.setParametername("templateid");
-            wSbean.setParametervalue(job.getString("templateid"));
-            wSbean.setXMLType(XMLType.XSD_INT);
-            list.add(wSbean);
-            wSbean = new WSbean();
-            wSbean.setParametername("dataid");
-            wSbean.setParametervalue(job.getString("dataid"));
-            wSbean.setXMLType(XMLType.XSD_INT);
-            list.add(wSbean);
-            String r2 = WebServiceBase.call("GetFormInstance", list);
-            JSONObject resultJson2 = JSON.parseObject(r2);
-            for (Map.Entry<String, Object> entry : resultJson2.entrySet()) {
-                System.out.println(entry.getKey() + ":" + entry.getValue());
-            }
-            System.out.println("-----------------------------------------");
-        }
+        wSbean.setParametername("FormType");
+        wSbean.setParametervalue("321");
+        wSbean.setXMLType(XMLType.XSD_INT);
+        String r1 = WebServiceBase.call("GetFormSchema", list);
+        System.out.println(r1);
     }
-    }
+}
