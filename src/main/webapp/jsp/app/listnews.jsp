@@ -26,7 +26,7 @@
             background-color:  #FBFBFB;
         }
         .topdiv {
-            margin: 5px 0px 5px;
+            margin: 8px -6px 8px;
         }
         .box{
             /*box-shadow: 10px 10px 5px #888888;*/
@@ -45,19 +45,19 @@
         }
 
         .listdiv{
-            margin: 0px 10px 5px;
+            margin: 0px 8px 5px;
         }
-        .row {
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -ms-flexbox;
-            display: flex;
-            flex-wrap: wrap;
-        }
-        .row > [class*='col-'] {
-            display: flex;
-            flex-direction: column;
-        }
+        /*.row {*/
+            /*display: -webkit-box;*/
+            /*display: -webkit-flex;*/
+            /*display: -ms-flexbox;*/
+            /*display: flex;*/
+            /*flex-wrap: wrap;*/
+        /*}*/
+        /*.row > [class*='col-'] {*/
+            /*display: flex;*/
+            /*flex-direction: column;*/
+        /*}*/
         .cut {
             overflow:hidden;
             text-overflow:ellipsis;
@@ -76,6 +76,7 @@
             text-indent:25px;
             font-size: 12px;
             color: #777777;
+            margin: 5px 0px 5px;
         }
         .time{
             color: #777777;
@@ -98,9 +99,9 @@
                 <%--<span class="badge" style="background-color: red;position: absolute ;right: -5px;top: 0">5</span>--%>
             </div>
         </div>
-        <div class="col-xs-10" style="padding-right: 0px;">
+        <div class="col-xs-11" style="padding-right: 0px;">
             <form action="listnews" method="post" id="form1" name="form1">
-            <div class="form-group has-feedback">
+            <div class="has-feedback">
                 <div>
                     <span class="glyphicon glyphicon-search form-control-feedback" style="color: #DCDCDC"></span>
                     <input type="text" name="title" id="title" class="form-control" placeholder="搜索关键字" value="${title}">
@@ -137,7 +138,7 @@
                     <div class="col-xs-3 imgdiv">
                         <img src="${ctx}/file/doDownload/${l.topimg}"  class="">
                     </div>
-                    <div class="col-xs-8" style="">
+                    <div class="col-xs-9" style="">
                         <div class="cut">${l.title}</div>
                         <div><p class="content">${l.cont}</p></div>
                         <div class="time">发布于
