@@ -16,7 +16,7 @@
 %>
 <html>
 <head>
-  <title>加班申请单</title>
+  <title>员工补办证件申请表</title>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport"
@@ -47,46 +47,45 @@
   </div>
 
   <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">部门：</div>
+    <div class="attr-name f-fl  ">姓名：</div>
+    <div class="attr-value f-fl  ">${object.applicant}</div>
+  </div>
+
+  <div class="info-row mgt-20 clearfloat">
+    <div class="attr-name f-fl  ">工号：</div>
+    <div class="attr-value f-fl  ">${object.id}</div>
+  </div>
+
+  <div class="info-row mgt-20 clearfloat">
+    <div class="attr-name f-fl  ">所在部门：</div>
     <div class="attr-value f-fl  ">${object.department}</div>
   </div>
-
   <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">申请日期：</div>
-    <div class="attr-value f-fl  ">${object.applyDate}</div>
-  </div>
-
-  <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">附件类型：</div>
-    <div class="attr-value f-fl  ">${object.attachment}</div>
-  </div>
-
-  <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">预计工作时间：</div>
-    <div class="attr-value f-fl  ">${object.estimatedTime}</div>
-  </div>
-  <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">工作内容：</div>
+    <div class="attr-name f-fl  ">证件类型：</div>
     <div class="attr-value f-fl  ">
-      ${object.content}
+      ${object.cardType}
     </div>
   </div>
   <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">加班人员姓名：</div>
-    <div class="attr-value f-fl  ">${object.staff}</div>
+    <div class="attr-name f-fl  ">补办原因：</div>
+    <div class="attr-value f-fl  ">
+      ${object.reason}
+    </div>
   </div>
   <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">部门主任：</div>
-    <div class="attr-value f-fl  ">${object.divisionChief}</div>
+    <div class="attr-name f-fl  ">部门意见：</div>
+    <div class="attr-value f-fl  ">
+      ${object.approachResult}
+    </div>
   </div>
 
-  <div class="apply-info">
-    <span class="attr-name ">制单：</span>
-    <span class="attr-value">${object.operator}</span>
-    <span class="attr-name ">日期：</span>
-    <span class="attr-value ">${object.orderDate}</span>
+
+  <div class="info-row mgt-20 clearfloat">
+    <div class="attr-name f-fl  ">补领签收：</div>
+    <div class="attr-value f-fl  ">${object.receipted}</div>
   </div>
-  <div class="info-row">
+
+  <div class="info-row mgt-20">
     <c:forEach var="item" items="${noticeList}" varStatus="status">
       <div class="process-${fn:length(noticeList)-status.index} clearfloat">
         <div class="flow"></div>

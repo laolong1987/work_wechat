@@ -35,7 +35,6 @@
 <body>
 <div class="container-detail">
   <div class="info-row subject ">
-
     <div class="clearfloat">
       <div class="attr-name f-fl vehicle-middle ">类型：</div>
       <div class="attr-value f-fl vehicle-middle ">${object.subject}</div>
@@ -46,47 +45,70 @@
     </div>
   </div>
 
+
   <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">部门：</div>
     <div class="attr-value f-fl  ">${object.department}</div>
   </div>
 
   <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">申请日期：</div>
-    <div class="attr-value f-fl  ">${object.applyDate}</div>
-  </div>
-
-  <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">附件类型：</div>
+    <div class="attr-name f-fl  ">附件信息：</div>
     <div class="attr-value f-fl  ">${object.attachment}</div>
   </div>
 
   <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">预计工作时间：</div>
-    <div class="attr-value f-fl  ">${object.estimatedTime}</div>
+    <div class="attr-name f-fl  ">申请日期：</div>
+    <div class="attr-value f-fl  ">${object.orderDate}</div>
   </div>
-  <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">工作内容：</div>
-    <div class="attr-value f-fl  ">
-      ${object.content}
-    </div>
-  </div>
-  <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">加班人员姓名：</div>
-    <div class="attr-value f-fl  ">${object.staff}</div>
-  </div>
-  <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">部门主任：</div>
-    <div class="attr-value f-fl  ">${object.divisionChief}</div>
+  <div class="sub-head">
+    物资领用列表
   </div>
 
-  <div class="apply-info">
-    <span class="attr-name ">制单：</span>
-    <span class="attr-value">${object.operator}</span>
-    <span class="attr-name ">日期：</span>
-    <span class="attr-value ">${object.orderDate}</span>
+  <c:forEach var="detail" items="${detailList}">
+    <div class="info-row mgt-20 ">
+      <div class="clearfloat">
+        <div class="attr-name f-fl  ">物资编码：</div>
+        <div class="attr-value f-fl  ">${detail.materialCode}</div>
+      </div>
+      <div class="clearfloat">
+        <div class="attr-name f-fl  ">物资类型：</div>
+        <div class="attr-value f-fl  ">${detail.materialType}</div>
+      </div>
+      <div class="clearfloat">
+        <div class="attr-name f-fl  ">物资名称：</div>
+        <div class="attr-value f-fl  ">${detail.materialName}</div>
+      </div>
+      <div class="clearfloat">
+        <div class="attr-name f-fl  ">单位：</div>
+        <div class="attr-value f-fl  ">${detail.unit}</div>
+      </div>
+
+      <div class="clearfloat">
+        <div class="attr-name f-fl  ">数量：</div>
+        <div class="attr-value f-fl  ">${detail.materialNum}</div>
+      </div>
+      <div class="clearfloat">
+        <div class="attr-name f-fl  ">金额：</div>
+        <div class="attr-value f-fl  ">${detail.fee}</div>
+      </div>
+    </div>
+
+  </c:forEach>
+
+  <div class="info-row mgt-20 clearfloat">
+    <div class="attr-name f-fl  ">附注：</div>
+    <div class="attr-value f-fl  ">${object.remark}</div>
   </div>
-  <div class="info-row">
+  <div class="info-row mgt-20 clearfloat">
+    <div class="attr-name f-fl  ">审核人：</div>
+    <div class="attr-value f-fl  ">${object.reviewer}</div>
+  </div>
+
+  <div class="info-row mgt-20 clearfloat">
+    <div class="attr-name f-fl  ">领用人：</div>
+    <div class="attr-value f-fl  ">${object.applicant}</div>
+  </div>
+  <div class="info-row mgt-20">
     <c:forEach var="item" items="${noticeList}" varStatus="status">
       <div class="process-${fn:length(noticeList)-status.index} clearfloat">
         <div class="flow"></div>

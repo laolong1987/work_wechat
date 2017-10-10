@@ -10,7 +10,7 @@ import org.junit.Test;
  */
 public class ApiSentMessageTest {
 
-    @Test
+
     public void sent(){
         JSONObject data = new JSONObject();
 

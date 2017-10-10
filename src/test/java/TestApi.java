@@ -3,8 +3,10 @@
 import java.util.*;
 
 import com.alibaba.fastjson.JSONObject;
+import com.common.HttpHelper;
 import com.web.component.wechat.api.WechatComponent;
 import com.web.model.WaitProcessModel;
+import com.web.service.OrgService;
 import com.web.service.ws.ApprovalService;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,6 +34,8 @@ public class TestApi {
     @Autowired
     private ApprovalService approvalService;
 
+    @Autowired
+    private OrgService orgService;
 
     public void testMpNews() {
         JSONObject data = new JSONObject();
@@ -92,30 +96,44 @@ public class TestApi {
 
     }
 
-    @Test
     public void getWaitProcessNotice() {
-        List<WaitProcessModel> res = approvalService.getWaitProcessNotice("220238","1","100");
+        //List<WaitProcessModel> res = approvalService.getWaitProcessNotice("220238",null,null);
+        List<WaitProcessModel> res = approvalService.getWaitProcessNotice("220345", "0", "waitProcess");
+
         System.out.println(res);
     }
 
 
+    @Test
     public void GetFormInstance() {
-        String res = approvalService.getFormInstance("322", "293");
+        String res = approvalService.getFormInstance("334", "996");
         System.out.println(res);
     }
 
 
     public void getMayProcessItems() {
 
-        String res = approvalService.getMayProcessItems("500", "1", "220238");
+        String res = approvalService.getMayProcessItems("374", "152", "220309");
         System.out.println(res);
     }
 
-
     public void getGetNoticeList() {
 
-         approvalService.getNoticeList("500", "1");
+        approvalService.getNoticeList("500", "1");
 
+    }
+
+
+    public void OrgServiceTest() {
+        String APPID = "0170822001";
+        String listurl = "http://d.bm21.com.cn:20006/employee/list";
+        Map params = new HashMap();
+        params.put("Appid", APPID);
+        params.put("Username", "220238");
+        params.put("Passwd", "123456");
+        String ret2 = HttpHelper.fetchUTF8StringByPost(listurl, params, null, 0, 0);
+
+        System.out.println(ret2);
     }
 
 

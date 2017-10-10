@@ -16,7 +16,7 @@
 %>
 <html>
 <head>
-  <title>加班申请单</title>
+  <title>旅行箱借用申请单</title>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport"
@@ -35,7 +35,6 @@
 <body>
 <div class="container-detail">
   <div class="info-row subject ">
-
     <div class="clearfloat">
       <div class="attr-name f-fl vehicle-middle ">类型：</div>
       <div class="attr-value f-fl vehicle-middle ">${object.subject}</div>
@@ -44,7 +43,9 @@
       <div class="attr-name f-fl vehicle-middle ">单号：</div>
       <div class="attr-value f-fl vehicle-middle ">${object.orderNum}</div>
     </div>
+
   </div>
+
 
   <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">部门：</div>
@@ -52,41 +53,64 @@
   </div>
 
   <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">申请日期：</div>
-    <div class="attr-value f-fl  ">${object.applyDate}</div>
+    <div class="attr-name f-fl  ">日期：</div>
+    <div class="attr-value f-fl  ">
+      从${object.orderDate}&nbsp;&nbsp;预计${object.totalDay}天
+    </div>
   </div>
 
   <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">附件类型：</div>
+    <div class="attr-name f-fl  ">附件信息：</div>
     <div class="attr-value f-fl  ">${object.attachment}</div>
   </div>
 
-  <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">预计工作时间：</div>
-    <div class="attr-value f-fl  ">${object.estimatedTime}</div>
-  </div>
-  <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">工作内容：</div>
-    <div class="attr-value f-fl  ">
-      ${object.content}
-    </div>
-  </div>
-  <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">加班人员姓名：</div>
-    <div class="attr-value f-fl  ">${object.staff}</div>
-  </div>
-  <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">部门主任：</div>
-    <div class="attr-value f-fl  ">${object.divisionChief}</div>
+
+  <div class="sub-head">
+    旅行箱领用列表
   </div>
 
-  <div class="apply-info">
-    <span class="attr-name ">制单：</span>
-    <span class="attr-value">${object.operator}</span>
-    <span class="attr-name ">日期：</span>
-    <span class="attr-value ">${object.orderDate}</span>
+  <c:forEach var="detail" items="${detailList}">
+    <div class="info-row mgt-20 ">
+      <div class="clearfloat">
+        <div class="attr-name f-fl  ">品牌：</div>
+        <div class="attr-value f-fl  ">${detail.brand}</div>
+      </div>
+      <div class="clearfloat">
+        <div class="attr-name f-fl  ">规格：</div>
+        <div class="attr-value f-fl  ">${detail.size}</div>
+      </div>
+      <div class="clearfloat">
+        <div class="attr-name f-fl  ">单位：</div>
+        <div class="attr-value f-fl  ">${detail.unit}</div>
+      </div>
+      <div class="clearfloat">
+        <div class="attr-name f-fl  ">数量：</div>
+        <div class="attr-value f-fl  ">${detail.borrowNum}</div>
+      </div>
+
+    </div>
+
+  </c:forEach>
+
+  <div class="info-row mgt-20 clearfloat">
+    <div class="attr-name f-fl  ">部门领导审核：</div>
+    <div class="attr-value f-fl  ">${object.departmentApproachResult}</div>
   </div>
-  <div class="info-row">
+  <div class="info-row mgt-20 clearfloat">
+    <div class="attr-name f-fl  ">总经负责人：</div>
+    <div class="attr-value f-fl  ">${object.approachResult}</div>
+  </div>
+
+  <div class="info-row mgt-20 clearfloat">
+    <div class="attr-name f-fl  ">归还日期：</div>
+    <div class="attr-value f-fl  ">${object.returnDate}</div>
+  </div>
+  <div class="red-note">
+    1. 因公出国，出差需借用行李箱，凭批准申请单至劳保仓库办理借用手续<br>
+    2. 旅行箱在出差回沪后一周内归还
+
+  </div>
+  <div class="info-row mgt-20">
     <c:forEach var="item" items="${noticeList}" varStatus="status">
       <div class="process-${fn:length(noticeList)-status.index} clearfloat">
         <div class="flow"></div>
