@@ -18,12 +18,12 @@
                                      initial-scale=1.0,
                                      maximum-scale=1.0,
                                      user-scalable=no">
-    <title>Title</title>
+    <title>员工申请单</title>
     <%@ include file="csscommon.jsp" %>
     <style>
 
         body{
-            background-image: url(${ctx}/images/bg.jpg);
+            background-image: url(${ctx}/images/add/bg.jpg);
         }
         .ziti1{
             width: 82px;
@@ -47,14 +47,35 @@
             margin-top: 25px;
         }
         .content{
-            background-color: #ffffff;
+            background-image: url(${ctx}/images/add/smallbg.png);
+            background-size:100% 100%;
             margin-top: 10px;
+            height: 55px;
+        }
+        .content2{
+            background-image: url(${ctx}/images/add/smallbg.png);
+            background-size:100% 100%;
+            margin-top: 10px;
+            height: 160px;
         }
         .lab{
-            margin-top: 8px;
+            margin-top: 14px;
+        }
+        .addbtn{
+            width: 300px;height: 35px;margin-top: 45px;
+            background-image: url(${ctx}/images/add/btn.png);
+            background-size:100% 100%;
+            color: white;
         }
         .touming{
             border: 0;
+            width: 100%;
+            height: auto;
+            font-size: 14px;
+            background-color: #fff;
+            background-image: none;
+            line-height: 1.42857143;
+            margin-top: 15px;
         }
         .touming:focus{outline:none !important;}
     </style>
@@ -62,10 +83,10 @@
 <body>
 <div class="container">
     <div class="row top">
-        <div class="col-xs-6">
+        <div class="col-xs-4">
             <span class="ziti1">张欢欢</span>
         </div>
-        <div class="col-xs-6">
+        <div class="col-xs-8 text-right">
             <span class="ziti2">申请部门:</span>
             <span class="ziti1">总经理工作部</span>
         </div>
@@ -74,7 +95,7 @@
     <div class="row content">
         <label class="col-xs-3 control-label lab">类型</label>
         <div class="col-xs-9">
-            <select class="form-control touming">
+            <select class="touming">
                 <option value="" disabled selected>请选择请假类型(必填)</option>
                 <option>调休假</option>
                 <option>年假</option>
@@ -85,36 +106,38 @@
     <div class="row content">
         <label class="col-xs-3 control-label lab">开始</label>
         <div class="col-xs-9">
-            <input  type="text" class="form-control form_datetime touming" placeholder="请选择开始时间(必填)" name="date1" id="date1" value="" required>
+            <input  type="text" class="form_datetime touming" placeholder="请选择开始时间(必填)" name="date1" id="date1" value="" required>
         </div>
     </div>
 
     <div class="row content">
         <label class="col-xs-3 control-label lab">结束</label>
         <div class="col-xs-9">
-            <input  type="text" class="form-control form_datetime touming" placeholder="请选择结束时间(必填)" name="date1" id="date1" value="" required>
+            <input  type="text" class="form_datetime touming" placeholder="请选择结束时间(必填)" name="date1" id="date1" value="" required>
         </div>
     </div>
 
     <div class="row content">
         <label class="col-xs-3 control-label lab">计</label>
         <div class="col-xs-9">
-            <p class="form-control-static">2天</p>
+            <p class="form-control-static" style="margin-top: 7px">2天</p>
         </div>
     </div>
 
-    <div class="row content">
+    <div class="row content2">
         <label class="col-xs-3 control-label lab">理由</label>
         <div class="col-xs-9">
-            <textarea class="form-control touming" rows="5" name="desc" id="desc" placeholder="请填写备注(必填)"  required></textarea>
+            <textarea class="touming" rows="5" name="desc" id="desc" placeholder="请填写备注(必填)"  required></textarea>
         </div>
     </div>
 
     <div class="text-center">
-        <button type="button" onclick="" class="btn btn-primary" style="width: 300px;height: 35px;margin-top: 45px">提交审批</button>
+        <button type="button" class="btn btn-primary addbtn">提交审批</button>
     </div>
-    <div class="text-center">
-        <button type="button" class="btn btn-primary" style="width: 300px;height: 35px;margin-top: 45px">显示列表</button>
+    <div class="text-right">
+        <div style="width: 300px;">
+            <a href="#">显示列表</a>
+        </div>
     </div>
 </div>
 <script type="text/javascript" src='${ctx}/js/jquery.min.js'></script>

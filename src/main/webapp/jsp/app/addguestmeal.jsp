@@ -23,7 +23,7 @@
     <style>
 
         body{
-            background-image: url(${ctx}/images/bg.jpg);
+            background-image: url(${ctx}/images/add/bg.jpg);
         }
         .ziti1{
             width: 82px;
