@@ -46,6 +46,7 @@ public class WechatComponent {
         String url = wechatConfig.getGetAuthUserInfoUrl(AccessToken.getInstance().getUpToken(), code);
         String response = HttpUtil.httpRequest(url, "GET", null);
         String userId = null;
+        System.out.println(response);
         JSONObject resJson = JSONObject.parseObject(response);
         if (resJson.getInteger("errcode") == 0 && resJson.containsKey("UserId")){
             userId=resJson.getString("UserId");

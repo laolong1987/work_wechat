@@ -50,7 +50,7 @@ public class LoginController {
 
             state = state.replaceAll("%2F", "/");
             baseUrl = baseUrl+state;
-            return "redirect " + baseUrl;
+            return "redirect:" + baseUrl;
         }
 
         return "/jsp/AuthError";

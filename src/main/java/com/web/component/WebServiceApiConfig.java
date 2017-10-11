@@ -30,6 +30,10 @@ public class WebServiceApiConfig {
     @Value("${GetNoticeList}")
     private String GetNoticeList;
 
+    @Value("${GetFormSchema}")
+
+    private String  getFormSchema;
+
 
     public String getGetWaitProcessNotice() {
         return getWaitProcessNotice;
@@ -77,5 +81,13 @@ public class WebServiceApiConfig {
 
     public void setGetProcessedNotice(String getProcessedNotice) {
         this.getProcessedNotice = getProcessedNotice;
+    }
+
+    public String getGetFormSchema() {
+        return getFormSchema;
+    }
+
+    public void setGetFormSchema(String getFormSchema) {
+        this.getFormSchema = getFormSchema;
     }
 }

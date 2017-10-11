@@ -104,9 +104,9 @@ public class TestApi {
     }
 
 
-    @Test
+
     public void GetFormInstance() {
-        String res = approvalService.getFormInstance("334", "996");
+        String res = approvalService.getFormInstance("329", "512");
         System.out.println(res);
     }
 
@@ -134,6 +134,11 @@ public class TestApi {
         String ret2 = HttpHelper.fetchUTF8StringByPost(listurl, params, null, 0, 0);
 
         System.out.println(ret2);
+    }
+    @Test
+    public void getFormSchemaTest(){
+        String res =approvalService.getFormSchema("321");
+        System.out.println(res);
     }
 
 

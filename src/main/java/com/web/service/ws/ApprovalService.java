@@ -241,4 +241,21 @@ public class ApprovalService {
         return noticeList;
     }
 
+    public String getFormSchema(String formType) {
+           String url = config.getBase() + config.getGetFormSchema();
+           List<WSbean> wSbeans = new ArrayList<>();
+           WSbean template = new WSbean();
+           template.setParametername("FormType");
+           template.setParametervalue(formType);
+           template.setXMLType(XMLType.XSD_INT);
+
+
+
+           wSbeans.add(template);
+           String response = WebServiceBase.call(config.getGetFormSchema(), wSbeans, url);
+
+
+           return response;
+       }
+
 }
