@@ -132,10 +132,10 @@ public class WebServiceBase {
 //        }
         List<WSbean> list = new ArrayList<>();
         WSbean wSbean = new WSbean();
-        wSbean.setParametername("FormType");
-        wSbean.setParametervalue("321");
+        wSbean.setParametername("instance");
+        wSbean.setParametervalue("349");
         wSbean.setXMLType(XMLType.XSD_INT);
-        String r1 = WebServiceBase.call("GetFormSchema", list);
+        String r1 = WebServiceBase.call("CreateFormInstance", list);
         System.out.println(r1);
     }
 }

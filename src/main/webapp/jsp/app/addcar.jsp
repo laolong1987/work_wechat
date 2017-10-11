@@ -23,7 +23,7 @@
     <style>
 
         body{
-            background-image: url(${ctx}/images/bg.jpg);
+            background-image: url(${ctx}/images/add/bg.jpg);
         }
         .ziti1{
             width: 82px;
@@ -47,14 +47,29 @@
             margin-top: 25px;
         }
         .content{
-            background-color: #ffffff;
+            background-image: url(${ctx}/images/add/smallbg.png);
+            background-size:100% 100%;
             margin-top: 10px;
+            height: 55px;
+        }
+        .content2{
+            background-image: url(${ctx}/images/add/smallbg.png);
+            background-size:100% 100%;
+            margin-top: 10px;
+            height: 160px;
         }
         .lab{
-            margin-top: 8px;
+            margin-top: 14px;
         }
         .touming{
             border: 0;
+            width: 100%;
+            height: auto;
+            font-size: 14px;
+            background-color: #fff;
+            background-image: none;
+            line-height: 1.42857143;
+            margin-top: 15px;
         }
         .touming:focus{outline:none !important;}
     </style>
@@ -74,7 +89,7 @@
     <div class="row content">
         <label class="col-xs-4 control-label lab">预定人电话</label>
         <div class="col-xs-8">
-            <input  type="text" class="form-control touming" placeholder="请填写电话(必填)" value="" required>
+            <input  type="text" class="touming" placeholder="请填写电话(必填)" value="" required>
 
         </div>
     </div>
@@ -82,27 +97,27 @@
     <div class="row content">
         <label class="col-xs-4 control-label lab">出发时间</label>
         <div class="col-xs-8">
-            <input  type="text" class="form-control form_datetime touming" placeholder="请选择出发时间(必填)" name="date1" id="date1" value="" required>
+            <input  type="text" class=" form_datetime touming" placeholder="请选择出发时间(必填)" name="date1" id="date1" value="" required>
         </div>
     </div>
 
     <div class="row content">
         <label class="col-xs-4 control-label lab">结束时间</label>
         <div class="col-xs-8">
-            <input  type="text" class="form-control form_datetime touming" placeholder="请选择结束时间(必填)" name="date1" id="date1" value="" required>
+            <input  type="text" class="form_datetime touming" placeholder="请选择结束时间(必填)" name="date1" id="date1" value="" required>
         </div>
     </div>
 
     <div class="row content">
         <label class="col-xs-4 control-label lab">乘车人员</label>
         <div class="col-xs-8">
-            <input  type="text" class="form-control touming" placeholder="请选择乘车人员(必填)"  value="" required>
+            <input  type="text" class="touming" placeholder="请选择乘车人员(必填)"  value="" required>
         </div>
     </div>
     <div class="row content">
         <label class="col-xs-4 control-label lab">乘车人数</label>
         <div class="col-xs-8">
-            <input  type="text" class="form-control touming" placeholder="请填写乘车人数(必填)"  value="" required>
+            <input  type="text" class="touming" placeholder="请填写乘车人数(必填)"  value="" required>
         </div>
     </div>
 
@@ -110,14 +125,14 @@
     <div class="row content">
         <label class="col-xs-4 control-label lab">上车地点</label>
         <div class="col-xs-8">
-            <input  type="text" class="form-control touming" placeholder="请填写上车地点(必填)"  value="" required>
+            <input  type="text" class="touming" placeholder="请填写上车地点(必填)"  value="" required>
         </div>
     </div>
 
     <div class="row content">
         <label class="col-xs-4 control-label lab">上车地点</label>
         <div class="col-xs-8">
-            <input  type="text" class="form-control touming" placeholder="请填写上车地点(必填)"  value="" required>
+            <input  type="text" class="touming" placeholder="请填写上车地点(必填)"  value="" required>
         </div>
     </div>
 
@@ -135,29 +150,31 @@
     <div class="row content">
         <label class="col-xs-4 control-label lab">目的地</label>
         <div class="col-xs-8">
-            <input  type="text" class="form-control touming" placeholder="请填写目的地"  value="" required>
+            <input  type="text" class="touming" placeholder="请填写目的地"  value="" required>
         </div>
     </div>
 
     <div class="row content">
         <label class="col-xs-4 control-label lab">车辆用途</label>
         <div class="col-xs-8">
-            <textarea class="form-control touming" rows="5" name="desc" id="desc" placeholder="请填写车辆用途(必填)"  required></textarea>
+            <textarea class="touming" rows="5" name="desc" id="desc" placeholder="请填写车辆用途(必填)"  required></textarea>
         </div>
     </div>
 
     <div class="row content">
         <label class="col-xs-4 control-label lab">备注</label>
         <div class="col-xs-8">
-            <textarea class="form-control touming" rows="5" name="desc" id="desc" placeholder="请填写备注(必填)"  required></textarea>
+            <textarea class="touming" rows="5" name="desc" id="desc" placeholder="请填写备注(必填)"  required></textarea>
         </div>
     </div>
 
     <div class="text-center">
-        <button type="button" class="btn btn-primary" style="width: 300px;height: 35px;margin-top: 45px">提交审批</button>
+        <button type="button" class="btn btn-primary addbtn">提交审批</button>
     </div>
-    <div class="text-center">
-        <button type="button" class="btn btn-primary" style="width: 300px;height: 35px;margin-top: 45px">显示列表</button>
+    <div class="text-right">
+        <div style="width: 300px;">
+            <a href="#">显示列表</a>
+        </div>
     </div>
 </div>
 
