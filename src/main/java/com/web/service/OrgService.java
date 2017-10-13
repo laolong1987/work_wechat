@@ -134,4 +134,13 @@ public class OrgService {
         }
     }
 
+    public Employee findEmployee(String ygbh){
+        List<Employee> list=orgDao.findEmployee(ygbh);
+        if(list.size()>0){
+            return list.get(0);
+        }else{
+            return null;
+        }
+    }
+
 }

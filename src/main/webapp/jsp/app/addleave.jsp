@@ -91,14 +91,24 @@
             <span class="ziti1">总经理工作部</span>
         </div>
     </div>
-
+    <form  id="addform" action="createleave" name="addform" method="post" >
+        <input  type="hidden" id="day" name="day" >
     <div class="row content">
         <label class="col-xs-3 control-label lab">类型</label>
         <div class="col-xs-9">
-            <select class="touming">
+            <select class="touming" id="type" name="type">
                 <option value="" disabled selected>请选择请假类型(必填)</option>
-                <option>调休假</option>
-                <option>年假</option>
+                <option value="年休假">年休假</option>
+                <option value="调休假">调休假</option>
+                <option value="病假">病假</option>
+                <option value="事假">事假</option>
+                <option value="婚丧假">婚丧假</option>
+                <option value="公假">公假</option>
+                <option value="探亲假">探亲假</option>
+                <option value="产假">产假</option>
+                <option value="哺乳假">哺乳假</option>
+                <option value="产前假">产前假</option>
+                <option value="授乳假">授乳假</option>
             </select>
         </div>
     </div>
@@ -106,21 +116,21 @@
     <div class="row content">
         <label class="col-xs-3 control-label lab">开始</label>
         <div class="col-xs-9">
-            <input  type="text" class="form_datetime touming" placeholder="请选择开始时间(必填)" name="date1" id="date1" value="" required>
+            <input  type="text" class="form_datetime touming" placeholder="请选择开始时间(必填)" name="date1" id="date1" value="" onchange="btnCount_Click()" required>
         </div>
     </div>
 
     <div class="row content">
         <label class="col-xs-3 control-label lab">结束</label>
         <div class="col-xs-9">
-            <input  type="text" class="form_datetime touming" placeholder="请选择结束时间(必填)" name="date1" id="date1" value="" required>
+            <input  type="text" class="form_datetime touming" placeholder="请选择结束时间(必填)" name="date2" id="date2" value="" onchange="btnCount_Click()" required>
         </div>
     </div>
 
     <div class="row content">
         <label class="col-xs-3 control-label lab">计</label>
         <div class="col-xs-9">
-            <p class="form-control-static" style="margin-top: 7px">2天</p>
+            <p class="form-control-static" style="margin-top: 7px" id="days"></p>
         </div>
     </div>
 
@@ -130,9 +140,9 @@
             <textarea class="touming" rows="5" name="desc" id="desc" placeholder="请填写备注(必填)"  required></textarea>
         </div>
     </div>
-
+    </form>
     <div class="text-center">
-        <button type="button" class="btn btn-primary addbtn">提交审批</button>
+        <button type="button" class="btn btn-primary addbtn" onclick="add()">提交审批</button>
     </div>
     <div class="text-right">
         <div style="width: 300px;">
@@ -154,9 +164,18 @@
 
 
     function  btnCount_Click(){
-        s1  =  "2007-01-04"
-        s2  =  "2007-01-05"
-        alert("第一个日期；"+s1+"/n第二个日期："+s2+"/n相差"+DateDiff(s1,s2)+"天")
+        var a=$("#date1").val();
+        var b=$("#date2").val();
+        var days='';
+        if(''!=a && !''!=b){
+            a= a.substr(0, a.length-6);
+            b= b.substr(0, b.length-6);
+            var c=DateDiff(a,b);
+            if(c>0){
+                days=c;
+            }
+        }
+        $("#days").text(days+"天");
     }
     //计算天数差的函数，通用
     function  DateDiff(sDate1,  sDate2){    //sDate1和sDate2是2006-12-18格式
@@ -169,6 +188,42 @@
         return  iDays
     }
 
+    function add(){
+        var type=$("#type").val();
+        if(''==type){
+            alert('请选择请假类型');
+            return
+        }
+        var a=$("#date1").val();
+        var b=$("#date2").val();
+
+        if(''==a){
+            alert('请选择开始时间');
+            return
+        }
+        if(''==b){
+            alert('请选择结束时间');
+            return
+        }
+        if(''!=a && !''!=b){
+            a= a.substr(0, a.length-6);
+            b= b.substr(0, b.length-6);
+            var c=DateDiff(a,b);
+            if(c<=0){
+                alert('日期选择错误,请重新选择');
+                return
+            }
+        }
+
+        var desc=$("#desc").val();
+        if(''==desc){
+            alert('请选择请假类型');
+            return
+        }
+
+        $("#day").val(DateDiff(a,b));
+        $("#addform").submit();
+    }
 
 </script>
 </body>

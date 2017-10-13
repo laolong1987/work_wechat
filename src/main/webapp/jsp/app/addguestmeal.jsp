@@ -99,7 +99,7 @@
     <div class="row content">
         <label class="col-xs-4 control-label lab">用餐人数</label>
         <div class="col-xs-8">
-            <input  type="text" class="form-control touming" placeholder="请填写人数"  value="" required>
+            <input  type="number" class="form-control touming" placeholder="请填写人数"  value="" required>
         </div>
     </div>
 
@@ -116,7 +116,7 @@
             用餐种类
         </div>
         <div class="col-xs-4">
-            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">工作用餐
+            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>工作用餐
         </div>
         <div class="col-xs-4">
             <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">接待用餐
@@ -127,12 +127,12 @@
         <label class="col-xs-4 control-label lab">用餐时间</label>
         <div class="col-xs-8">
             <select class="form-control touming">
-                <option value="" disabled selected>请选择用餐时间(必填)</option>
-                <option>早餐</option>
-                <option>中餐</option>
-                <option>晚餐</option>
-                <option>夜点</option>
-            </select>
+            <option value="" disabled selected>请选择用餐时间(必填)</option>
+            <option>早餐</option>
+            <option>中餐</option>
+            <option>晚餐</option>
+            <option>夜点</option>
+        </select>
         </div>
     </div>
 
@@ -140,6 +140,10 @@
         <label class="col-xs-4 control-label lab">用餐标准</label>
         <div class="col-xs-8">
             <input  type="text" class="form-control touming" placeholder="请填写用餐标准"  value="" required>
+            <select class="form-control touming">
+                <option value="" disabled selected>请填写用餐标准(必填)</option>
+                <option>10元</option>
+            </select>
         </div>
     </div>
 
@@ -171,23 +175,11 @@
         language:'zh-CN'
     });
 
+    function addoption(){
+        var type=$("").val();
+        $("#selectId").append("<option value='"+value+"'></option>");
 
-    function  btnCount_Click(){
-        s1  =  "2007-01-04"
-        s2  =  "2007-01-05"
-        alert("第一个日期；"+s1+"/n第二个日期："+s2+"/n相差"+DateDiff(s1,s2)+"天")
     }
-    //计算天数差的函数，通用
-    function  DateDiff(sDate1,  sDate2){    //sDate1和sDate2是2006-12-18格式
-        var  aDate,  oDate1,  oDate2,  iDays
-        aDate  =  sDate1.split("-")
-        oDate1  =  new  Date(aDate[1]  +  '-'  +  aDate[2]  +  '-'  +  aDate[0])    //转换为12-18-2006格式
-        aDate  =  sDate2.split("-")
-        oDate2  =  new  Date(aDate[1]  +  '-'  +  aDate[2]  +  '-'  +  aDate[0])
-        iDays  =  parseInt(Math.abs(oDate1  -  oDate2)  /  1000  /  60  /  60  /24)+1  //把相差的毫秒数转换为天数
-        return  iDays
-    }
-
 
 </script>
 </body>
