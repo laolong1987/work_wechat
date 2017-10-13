@@ -96,13 +96,13 @@ public class TestApi {
 
     }
 
+
     public void getWaitProcessNotice() {
         //List<WaitProcessModel> res = approvalService.getWaitProcessNotice("220238",null,null);
-        List<WaitProcessModel> res = approvalService.getWaitProcessNotice("220345", "0", "waitProcess");
+        List<WaitProcessModel> res = approvalService.getWaitProcessNotice("220238", "0", "100", "waitProcess");
 
         System.out.println(res);
     }
-
 
 
     public void GetFormInstance() {
@@ -112,14 +112,19 @@ public class TestApi {
 
 
     public void getMayProcessItems() {
+        List<WaitProcessModel> list = approvalService.getWaitProcessNotice("220238", "0", "100", "waitProcess");
+        for (WaitProcessModel model : list) {
+            String res = approvalService.getMayProcessItems(String.valueOf(model.getTemplateId()), String.valueOf(model.getDataId()), "220238");
+            System.out.println(res);
+        }
+//        String res = approvalService.getMayProcessItems("329", "512", "220345");
+//        System.out.println(res);
 
-        String res = approvalService.getMayProcessItems("374", "152", "220309");
-        System.out.println(res);
     }
 
     public void getGetNoticeList() {
 
-        approvalService.getNoticeList("500", "1");
+        approvalService.getNoticeList("321", "1538");
 
     }
 
@@ -135,9 +140,16 @@ public class TestApi {
 
         System.out.println(ret2);
     }
+
+    public void getFormSchemaTest() {
+        String res = approvalService.getFormSchema("321");
+        System.out.println(res);
+    }
     @Test
-    public void getFormSchemaTest(){
-        String res =approvalService.getFormSchema("321");
+    public void getSelfProcessedNotice() {
+        //List<WaitProcessModel> res = approvalService.getWaitProcessNotice("220238",null,null);
+        List<WaitProcessModel> res =  approvalService.getSelfProcessedNotice("220024", "0", "10","2","323");
+
         System.out.println(res);
     }
 

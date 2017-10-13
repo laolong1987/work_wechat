@@ -7,11 +7,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.common.WSbean;
 import com.common.WebServiceBase;
 import com.web.component.WebServiceApiConfig;
-import com.web.model.NoticeListModel;
-import com.web.model.WaitProcessModel;
+import com.web.model.*;
 import org.apache.axis.encoding.XMLType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 /**
  * Created by admin on 2017/8/28.
@@ -22,8 +22,9 @@ public class ApprovalService {
     @Autowired
     private WebServiceApiConfig config;
 
-    public List<WaitProcessModel> getWaitProcessNotice(String username, String nStartPage, String apiType) {
-        String nPageSize = "10";
+    public List<WaitProcessModel> getWaitProcessNotice(String username, String nStartPage, String nPageSize, String apiType) {
+        if (StringUtils.isEmpty(nPageSize))
+            nPageSize = "10";
         Set<Integer> standardTemple = new HashSet<>();
         // standardTemple.add(316);//工作督办单
         standardTemple.add(321);//用车申请单
@@ -87,9 +88,101 @@ public class ApprovalService {
                     WaitProcessModel model = new WaitProcessModel(object);
                     if (!standardTemple.contains(model.getTemplateId()))
                         continue;
+
+                    if ("processed".equalsIgnoreCase(apiType)) {//获取状态
+                        String action = "";
+                        List<NoticeListModel> noticeList = getNoticeList(String.valueOf(model.getTemplateId()), String.valueOf(model.getDataId()));
+                        if (noticeList.size() > 0) {
+                            action = noticeList.get(0).getAction();
+                        }
+                        String status = StringUtils.isEmpty(action) ? "审批中" : action;
+                        model.setStatus(status);
+
+                    }
+
+                    waitProcessModelList.add(model);
+                }
+            }
+        }
+        return waitProcessModelList;
+    }
+
+    public List<WaitProcessModel> getSelfProcessedNotice(String username, String nStartPage, String nPageSize, String nType, String templateId) {
+        if (StringUtils.isEmpty(nPageSize))
+            nPageSize = "10";
+        Set<Integer> standardTemple = new HashSet<>();
+        // standardTemple.add(316);//工作督办单
+        standardTemple.add(321);//用车申请单
+        standardTemple.add(322);//档案借阅申请单
+        standardTemple.add(323);//客饭申请单
+        standardTemple.add(326);//印章申请单
+        standardTemple.add(349);//员工请假单
+        standardTemple.add(350);//法定节假日加班申请单
+        standardTemple.add(358);//劳保总务用品领用单
+        standardTemple.add(360);//旅行箱借用申请单
+        standardTemple.add(391);//印刷申请单
+        standardTemple.add(432);//员工补办证件申请表
+        standardTemple.add(500);//资产申请
+        standardTemple.add(329);//收文单
+        standardTemple.add(374);//公差申请单
+        standardTemple.add(334);//发文单
+
+
+        String url = url = config.getBase() + config.getGetProcessedNotice();
+        List<WSbean> wSbeans = new ArrayList<>();
+        WSbean wSbean = new WSbean();
+        wSbean.setParametername("userName");
+        wSbean.setParametervalue(username);
+        wSbean.setXMLType(XMLType.XSD_STRING);
+
+        WSbean page = new WSbean();
+        page.setParametername("nStartPage");
+        page.setParametervalue(nStartPage);
+        page.setXMLType(XMLType.XSD_INT);
+
+        WSbean template = new WSbean();
+        template.setParametername("templateid");
+        template.setParametervalue(templateId);
+        template.setXMLType(XMLType.XSD_INT);
+
+        WSbean pageSize = new WSbean();
+        pageSize.setParametername("nPageSize");
+        pageSize.setParametervalue(nPageSize);
+        pageSize.setXMLType(XMLType.XSD_INT);
+
+        WSbean type = new WSbean();
+        type.setParametername("nType");
+        type.setParametervalue("1");
+        type.setXMLType(XMLType.XSD_INT);
+
+        wSbeans.add(page);
+        wSbeans.add(pageSize);
+        wSbeans.add(wSbean);
+        wSbeans.add(template);
+        wSbeans.add(type);
+
+        String response = WebServiceBase.call(config.getGetProcessedNotice(), wSbeans, url);
+
+        JSONObject jsonObject = JSONObject.parseObject(response);
+        List<WaitProcessModel> waitProcessModelList = new ArrayList<>();
+        if (jsonObject.getString("success").equals("true")) {
+            JSONArray dataArray = jsonObject.getJSONArray("data");
+            if (dataArray.size() > 0) {
+                for (int i = 0; i < dataArray.size(); i++) {
+                    JSONObject object = dataArray.getJSONObject(i);
+                    WaitProcessModel model = new WaitProcessModel(object);
+                    if (!standardTemple.contains(model.getTemplateId()))
+                        continue;
+
                     //获取状态
-                    String status = getMayProcessItems(model.getTemplateId(), model.getDataId(), username);
+                    String action = "";
+                    List<NoticeListModel> noticeList = getNoticeList(String.valueOf(model.getTemplateId()), String.valueOf(model.getDataId()));
+                    if (noticeList.size() > 0) {
+                        action = noticeList.get(0).getAction();
+                    }
+                    String status = StringUtils.isEmpty(action) ? "审批中" : action;
                     model.setStatus(status);
+
 
                     waitProcessModelList.add(model);
                 }
@@ -148,7 +241,7 @@ public class ApprovalService {
 
     }
 
-    public String getMayProcessItems(Integer templateId, Integer dataId, String userName) {
+    public MayProcessItemsModel getMayProcessItemsModel(String templateId, String dataId, String userName) {
         String url = config.getBase() + config.getGetMayProcessItems();
         List<WSbean> wSbeans = new ArrayList<>();
         WSbean template = new WSbean();
@@ -173,13 +266,12 @@ public class ApprovalService {
         String response = WebServiceBase.call(config.getGetMayProcessItems(), wSbeans, url);
 
         JSONObject jsonObject = JSONObject.parseObject(response);
-        String status = "未知";
+        MayProcessItemsModel mayProcessItemsModel = null;
         if (jsonObject.getString("success").equals("true")) {
-            JSONObject statusJson = jsonObject.getJSONObject("data");
-            status = statusJson.getString("procstatus");
+            mayProcessItemsModel = new MayProcessItemsModel(jsonObject.getJSONObject("data"));
         }
 
-        return status;
+        return mayProcessItemsModel;
     }
 
     public String getMayProcessItems(String templateId, String dataId, String userName) {
@@ -242,20 +334,19 @@ public class ApprovalService {
     }
 
     public String getFormSchema(String formType) {
-           String url = config.getBase() + config.getGetFormSchema();
-           List<WSbean> wSbeans = new ArrayList<>();
-           WSbean template = new WSbean();
-           template.setParametername("FormType");
-           template.setParametervalue(formType);
-           template.setXMLType(XMLType.XSD_INT);
+        String url = config.getBase() + config.getGetFormSchema();
+        List<WSbean> wSbeans = new ArrayList<>();
+        WSbean template = new WSbean();
+        template.setParametername("FormType");
+        template.setParametervalue(formType);
+        template.setXMLType(XMLType.XSD_INT);
 
 
+        wSbeans.add(template);
+        String response = WebServiceBase.call(config.getGetFormSchema(), wSbeans, url);
 
-           wSbeans.add(template);
-           String response = WebServiceBase.call(config.getGetFormSchema(), wSbeans, url);
 
-
-           return response;
-       }
+        return response;
+    }
 
 }

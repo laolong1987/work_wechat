@@ -41,9 +41,9 @@
       <div class="attr-value f-fl vehicle-middle ">${object.subject}</div>
     </div>
     <div class="clearfloat">
-          <div class="attr-name f-fl vehicle-middle ">单号：</div>
-          <div class="attr-value f-fl vehicle-middle ">${object.orderNum}</div>
-        </div>
+      <div class="attr-name f-fl vehicle-middle ">单号：</div>
+      <div class="attr-value f-fl vehicle-middle ">${object.orderNum}</div>
+    </div>
   </div>
 
   <div class="info-row mgt-20 clearfloat">
@@ -59,9 +59,9 @@
     <div class="attr-value f-fl  ">${object.department}</div>
   </div>
   <div class="info-row mgt-20 clearfloat">
-      <div class="attr-name f-fl  ">预定人电话：</div>
-      <div class="attr-value f-fl  ">${object.applicantPhone}</div>
-    </div>
+    <div class="attr-name f-fl  ">预定人电话：</div>
+    <div class="attr-value f-fl  ">${object.applicantPhone}</div>
+  </div>
 
 
   <div class="info-row mgt-20 clearfloat">
@@ -133,12 +133,41 @@
     </c:forEach>
   </div>
 
-  <div class="process-button ">
-    <div class="refuse">拒绝</div>
-    <div class="agree">同意</div>
-  </div>
-  <div class="approach-reason clearfloat f-dn" id="refuse-reason">
-    <div class="tip">请填写您拒绝的原因：</div>
+  <c:choose>
+
+    <c:when test="${fn:length(eventList)==2}">
+      <div class="process-button ">
+        <c:forEach var="item" items="${eventList}" varStatus="status">
+          <c:if test="${status.index==0}">
+            <div class="refuse approval" data="${item.event}">${item.name}</div>
+          </c:if>
+          <c:if test="${status.index==1}">
+            <div class="agree approval" data="${item.event}">${item.name}</div>
+          </c:if>
+
+        </c:forEach>
+      </div>
+    </c:when>
+    <c:otherwise>
+      <div class="process-button ">
+        <c:forEach var="item" items="${eventList}" varStatus="status">
+          <c:if test="${status.index%2==0}">
+            <div class="red-btn approval"
+                 data="${item.event}">${item.name}</div>
+          </c:if>
+          <c:if test="${status.index%2==1}">
+            <div class="blue-btn approval"
+                 data="${item.event}">${item.name}</div>
+          </c:if>
+
+        </c:forEach>
+      </div>
+    </c:otherwise>
+
+  </c:choose>
+
+  <div class="approach-reason clearfloat f-dn" id="reason">
+    <div class="tip">请填写您的意见：</div>
     <textarea class="reason"></textarea>
 
     <div class="close">取消</div>
