@@ -75,7 +75,8 @@ public class WorkController {
         JSONObject resultJson = JSON.parseObject(FormConfigID);
         String result= workFromService.StartFormWorkflow(resultJson.getString("FormConfigID"));
         System.out.println(result);
-        return "/jsp/app/addleave";
+        return "redirect:approval/self-list/349";
+
     }
 
 
@@ -86,6 +87,59 @@ public class WorkController {
     }
 
 
+    @RequestMapping(value = "/createcar", method = RequestMethod.GET)
+    public String createcar(HttpServletRequest request,HttpServletResponse response) {
+        String ydrphone=ConvertUtil.safeToString(request.getParameter("ydrphone"),"");
+        String starttime=ConvertUtil.safeToString(request.getParameter("starttime"),"");
+        String endtime=ConvertUtil.safeToString(request.getParameter("endtime"),"");
+        String zrs=ConvertUtil.safeToString(request.getParameter("zrs"),"");
+        String pickupaddress=ConvertUtil.safeToString(request.getParameter("pickupaddress"),"");
+        String Sfwd=ConvertUtil.safeToString(request.getParameter("Sfwd"),"");
+        String destination=ConvertUtil.safeToString(request.getParameter("destination"),"");
+        String clyt=ConvertUtil.safeToString(request.getParameter("clyt"),"");
+        String remark=ConvertUtil.safeToString(request.getParameter("remark"),"");
+
+
+//        Employee employee= orgService.findEmployee("220238");
+        JSONObject data=new JSONObject();
+//        data.put("Depart",employee.getZzdwmc());
+//        data.put("Position","普通职员");
+        data.put("Depart","总经理工作部");
+//        data.put("Ygxm",employee.getYgxm().replace(" ",""));
+
+        data.put("ydrphone",ydrphone);
+        data.put("starttime",starttime);
+        data.put("endtime",endtime);
+        data.put("zrs",zrs);
+        data.put("Sfwd",Sfwd);
+        data.put("pickupaddress",pickupaddress);
+        data.put("destination",destination);
+        data.put("clyt",clyt);
+        data.put("remark",remark);
+
+        data.put("Ygxm","华安");
+        data.put("Writer","220238");
+        JSONObject json=new JSONObject();
+        json.put("FormType","321");
+        json.put("data",data);
+
+
+        String FormConfigID= workFromService.CreateFormInstance(json.toJSONString());
+        JSONObject resultJson = JSON.parseObject(FormConfigID);
+        String result= workFromService.StartFormWorkflow(resultJson.getString("FormConfigID"));
+        System.out.println(result);
+
+
+//        {"fields":[{"name":"ID","type":"Int32"},{"name":"_SUBJECT","type":"String"},
+// {"name":"_FORMNO","type":"String"},{"name":"clyt","type":"String"},{"name":"ydbm","type":"String"},
+// {"name":"pickupaddress","type":"String"},{"name":"ydrphone","type":"String"},{"name":"ydr","type":"String"},
+// {"name":"driverphone","type":"String"},{"name":"ccry","type":"String"},{"name":"endtime","type":"String"},
+// {"name":"remark","type":"String"},{"name":"selectautomobile","type":"String"},{"name":"starttime","type":"String"},
+// {"name":"destination","type":"String"},{"name":"driver","type":"String"},{"name":"ydrq","type":"String"},
+// {"name":"Sfwd","type":"String"},{"name":"zrs","type":"String"}],"FormType":321,"ShortTitle":"用车申请单"}
+
+        return "redirect:approval/self-list/321";
+    }
 
 
 
@@ -135,6 +189,6 @@ public class WorkController {
         JSONObject resultJson = JSON.parseObject(FormConfigID);
         String result= workFromService.StartFormWorkflow(resultJson.getString("FormConfigID"));
         System.out.println(result);
-        return "/jsp/app/addguestmeal";
+        return "redirect:approval/self-list/323";
     }
 }
