@@ -37,6 +37,9 @@ public class WorkController {
     @Autowired
     OrgService orgService;
 
+    @Autowired
+    private ApprovalService approvalService;
+
     @RequestMapping(value = "/addleave", method = RequestMethod.GET)
     public String addleave(HttpServletRequest request,HttpServletResponse response) {
 
@@ -64,7 +67,7 @@ public class WorkController {
         data.put("Qjly",desc);
 //        data.put("Ygxm",employee.getYgxm().replace(" ",""));
         data.put("Ygxm","华安");
-        data.put("Writer","220238");
+        data.put("Writer","200238");
 
         JSONObject json=new JSONObject();
         json.put("FormType","349");
@@ -73,8 +76,11 @@ public class WorkController {
 
         String FormConfigID= workFromService.CreateFormInstance(json.toJSONString());
         JSONObject resultJson = JSON.parseObject(FormConfigID);
+        System.out.println(FormConfigID);
         String result= workFromService.StartFormWorkflow(resultJson.getString("FormConfigID"));
         System.out.println(result);
+        String result2= approvalService.getMayProcessItems(resultJson.getString("TemplateID"),resultJson.getString("DataID"),"200238");
+        System.out.println(result2);
         return "redirect:approval/self-list/349";
 
     }
