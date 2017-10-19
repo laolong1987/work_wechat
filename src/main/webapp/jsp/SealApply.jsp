@@ -47,11 +47,6 @@
   </div>
 
   <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">类别：</div>
-    <div class="attr-value f-fl  ">${object.useType}</div>
-  </div>
-
-  <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">申请人：</div>
     <div class="attr-value f-fl  ">${object.applicant}</div>
   </div>
@@ -86,13 +81,43 @@
     <div class="attr-name f-fl  ">分管领导：</div>
     <div class="attr-value f-fl  ">${object.leader}</div>
   </div>
+
+  <div class="info-row mgt-20 clearfloat">
+    <div class="attr-name f-fl  ">用印类别：</div>
+    <c:choose>
+      <c:when test="${fn:contains(editfields, 'Yylb')}">
+        <input class="attr-value f-fl edit" type="text" name="Yylb"
+               value="${object.useType}">
+      </c:when>
+      <c:otherwise>
+        <div class="attr-value f-fl  ">${object.useType}</div>
+      </c:otherwise>
+    </c:choose>
+  </div>
+
   <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">用印事项：</div>
-    <div class="attr-value f-fl  ">${object.purpose}</div>
+    <c:choose>
+      <c:when test="${fn:contains(editfields, 'Yysx')}">
+        <input class="attr-value f-fl edit" type="text" name="Yysx"
+               value="${object.purpose}">
+      </c:when>
+      <c:otherwise>
+        <div class="attr-value f-fl  ">${object.purpose}</div>
+      </c:otherwise>
+    </c:choose>
   </div>
   <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">用印情况：</div>
-    <div class="attr-value f-fl  ">${object.circs}</div>
+    <c:choose>
+      <c:when test="${fn:contains(editfields, 'Yyqk')}">
+        <input class="attr-value f-fl edit" type="text" name="Yyqk"
+               value="${object.circs}">
+      </c:when>
+      <c:otherwise>
+        <div class="attr-value f-fl  ">${object.circs}</div>
+      </c:otherwise>
+    </c:choose>
   </div>
 
 

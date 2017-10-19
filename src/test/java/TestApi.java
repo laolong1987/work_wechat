@@ -2,11 +2,13 @@
 
 import java.util.*;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.common.HttpHelper;
 import com.web.component.wechat.api.WechatComponent;
 import com.web.model.WaitProcessModel;
 import com.web.service.OrgService;
+import com.web.service.WorkFromService;
 import com.web.service.ws.ApprovalService;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,6 +35,9 @@ public class TestApi {
 
     @Autowired
     private ApprovalService approvalService;
+
+    @Autowired
+    private WorkFromService workFromService;
 
     @Autowired
     private OrgService orgService;
@@ -96,35 +101,36 @@ public class TestApi {
 
     }
 
-
+    @Test
     public void getWaitProcessNotice() {
         //List<WaitProcessModel> res = approvalService.getWaitProcessNotice("220238",null,null);
-        List<WaitProcessModel> res = approvalService.getWaitProcessNotice("220238", "0", "100", "waitProcess");
+        List<WaitProcessModel> res = approvalService.getWaitProcessNotice("220345", "0", "100", "waitProcess");
 
         System.out.println(res);
     }
 
-
+    @Test
     public void GetFormInstance() {
-        String res = approvalService.getFormInstance("329", "512");
+        String res = approvalService.getFormInstance("321", "1538");
         System.out.println(res);
     }
 
 
     public void getMayProcessItems() {
-        List<WaitProcessModel> list = approvalService.getWaitProcessNotice("220238", "0", "100", "waitProcess");
-        for (WaitProcessModel model : list) {
-            String res = approvalService.getMayProcessItems(String.valueOf(model.getTemplateId()), String.valueOf(model.getDataId()), "220238");
-            System.out.println(res);
-        }
-//        String res = approvalService.getMayProcessItems("329", "512", "220345");
-//        System.out.println(res);
+//        List<WaitProcessModel> list = approvalService.getWaitProcessNotice("220238", "0", "100", "waitProcess");
+//        for (WaitProcessModel model : list) {
+//            System.out.println(model.getSubject());
+//            String res = approvalService.getMayProcessItems(String.valueOf(model.getTemplateId()), String.valueOf(model.getDataId()), "220238");
+//            System.out.println(res);
+//        }
+        String res = approvalService.getMayProcessItems("326", "2245", "220238");
+        System.out.println(res);
 
     }
 
     public void getGetNoticeList() {
 
-        approvalService.getNoticeList("321", "1538");
+        approvalService.getNoticeList("321", "1537");
 
     }
 
@@ -145,13 +151,47 @@ public class TestApi {
         String res = approvalService.getFormSchema("321");
         System.out.println(res);
     }
-    @Test
+
     public void getSelfProcessedNotice() {
         //List<WaitProcessModel> res = approvalService.getWaitProcessNotice("220238",null,null);
-        List<WaitProcessModel> res =  approvalService.getSelfProcessedNotice("220024", "0", "10","2","323");
+        List<WaitProcessModel> res = approvalService.getSelfProcessedNotice("220238", "0", "10", "2", "349");
 
         System.out.println(res);
     }
+    @Test
+    public void RaiseWorkflow() {
+        String res = approvalService.raiseWorkflow("FormCanceled", "326", "2245", "部门经理", "admin", "请重新提交材料", "220238");
+        System.out.println(res);
 
+    }
+
+    @Test
+    public void createFormInstanceTest() {
+
+        JSONObject data = new JSONObject();
+
+        data.put("Yysx", "我就改动一下");
+        data.put("chargeleader", "疏博,邓征,加上无名");
+        data.put("ID", 2245);
+
+        JSONObject json = new JSONObject();
+        json.put("FormType", 326);
+        json.put("data", data);
+        String FormConfigID = workFromService.CreateFormInstance(json.toJSONString());
+        JSONObject resultJson = JSON.parseObject(FormConfigID);
+        System.out.println(resultJson);
+    }
+
+    @Test
+    public void getDepartmentsTest() {
+        String resultJson = approvalService.getDepartments();
+        System.out.println(resultJson);
+    }
+
+    @Test
+    public void getEmployeeUsers() {
+        String resultJson = approvalService.getEmployeeUsers();
+        System.out.println(resultJson);
+    }
 
 }

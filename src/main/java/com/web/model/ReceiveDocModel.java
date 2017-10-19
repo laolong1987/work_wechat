@@ -9,65 +9,134 @@ import org.springframework.util.StringUtils;
  */
 public class ReceiveDocModel extends ApplyBaseModel {
 
-    //字
-    private String  no;
+    //收文编号
+    private String receiveNum;
 
-    //第几号
-    private String noYear;
+    //沪外电二司
+    private String SWBMJC;
 
-    //印发日期
-    private String printDate;
+    //收字第几号
+    private String no;
 
-    //主办部门
-    private String hostDept;
+    //收到日期
+    private String receivedDate;
 
-//    private String
+
+    //来文机关
+    private String sentDept;
+
+    //来文字号
+    private String zihao;
+
+    //来文第几号
+    private String zihaoSize;
+
+    //来文日期
+    private String sentDate;
 
     //附件
     private String attach;
 
-
     //事由
     private String reason;
 
-    //用餐时间
-    private String repastTime;
+
+    //主办人员
+    private String sponsor;
+
+    //阅处人员
+    private String reviewPeople;
+
+    //拟办和批示
+    private String instructions;
+
+    //待阅人员
+    private String waitReaders;
+
+    //审阅完成日期
+    private String finishDate;
 
 
-    //用餐日期
-    private String repastDate;
 
-    //用餐种类
-    private String repastType;
+    public String getFinishDate() {
+        return finishDate;
+    }
 
-    //申请人
-    private String applicant;
+    public void setFinishDate(String finishDate) {
+        this.finishDate = finishDate;
+    }
 
-    //用餐标准
-    private String standard;
+    public String getReceiveNum() {
+        return receiveNum;
+    }
 
-    //用餐地点
-    private String address;
+    public void setReceiveNum(String receiveNum) {
+        this.receiveNum = receiveNum;
+    }
 
-    //用餐数量
-    private Integer foodNumber;
+    public String getSWBMJC() {
+        return SWBMJC;
+    }
 
-    //备注
-    private String remark;
+    public void setSWBMJC(String SWBMJC) {
+        this.SWBMJC = SWBMJC;
+    }
 
+    public String getNo() {
+        return no;
+    }
 
-    //实际用餐标准
-    private Integer actuallyStandard;
+    public void setNo(String no) {
+        this.no = no;
+    }
 
-    //实际用餐数量
-    private String actuallyFoodNumber;
+    public String getReceivedDate() {
+        return receivedDate;
+    }
 
+    public void setReceivedDate(String receivedDate) {
+        this.receivedDate = receivedDate;
+    }
 
-    //共消费金额
-    private Integer totalConsumption;
+    public String getSentDept() {
+        return sentDept;
+    }
 
-    //部门审核
-    private String approachResult;
+    public void setSentDept(String sentDept) {
+        this.sentDept = sentDept;
+    }
+
+    public String getZihao() {
+        return zihao;
+    }
+
+    public void setZihao(String zihao) {
+        this.zihao = zihao;
+    }
+
+    public String getZihaoSize() {
+        return zihaoSize;
+    }
+
+    public void setZihaoSize(String zihaoSize) {
+        this.zihaoSize = zihaoSize;
+    }
+
+    public String getSentDate() {
+        return sentDate;
+    }
+
+    public void setSentDate(String sentDate) {
+        this.sentDate = sentDate;
+    }
+
+    public String getAttach() {
+        return attach;
+    }
+
+    public void setAttach(String attach) {
+        this.attach = attach;
+    }
 
     public String getReason() {
         return reason;
@@ -77,100 +146,37 @@ public class ReceiveDocModel extends ApplyBaseModel {
         this.reason = reason;
     }
 
-    public String getRepastTime() {
-        return repastTime;
+
+    public String getSponsor() {
+        return sponsor;
     }
 
-    public void setRepastTime(String repastTime) {
-        this.repastTime = repastTime;
+    public void setSponsor(String sponsor) {
+        this.sponsor = sponsor;
     }
 
-    public String getRepastDate() {
-        return repastDate;
+    public String getReviewPeople() {
+        return reviewPeople;
     }
 
-    public void setRepastDate(String repastDate) {
-        this.repastDate = repastDate;
+    public void setReviewPeople(String reviewPeople) {
+        this.reviewPeople = reviewPeople;
     }
 
-    public String getRepastType() {
-        return repastType;
+    public String getInstructions() {
+        return instructions;
     }
 
-    public void setRepastType(String repastType) {
-        this.repastType = repastType;
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
     }
 
-    public String getApplicant() {
-        return applicant;
+    public String getWaitReaders() {
+        return waitReaders;
     }
 
-    public void setApplicant(String applicant) {
-        this.applicant = applicant;
-    }
-
-    public String getStandard() {
-        return standard;
-    }
-
-    public void setStandard(String standard) {
-        this.standard = standard;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Integer getFoodNumber() {
-        return foodNumber;
-    }
-
-    public void setFoodNumber(Integer foodNumber) {
-        this.foodNumber = foodNumber;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public Integer getActuallyStandard() {
-        return actuallyStandard;
-    }
-
-    public void setActuallyStandard(Integer actuallyStandard) {
-        this.actuallyStandard = actuallyStandard;
-    }
-
-    public String getActuallyFoodNumber() {
-        return actuallyFoodNumber;
-    }
-
-    public void setActuallyFoodNumber(String actuallyFoodNumber) {
-        this.actuallyFoodNumber = actuallyFoodNumber;
-    }
-
-    public Integer getTotalConsumption() {
-        return totalConsumption;
-    }
-
-    public void setTotalConsumption(Integer totalConsumption) {
-        this.totalConsumption = totalConsumption;
-    }
-
-    public String getApproachResult() {
-        return approachResult;
-    }
-
-    public void setApproachResult(String approachResult) {
-        this.approachResult = approachResult;
+    public void setWaitReaders(String waitReaders) {
+        this.waitReaders = waitReaders;
     }
 
     public ReceiveDocModel(JSONObject object) {
@@ -190,32 +196,35 @@ public class ReceiveDocModel extends ApplyBaseModel {
 
             this.templateId = data.getInteger("_TEMPLATE_ID");
 
-            this.applicant=data.getString("sqr");
+            this.receiveNum=data.getString("Swbh");
 
-            this.department = data.getString("sqbm");
+            this.SWBMJC=data.getString("SWBMJC");
 
-            this.reason = data.getString("lfdwjry");
+            this.no=data.getString("no");
 
-            this.repastType = data.getString("yctype");
+            this.receivedDate=data.getString("gsswdate");
 
-            this.repastTime = data.getString("yczl");
+            this.sentDept=data.getString("LWJG");
 
-            this.repastDate = data.getString("ycrq");
+            this.zihao=data.getString("Zihao");
 
-            this.standard = data.getString("ycbz");
+            this.zihaoSize=data.getString("ZihaoSize");
 
-            this.address = data.getString("ycdd");
+            this.sentDate=data.getString("LWRQ");
 
-            this.foodNumber =data.getInteger("ycsl");
+            this.attach=data.getString("attach");
 
-            this.remark=data.getString("ycremark");
+            this.reason=data.getString("reason");
 
-            this.actuallyStandard=data.getInteger("sjycbz");
+            this.sponsor=data.getString("ZBRY");
 
-            this.actuallyFoodNumber =data.getString("sjycsl");
+            this.reviewPeople=data.getString("YCRY");
 
-            this.totalConsumption =data.getInteger("xfje");
-            this.approachResult=data.getString("bmsh");
+            this.instructions=data.getString("XZDYRY");
+
+            this.waitReaders=data.getString("XZDYRY");
+
+            this.finishDate=data.getString("datetime");
 
         }
 

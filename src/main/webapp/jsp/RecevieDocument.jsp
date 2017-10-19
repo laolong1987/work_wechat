@@ -16,7 +16,7 @@
 %>
 <html>
 <head>
-  <title>用车申请单</title>
+  <title>加班申请单</title>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport"
@@ -46,82 +46,70 @@
     </div>
   </div>
 
-  <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">预定人：</div>
-    <div class="attr-value f-fl  ">${object.applicant}</div>
-  </div>
-  <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">预定时间：</div>
-    <div class="attr-value f-fl  ">${object.orderDate}</div>
-  </div>
-  <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">预定人部门：</div>
-    <div class="attr-value f-fl  ">${object.department}</div>
-  </div>
-  <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">预定人电话：</div>
-    <div class="attr-value f-fl  ">${object.applicantPhone}</div>
+  <div class="receive-doc-title">
+    <span>收文编号：</span><span class="content">${object.receiveNum}</span>
+    <span>沪外电二司：</span><span class="content">${object.SWBMJC}</span>
+    <span class="content">收字第${object.no}号</span>
+    <span>收到日期：</span><span class="">${object.receivedDate}</span>
   </div>
 
+  <div class="info-row clearfloat">
+    <div class="attr-name f-fl  ">来文机关：</div>
+    <div class="attr-value f-fl  ">${object.sentDept}</div>
+  </div>
 
   <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">出发时间：</div>
-    <div class="attr-value f-fl  ">${object.startTime}</div>
+    <div class="attr-name f-fl  ">来文：</div>
+    <div class="attr-value f-fl  ">字号${object.zihao}字 &nbsp;&nbsp;&nbsp;&nbsp;第${object.zihaoSize}号</div>
   </div>
   <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">结束时间：</div>
-    <div class="attr-value f-fl  ">
-      ${object.endTime}
-    </div>
+    <div class="attr-name f-fl  ">日期：</div>
+    <div class="attr-value f-fl  ">${object.sentDate}</div>
   </div>
   <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">乘车人员：</div>
-    <div class="attr-value f-fl  ">
-      ${object.passengers}
+      <div class="attr-name f-fl  ">附件：</div>
+      <div class="attr-value f-fl  ">${object.attach}</div>
     </div>
-  </div>
-  <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">选择车辆：</div>
-    <div class="attr-value f-fl  ">
-      ${object.carType}
-    </div>
-  </div>
+
+
   <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">附件信息：</div>
     <div class="attr-value f-fl  ">${object.attachment}</div>
   </div>
 
   <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">司机姓名：</div>
-    <div class="attr-value f-fl  ">${object.driver}</div>
-  </div>
+     <div class="attr-name f-fl  ">事由：</div>
+     <div class="attr-value f-fl  ">
+       ${object.reason}
+     </div>
+   </div>
+
+
   <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">司机电话：</div>
-    <div class="attr-value f-fl  ">${object.driverPhone}</div>
+    <div class="attr-name f-fl  ">主办人员：</div>
+    <div class="attr-value f-fl  ">${object.sponsor}</div>
   </div>
+
   <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">上车地点：</div>
-    <div class="attr-value f-fl  ">${object.address}</div>
+    <div class="attr-name f-fl  ">阅处人员：</div>
+    <div class="attr-value f-fl  ">${object.reviewPeople}</div>
   </div>
+
   <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">目的地：</div>
-    <div class="attr-value f-fl  ">${object.destination}</div>
-  </div>
-  <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">事由：</div>
-    <div class="attr-value f-fl  ">
-      ${object.reason}
-    </div>
-  </div>
-  <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">备注：</div>
-    <div class="attr-value f-fl  ">
-      ${object.remark}
-    </div>
+    <div class="attr-name f-fl  ">拟办和批示：</div>
+    <div class="attr-value f-fl  ">${object.instructions}</div>
   </div>
 
 
-  <div class="info-row  mgt-20 ">
+  <div class="info-row mgt-20 clearfloat">
+    <div class="attr-name f-fl  ">待阅人员：</div>
+    <div class="attr-value f-fl  ">${object.waitReaders}</div>
+  </div>
+ <div class="receive-doc-fd">
+   <span >本文件审阅完成日期：${object.finishDate}</span>
+ </div>
+
+  <div class="info-row">
     <c:forEach var="item" items="${noticeList}" varStatus="status">
       <div class="process-${fn:length(noticeList)-status.index} clearfloat">
         <div class="flow"></div>
@@ -132,8 +120,6 @@
 
     </c:forEach>
   </div>
-
   <%@include file="common-submit.jsp"%>
-
 </body>
 </html>

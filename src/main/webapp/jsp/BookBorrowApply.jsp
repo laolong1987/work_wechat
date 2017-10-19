@@ -114,54 +114,6 @@
 
     </c:forEach>
   </div>
-  <c:choose>
-    <div class="process-button ">
-      <c:when test="${fn:length(noticeList)==2}">
-        <c:forEach var="item" items="${eventList}" varStatus="status">
-          <c:if test="${status.index==0}">
-            <div class="refuse approval" data="${item.event}">${item.name}</div>
-          </c:if>
-          <c:if test="${status.index==1}">
-            <div class="agree approval" data="${item.event}">${item.name}</div>
-          </c:if>
-
-        </c:forEach>
-      </c:when>
-      <c:otherwise>
-        <c:forEach var="item" items="${eventList}" varStatus="status">
-          <c:if test="${status.index%2==0}">
-            <div class="red-btn approval" data="${item.event}">${item.name}</div>
-          </c:if>
-          <c:if test="${status.index%2==1}">
-            <div class="blue-btn approval" data="${item.event}">${item.name}</div>
-          </c:if>
-
-        </c:forEach>
-      </c:otherwise>
-    </div>
-  </c:choose>
-  <div class="approach-reason clearfloat f-dn" id="reason">
-    <div class="tip">请填写您的意见：</div>
-    <textarea class="reason"></textarea>
-
-    <div class="close">取消</div>
-    <div class="submit">提交</div>
-
-  </div>
-
-</div>
-<script type="text/javascript" src='<%=webRoot%>/js/jquery.min.js'></script>
-<script>
-  $(function () {
-    $(".approval").on("click", function () {
-      $("#reason").removeClass("f-dn");
-    })
-
-    $(".close").on("click", function () {
-      $("#refuse-reason").addClass("f-dn");
-    })
-
-  })
-</script>
+  <%@include file="common-submit.jsp"%>
 </body>
 </html>

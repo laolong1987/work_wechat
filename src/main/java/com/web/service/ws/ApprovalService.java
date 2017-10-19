@@ -141,7 +141,7 @@ public class ApprovalService {
         page.setXMLType(XMLType.XSD_INT);
 
         WSbean template = new WSbean();
-        template.setParametername("templateid");
+        template.setParametername("templateId");
         template.setParametervalue(templateId);
         template.setXMLType(XMLType.XSD_INT);
 
@@ -152,7 +152,7 @@ public class ApprovalService {
 
         WSbean type = new WSbean();
         type.setParametername("nType");
-        type.setParametervalue("1");
+        type.setParametervalue(nType);
         type.setXMLType(XMLType.XSD_INT);
 
         wSbeans.add(page);
@@ -348,5 +348,71 @@ public class ApprovalService {
 
         return response;
     }
+
+    public String raiseWorkflow(String event, String templateId, String dataId, String stateCaption, String sendBy, String content, String processBy) {
+        String url = config.getBase() + config.getRaiseWorkflow();
+        List<WSbean> wSbeans = new ArrayList<>();
+        WSbean formEvent = new WSbean();
+        formEvent.setParametername("formevent");
+        formEvent.setParametervalue(event);
+        formEvent.setXMLType(XMLType.XSD_STRING);
+
+        WSbean template = new WSbean();
+        template.setParametername("templateid");
+        template.setParametervalue(templateId);
+        template.setXMLType(XMLType.XSD_INT);
+
+        WSbean dataID = new WSbean();
+        dataID.setParametername("dataid");
+        dataID.setParametervalue(dataId);
+        dataID.setXMLType(XMLType.XSD_INT);
+
+        WSbean caption = new WSbean();
+        caption.setParametername("statecaption");
+        caption.setParametervalue(stateCaption);
+        caption.setXMLType(XMLType.XSD_STRING);
+
+        WSbean sendBY = new WSbean();
+        sendBY.setParametername("sendby");
+        sendBY.setParametervalue(sendBy);
+        sendBY.setXMLType(XMLType.XSD_STRING);
+
+        WSbean contentWSbean = new WSbean();
+        contentWSbean.setParametername("content");
+        contentWSbean.setParametervalue(content);
+        contentWSbean.setXMLType(XMLType.XSD_STRING);
+
+        WSbean processByWSbean = new WSbean();
+        processByWSbean.setParametername("processby");
+        processByWSbean.setParametervalue(processBy);
+        processByWSbean.setXMLType(XMLType.XSD_STRING);
+
+
+        wSbeans.add(template);
+        wSbeans.add(dataID);
+        wSbeans.add(formEvent);
+        wSbeans.add(caption);
+        wSbeans.add(sendBY);
+        wSbeans.add(contentWSbean);
+        wSbeans.add(processByWSbean);
+        String response = WebServiceBase.call(config.getRaiseWorkflow(), wSbeans, url);
+
+
+        return response;
+    }
+
+    public String getDepartments() {
+        String url = config.getBase() + config.getGetDepartments();
+        List<WSbean> wSbeans = new ArrayList<>();
+        String response = WebServiceBase.call(config.getGetDepartments(), wSbeans, url);
+        return response;
+    }
+
+    public String getEmployeeUsers() {
+         String url = config.getBase() + config.getGetEmployeeUsers();
+         List<WSbean> wSbeans = new ArrayList<>();
+         String response = WebServiceBase.call(config.getGetEmployeeUsers(), wSbeans, url);
+         return response;
+     }
 
 }

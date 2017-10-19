@@ -17,7 +17,7 @@ public class MayProcessItemsModel {
     private boolean permission;
     private String procStatus;
     private String stateCaption;
-    private String[] editFields;
+    private String editFields;
     private List<EventModel> eventList;
 
     public boolean isPermission() {
@@ -44,11 +44,11 @@ public class MayProcessItemsModel {
         this.stateCaption = stateCaption;
     }
 
-    public String[] getEditFields() {
+    public String getEditFields() {
         return editFields;
     }
 
-    public void setEditFields(String[] editFields) {
+    public void setEditFields(String editFields) {
         this.editFields = editFields;
     }
 
@@ -63,7 +63,7 @@ public class MayProcessItemsModel {
     public MayProcessItemsModel(JSONObject object) {
         this.permission = object.getBoolean("permission");
 
-        this.editFields = object.getString("editfields").replace("[", "").replace("]", "").split(",");
+        this.editFields = object.getString("editfields");
 
         this.procStatus = object.getString("procstatus");
 

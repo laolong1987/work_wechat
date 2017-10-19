@@ -41,9 +41,9 @@
       <div class="attr-value f-fl vehicle-middle ">${object.subject}</div>
     </div>
     <div class="clearfloat">
-          <div class="attr-name f-fl vehicle-middle ">单号：</div>
-          <div class="attr-value f-fl vehicle-middle ">${object.orderNum}</div>
-        </div>
+      <div class="attr-name f-fl vehicle-middle ">单号：</div>
+      <div class="attr-value f-fl vehicle-middle ">${object.orderNum}</div>
+    </div>
   </div>
 
   <div class="info-row mgt-20 clearfloat">
@@ -86,17 +86,58 @@
 
   <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">班组意见：</div>
-    <div class="attr-value f-fl  ">${object.groupApproach}</div>
+
+    <c:choose>
+      <c:when test="${fn:contains(editfields, 'BanzuYJ')}">
+        <input class="attr-value f-fl edit" type="text" name="BanzuYJ"
+               value="${object.groupApproach}">
+      </c:when>
+      <c:otherwise>
+        <div class="attr-value f-fl  ">${object.groupApproach}</div>
+      </c:otherwise>
+    </c:choose>
+
   </div>
 
   <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">部门意见：</div>
-    <div class="attr-value f-fl  ">${object.departmentApproach}</div>
+    <c:choose>
+      <c:when test="${fn:contains(editfields, 'DepartYJ')}">
+        <input class="attr-value f-fl edit" type="text" name="DepartYJ"
+               value="${object.departmentApproach}">
+      </c:when>
+      <c:otherwise>
+        <div class="attr-value f-fl  ">${object.departmentApproach}</div>
+      </c:otherwise>
+    </c:choose>
   </div>
 
   <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">人资部意见：</div>
-    <div class="attr-value f-fl  ">${object.humanResourceApproach}</div>
+
+    <c:choose>
+      <c:when test="${fn:contains(editfields, 'RzbYJ')}">
+        <input class="attr-value f-fl edit" type="text" name="RzbYJ"
+               value="${object.humanResourceApproach}">
+      </c:when>
+      <c:otherwise>
+        <div class="attr-value f-fl  ">${object.humanResourceApproach}</div>
+      </c:otherwise>
+    </c:choose>
+  </div>
+
+  <div class="info-row mgt-20 clearfloat">
+    <div class="attr-name f-fl  ">公司意见：</div>
+
+    <c:choose>
+      <c:when test="${fn:contains(editfields, 'GsYJ')}">
+        <input class="attr-value f-fl edit" type="text" name="GsYJ"
+               value="${object.firmApproach}">
+      </c:when>
+      <c:otherwise>
+        <div class="attr-value f-fl  ">${object.firmApproach}</div>
+      </c:otherwise>
+    </c:choose>
   </div>
 
 
@@ -104,8 +145,6 @@
     <c:forEach var="item" items="${noticeList}" varStatus="status">
 
       <div class="process-${fn:length(noticeList)-status.index} clearfloat">
-
-
         <div class="flow"></div>
         <div
           class="process-text">${item.receiverName} ${item.noticeType} ${item.action}</div>

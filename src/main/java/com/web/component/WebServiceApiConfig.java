@@ -31,8 +31,16 @@ public class WebServiceApiConfig {
     private String GetNoticeList;
 
     @Value("${GetFormSchema}")
+    private String getFormSchema;
 
-    private String  getFormSchema;
+    @Value("${RaiseWorkflow}")
+    private String RaiseWorkflow;
+
+    @Value("${GetDepartments}")
+    private String GetDepartments;
+
+    @Value("${GetEmployeeUsers}")
+    private String GetEmployeeUsers;
 
 
     public String getGetWaitProcessNotice() {
@@ -89,5 +97,29 @@ public class WebServiceApiConfig {
 
     public void setGetFormSchema(String getFormSchema) {
         this.getFormSchema = getFormSchema;
+    }
+
+    public String getRaiseWorkflow() {
+        return RaiseWorkflow;
+    }
+
+    public void setRaiseWorkflow(String raiseWorkflow) {
+        RaiseWorkflow = raiseWorkflow;
+    }
+
+    public String getGetDepartments() {
+        return GetDepartments;
+    }
+
+    public void setGetDepartments(String getDepartments) {
+        GetDepartments = getDepartments;
+    }
+
+    public String getGetEmployeeUsers() {
+        return GetEmployeeUsers;
+    }
+
+    public void setGetEmployeeUsers(String getEmployeeUsers) {
+        GetEmployeeUsers = getEmployeeUsers;
     }
 }
