@@ -85,11 +85,11 @@
             <span class="ziti1">2017-09-29 15:38</span>
         </div>
     </div>
-
+    <form  id="addform" action="createcar" name="addform" method="post" >
     <div class="row content">
         <label class="col-xs-4 control-label lab">预定人电话</label>
         <div class="col-xs-8">
-            <input  type="text" class="touming" placeholder="请填写电话(必填)" value="" required>
+            <input  type="text" class="touming" placeholder="请填写电话(必填)" value="" id="ydrphone" name="ydrphone" required>
 
         </div>
     </div>
@@ -97,14 +97,14 @@
     <div class="row content">
         <label class="col-xs-4 control-label lab">出发时间</label>
         <div class="col-xs-8">
-            <input  type="text" class=" form_datetime touming" placeholder="请选择出发时间(必填)" name="date1" id="date1" value="" required>
+            <input  type="text" class=" form_datetime touming" placeholder="请选择出发时间(必填)" name="starttime" id="starttime" value="" required>
         </div>
     </div>
 
     <div class="row content">
         <label class="col-xs-4 control-label lab">结束时间</label>
         <div class="col-xs-8">
-            <input  type="text" class="form_datetime touming" placeholder="请选择结束时间(必填)" name="date1" id="date1" value="" required>
+            <input  type="text" class="form_datetime touming" placeholder="请选择结束时间(必填)" name="endtime" id="endtime" value="" required>
         </div>
     </div>
 
@@ -117,7 +117,7 @@
     <div class="row content">
         <label class="col-xs-4 control-label lab">乘车人数</label>
         <div class="col-xs-8">
-            <input  type="text" class="touming" placeholder="请填写乘车人数(必填)"  value="" required>
+            <input  type="text" class="touming" placeholder="请填写乘车人数(必填)"  value="" id="zrs" name="zrs" required>
         </div>
     </div>
 
@@ -125,51 +125,45 @@
     <div class="row content">
         <label class="col-xs-4 control-label lab">上车地点</label>
         <div class="col-xs-8">
-            <input  type="text" class="touming" placeholder="请填写上车地点(必填)"  value="" required>
+            <input  type="text" class="touming" placeholder="请填写上车地点(必填)"  value=""  id="pickupaddress" name="pickupaddress" required>
         </div>
     </div>
 
-    <div class="row content">
-        <label class="col-xs-4 control-label lab">上车地点</label>
-        <div class="col-xs-8">
-            <input  type="text" class="touming" placeholder="请填写上车地点(必填)"  value="" required>
-        </div>
-    </div>
 
     <div class="row" style="margin-top: 10px">
         <div class="col-xs-2">
         </div>
         <div class="col-xs-4">
-            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">市内
+            <input type="radio" name="Sfwd"  value="不是">市内
         </div>
         <div class="col-xs-6">
-            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">市外
+            <input type="radio" name="Sfwd"  value="是">市外
         </div>
     </div>
 
     <div class="row content">
         <label class="col-xs-4 control-label lab">目的地</label>
         <div class="col-xs-8">
-            <input  type="text" class="touming" placeholder="请填写目的地"  value="" required>
+            <input  type="text" class="touming" placeholder="请填写目的地"  value="" id="destination" name="destination" required>
         </div>
     </div>
 
     <div class="row content">
         <label class="col-xs-4 control-label lab">车辆用途</label>
         <div class="col-xs-8">
-            <textarea class="touming" rows="5" name="desc" id="desc" placeholder="请填写车辆用途(必填)"  required></textarea>
+            <textarea class="touming" rows="5" name="clyt" id="clyt" placeholder="请填写车辆用途(必填)"  required></textarea>
         </div>
     </div>
 
     <div class="row content">
         <label class="col-xs-4 control-label lab">备注</label>
         <div class="col-xs-8">
-            <textarea class="touming" rows="5" name="desc" id="desc" placeholder="请填写备注(必填)"  required></textarea>
+            <textarea class="touming" rows="5" name="remark" id="remark" placeholder="如 1.是否往返 2.是否多目的地"  required></textarea>
         </div>
     </div>
-
+</form>
     <div class="text-center">
-        <button type="button" class="btn btn-primary addbtn">提交审批</button>
+        <button type="button" class="btn btn-primary addbtn" onclick="add()" >提交审批</button>
     </div>
     <div class="text-right">
         <div style="width: 300px;">
@@ -207,7 +201,33 @@
         return  iDays
     }
 
+    function add(){
+        var ydrphone=$("#ydrphone").val();
+        if(''==ydrphone){
+            alert('请填写预定人电话');
+            return
+        }
+        var a=$("#starttime").val();
+        if(''==a){
+            alert('请选择出发时间');
+            return
+        }
+        var b=$("#endtime").val();
+        if(''==b){
+            alert('请选择结束时间');
+            return
+        }
 
+        var clyt=$("#clyt").val();
+        if(''==clyt){
+            alert('请填写车辆用途');
+            return
+        }
+
+
+
+        $("#addform").submit();
+    }
 </script>
 </body>
 </html>
