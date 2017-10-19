@@ -94,7 +94,15 @@
 
   <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">部门领导审核：</div>
-    <div class="attr-value f-fl  ">${object.departmentApproachResult}</div>
+    <c:choose>
+      <c:when test="${fn:contains(editfields, 'Bmldsh')}">
+        <input class="attr-value f-fl edit" type="text" name="Bmldsh"
+               value="${object.departmentApproachResult}">
+      </c:when>
+      <c:otherwise>
+        <div class="attr-value f-fl  ">${object.departmentApproachResult}</div>
+      </c:otherwise>
+    </c:choose>
   </div>
   <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">总经负责人：</div>

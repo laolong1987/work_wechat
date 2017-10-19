@@ -1,12 +1,13 @@
 package com.web.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.web.model.*;
+import com.web.service.WorkFromService;
 import com.web.service.ws.ApprovalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,12 +23,24 @@ public class ApprovalController {
     @Autowired
     private ApprovalService approvalService;
 
+    @Autowired
+    private WorkFromService workFromService;
+
     @RequestMapping("apply/{templateId}/{dataId}")
     public String workOvertime(@PathVariable("templateId") String templateId,
                                @PathVariable("dataId") String dataId, HttpServletRequest request, HttpServletResponse response) {
         String formInstanceRes = approvalService.getFormInstance(templateId, dataId);
         JSONObject formInstanceJson = JSONObject.parseObject(formInstanceRes);
         List<NoticeListModel> noticeList = approvalService.getNoticeList(templateId, dataId);
+
+        //获取审批事件列表
+        MayProcessItemsModel mayProcessItemsModel = approvalService.getMayProcessItemsModel(templateId, dataId, "220238");
+
+        request.setAttribute("templateId", templateId);
+        request.setAttribute("dataId", dataId);
+        request.setAttribute("sentBy", request.getParameter("sentby"));
+        request.setAttribute("stateCaption", mayProcessItemsModel.getStateCaption());
+        request.setAttribute("eventList", mayProcessItemsModel.getEventList());
         request.setAttribute("noticeList", noticeList);
         String page = "";
         if ("350".equals(templateId)) {//法定节假日加班申请单
@@ -81,10 +94,14 @@ public class ApprovalController {
             BusinessTripApplyModel model = new BusinessTripApplyModel(formInstanceJson);
             request.setAttribute("object", model);
             page = "/jsp/BusinessTripApplyModel";
-        } else if ("334".equals(templateId)) {//公差申请
+        } else if ("334".equals(templateId)) {//发文单
             SentDocModel model = new SentDocModel(formInstanceJson);
             request.setAttribute("object", model);
             page = "/jsp/SentDocument";
+        } else if ("329".equals(templateId)) {//收文单
+            ReceiveDocModel model = new ReceiveDocModel(formInstanceJson);
+            request.setAttribute("object", model);
+            page = "/jsp/RecevieDocument";
         }
 
 
@@ -94,10 +111,10 @@ public class ApprovalController {
     @RequestMapping("list")
     public String list(HttpServletRequest request, HttpServletResponse response) {
 
-        List<WaitProcessModel> waitProcessList = approvalService.getWaitProcessNotice("220238", "0", "waitProcess");
+        List<WaitProcessModel> waitProcessList = approvalService.getWaitProcessNotice("220238", "0", "10", "waitProcess");
         request.setAttribute("waitProcessList", waitProcessList);
 
-        List<WaitProcessModel> processedList = approvalService.getWaitProcessNotice("220238", "0", "processed");
+        List<WaitProcessModel> processedList = approvalService.getWaitProcessNotice("220238", "0", "10", "processed");
         request.setAttribute("processedList", processedList);
         return "jsp/ApproachList";
     }
@@ -107,14 +124,79 @@ public class ApprovalController {
     public List<WaitProcessModel> nextPageList(@PathVariable("type") String type, @PathVariable("page") String page) {
         List<WaitProcessModel> list = new ArrayList<>();
         if ("waitProcess".equalsIgnoreCase(type)) {
-            list = approvalService.getWaitProcessNotice("220238", page, "waitProcess");
+            list = approvalService.getWaitProcessNotice("220238", page, "10", "waitProcess");
         } else if ("processed".equalsIgnoreCase(type)) {
-            list = approvalService.getWaitProcessNotice("220238", page, "processed");
+            list = approvalService.getWaitProcessNotice("220238", page, "10", "processed");
 
         }
 
 
         return list;
+    }
+
+    @RequestMapping("/self-list/{templateId}")
+    public String selfList(@PathVariable("templateId") String templateId, HttpServletRequest request, HttpServletResponse response) {
+
+        List<WaitProcessModel> processedList = approvalService.getSelfProcessedNotice("220238", "0", "10", "2", templateId);
+        request.setAttribute("processedList", processedList);
+        request.setAttribute("templateId", templateId);
+        return "jsp/SelfApplyList";
+    }
+
+    @RequestMapping("/self-list/{templateId}/{page}")
+    @ResponseBody
+    public List<WaitProcessModel> nextPageSelfList(@PathVariable("templateId") String templateId, @PathVariable("page") String page) {
+        List<WaitProcessModel> list = approvalService.getSelfProcessedNotice("220238", page, "10", "2", templateId);
+
+        return list;
+    }
+
+    @RequestMapping(value = "doApproval", method = RequestMethod.POST)
+    @ResponseBody
+    public String raiseWorkflow(@RequestParam Map<String, String> parameterMap, HttpServletRequest request) {
+        String processBy = "220238";
+
+        String event = null;
+        String templateId = null;
+        String dataId = null;
+        String stateCaption = null;
+        String sendBy = null;
+        String content = null;
+        JSONObject data = new JSONObject();
+        for (String key : parameterMap.keySet()) {
+            if (key.equals("event")) {
+                event = String.valueOf(parameterMap.get(key).toString());
+            } else if (key.equals("templateId")) {
+                templateId = parameterMap.get(key).toString();
+            } else if (key.equals("content")) {
+                content = parameterMap.get(key).toString();
+            } else if (key.equals("dataId")) {
+                dataId = parameterMap.get(key).toString();
+            } else if (key.equals("stateCaption")) {
+                stateCaption = parameterMap.get(key).toString();
+            } else if (key.equals("sendBy")) {
+                sendBy = parameterMap.get(key).toString();
+            } else {
+                data.put(key, parameterMap.get(key).toString());
+            }
+
+        }
+        if (data.size() > 0) {
+            JSONObject json = new JSONObject();
+            json.put("FormType", Integer.parseInt(templateId));
+            json.put("data", data);
+            data.put("ID", Integer.parseInt(dataId));
+            String FormConfigID = workFromService.CreateFormInstance(json.toJSONString());
+            JSONObject resultJson = JSON.parseObject(FormConfigID);
+            if (!resultJson.getBoolean("success"))
+                return "501";
+
+        }
+        String res = approvalService.raiseWorkflow(event, templateId, dataId, stateCaption, sendBy, content, processBy);
+        JSONObject resultJson = JSON.parseObject(res);
+        if (!resultJson.getBoolean("success"))
+            return "502";
+        return "success";
     }
 
 }

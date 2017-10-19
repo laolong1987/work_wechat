@@ -16,7 +16,7 @@
 %>
 <html>
 <head>
-  <title>我的审批</title>
+  <title>我的申请</title>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport"
@@ -34,43 +34,9 @@
 </head>
 <body>
 <div class="container pd-lr">
-  <div class="clearfloat">
-    <div class="approach-nav approach-nav-choose" hide="processed">
-      待我审批单的(${fn:length(waitProcessList)})
-    </div>
-    <div class="approach-nav" hide="waitProcess">我已审批的</div>
-  </div>
-
-  <div class="waitProcess">
-    <div class="data-list">
-      <c:forEach var="item" items="${waitProcessList}">
-        <a href="<%=webRoot%>/approval/apply/${item.templateId}/${item.dataId}?sentby=${item.sendBy}">
-          <div class="approach-list">
-            <div class="clearfloat title">
-              <span class="attr-name">单号：</span>
-              <span class="attr-value">${item.orderNum}</span>
-              <span class="doc-date">${item.writeDate}</span>
-            </div>
-            <div class="content">
-              <div class="clearfloat">
-                <span class="attr-name">简称：</span>
-                <span class="attr-value">${item.templateType}</span>
-              </div>
-              <div class="clearfloat">
-                <span class="attr-name">主题：</span>
-                <span class="attr-value">${item.subject}</span>
-              </div>
-            </div>
-            <div class="status">${item.status}</div>
-          </div>
-        </a>
-      </c:forEach>
-    </div>
 
 
-  </div>
-
-  <div class="processed f-dn">
+  <div class="processed">
     <div class="data-list">
       <c:forEach var="item" items="${processedList}">
         <a href="<%=webRoot%>/approval/apply/${item.templateId}/${item.dataId}">
@@ -103,13 +69,13 @@
 <script type="text/javascript" src='<%=webRoot%>/js/jquery.min.js'></script>
 <script>
   $(function () {
+    var templateId=${templateId};
     $(".approach-nav").on("click", function () {
       $(this).addClass("approach-nav-choose").siblings().removeClass("approach-nav-choose");
       var _class = "." + $(this).attr("hide");
       $(_class).addClass("f-dn").siblings().removeClass("f-dn");
     });
-    loadData(".waitProcess",".data-list","waitProcess");
-    loadData(".processed",".data-list","processed");
+    loadData(".processed",".data-list",templateId);
 
   })
 
@@ -127,7 +93,7 @@
         //        console.log($(this).scrollTop() / ($(this).find(".data-list").height() - $(this).height()))
         load = false;
         $.ajax({
-          url: "list/" + apiType +"/"+ pageNum,
+          url: "self-list/" + apiType +"/"+ pageNum,
           method: "get",
           data: "",
           dataType: "JSON",
@@ -140,7 +106,7 @@
               var status =item.status;
               if(status==null)
                   status ="";
-              elements += ' <a href="apply/' + item.templateId + '/' + item.dataId + '?sentby='+item.sentBy+'">' + '<div class="approach-list"><div class="clearfloat title">' +
+              elements += ' <a href="<%=webRoot%>/approval/apply/' + item.templateId + '/' + item.dataId + '">' + '<div class="approach-list"><div class="clearfloat title">' +
                 '<span class="attr-name">单号：</span><span class="attr-value">' + item.orderNum + '</span><span class="doc-date">' + item.writeDate +
                 '</span></div><div class="content"><div class="clearfloat"><span class="attr-name">简称：</span><span class="attr-value">' + item.templateType +
                 '</span></div><div class="clearfloat"><span class="attr-name">主题：</span><span class="attr-value">' + item.subject +
