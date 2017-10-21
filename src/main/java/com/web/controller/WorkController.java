@@ -43,6 +43,9 @@ public class WorkController {
     @RequestMapping(value = "/addleave", method = RequestMethod.GET)
     public String addleave(HttpServletRequest request,HttpServletResponse response) {
 
+//        System.out.println(approvalService.getDepartments());
+//        System.out.println(approvalService.getEmployeeUsers());
+
         return "/jsp/app/addleave";
     }
 

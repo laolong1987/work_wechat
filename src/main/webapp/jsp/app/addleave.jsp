@@ -59,7 +59,17 @@
             height: 160px;
         }
         .lab{
-            margin-top: 14px;
+            margin-top: 15px;
+        }
+        .lab2{
+            text-align: right;
+        }
+        .lab3{
+            background-image: url(${ctx}/images/add/arrow.png);
+            background-position: right;
+            background-repeat: no-repeat;
+            background-size: 8px;
+            background-origin: content-box;
         }
         .addbtn{
             width: 300px;height: 35px;margin-top: 45px;
@@ -68,14 +78,16 @@
             color: white;
         }
         .touming{
-            border: 0;
+            border: solid 0px;
             width: 100%;
             height: auto;
             font-size: 14px;
-            background-color: #fff;
+            /*background-color: #fff;*/
             background-image: none;
             line-height: 1.42857143;
             margin-top: 15px;
+            background-color: transparent;
+            -webkit-appearance: initial;
         }
         .touming:focus{outline:none !important;}
     </style>
@@ -94,8 +106,8 @@
     <form  id="addform" action="createleave" name="addform" method="post" >
         <input  type="hidden" id="day" name="day" >
     <div class="row content">
-        <label class="col-xs-3 control-label lab">类型</label>
-        <div class="col-xs-9">
+        <label class="col-xs-2 control-label lab lab2">类型</label>
+        <div class="col-xs-6">
             <select class="touming" id="type" name="type">
                 <option value="" disabled selected>请选择请假类型(必填)</option>
                 <option value="年休假">年休假</option>
@@ -111,32 +123,36 @@
                 <option value="授乳假">授乳假</option>
             </select>
         </div>
+        <label class="col-xs-4 control-label lab lab3" for="type">请选择(必填)
+        </label>
     </div>
 
     <div class="row content">
-        <label class="col-xs-3 control-label lab">开始</label>
-        <div class="col-xs-9">
+        <label class="col-xs-2 control-label lab lab2">开始</label>
+        <div class="col-xs-6">
             <input  type="text" class="form_datetime touming" placeholder="请选择开始时间(必填)" name="date1" id="date1" value="" onchange="btnCount_Click()" required>
         </div>
+        <label class="col-xs-4 control-label lab lab3" for="date1">请选择(必填)</label>
     </div>
 
     <div class="row content">
-        <label class="col-xs-3 control-label lab">结束</label>
-        <div class="col-xs-9">
+        <label class="col-xs-2 control-label lab lab2">结束</label>
+        <div class="col-xs-6">
             <input  type="text" class="form_datetime touming" placeholder="请选择结束时间(必填)" name="date2" id="date2" value="" onchange="btnCount_Click()" required>
         </div>
+        <label class="col-xs-4 control-label lab lab3" for="date2">请选择(必填)</label>
     </div>
 
     <div class="row content">
-        <label class="col-xs-3 control-label lab">计</label>
-        <div class="col-xs-9">
+        <label class="col-xs-2 control-label lab lab2">计</label>
+        <div class="col-xs-10">
             <p class="form-control-static" style="margin-top: 7px" id="days"></p>
         </div>
     </div>
 
     <div class="row content2">
-        <label class="col-xs-3 control-label lab">理由</label>
-        <div class="col-xs-9">
+        <label class="col-xs-2 control-label lab lab2">理由</label>
+        <div class="col-xs-10">
             <textarea class="touming" rows="5" name="desc" id="desc" placeholder="请填写备注(必填)"  required></textarea>
         </div>
     </div>
@@ -145,8 +161,8 @@
         <button type="button" class="btn btn-primary addbtn" onclick="add()">提交审批</button>
     </div>
     <div class="text-right">
-        <div style="width: 300px;">
-            <a href="#">显示列表</a>
+        <div style="width: 300px;text-decoration:underline;color: black">
+            <a href="#">查看列表</a>
         </div>
     </div>
 </div>
