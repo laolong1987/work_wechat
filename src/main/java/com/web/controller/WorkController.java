@@ -158,6 +158,11 @@ public class WorkController {
         return "/jsp/app/addguestmeal";
     }
 
+    @RequestMapping(value = "/department", method = RequestMethod.GET)
+    public String department(HttpServletRequest request,HttpServletResponse response) {
+
+        return "/jsp/app/department";
+    }
 
 
     @RequestMapping(value = "/createguestmeal", method = RequestMethod.POST)

@@ -131,13 +131,14 @@
         </label>
     </div>
 
-    <div class="row content">
+    <div class="row content2">
         <label class="col-xs-3 control-label lab lab2">乘车人员</label>
-        <div class="col-xs-5">
-            <input  type="text" class="touming" placeholder="请选择乘车人员"  value="" required>
+        <div class="col-xs-9">
+            <%--<input  type="text" class="touming" placeholder="请选择乘车人员" id="usernames" onclick="opendepartment()" value="" required>--%>
+            <textarea class="touming" rows="5" name="usernames" id="usernames" onclick="opendepartment()" placeholder="请选择(必填)"></textarea>
         </div>
-        <label class="col-xs-4 control-label lab lab3">请选择(必填)
-        </label>
+        <%--<label class="col-xs-4 control-label lab lab3">请选择(必填)--%>
+        <%--</label>--%>
     </div>
     <div class="row content">
         <label class="col-xs-3 control-label lab lab2">等</label>
@@ -198,8 +199,9 @@
         </div>
     </div>
 </div>
-
-<script type="text/javascript" src='${ctx}/js/jquery.min.js'></script>
+<jsp:include page="adddepartment.jsp" />
+<script type="text/javascript" src='${ctx}/js/app/jquery.min.js'></script>
+<%--<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>--%>
 <script type="text/javascript" src='${ctx}/js/bootstrap.min.js'></script>
 <script type="text/javascript" src='${ctx}/js/bootstrap-datetimepicker.min.js'></script>
 <script type="text/javascript" src='${ctx}/js/bootstrap-datetimepicker.zh-CN.js'></script>
@@ -250,9 +252,6 @@
             alert('请填写车辆用途');
             return
         }
-
-
-
         $("#addform").submit();
     }
 </script>
