@@ -47,7 +47,95 @@ public class WorkFromService {
         return r1;
     }
 
+    public String RaiseWorkflowb(Map<String,String> map){
+        List<WSbean> list = new ArrayList<>();
+        WSbean wSbean = new WSbean();
+        wSbean.setParametername("formevent");
+        wSbean.setParametervalue(map.get("formevent"));
+        wSbean.setXMLType(XMLType.XSD_STRING);
+        list.add(wSbean);
 
+        wSbean = new WSbean();
+        wSbean.setParametername("configid");
+        wSbean.setParametervalue(map.get("configid"));
+        wSbean.setXMLType(XMLType.XSD_INT);
+        list.add(wSbean);
+
+        wSbean = new WSbean();
+        wSbean.setParametername("statecaption");
+        wSbean.setParametervalue(map.get("statecaption"));
+        wSbean.setXMLType(XMLType.XSD_STRING);
+        list.add(wSbean);
+
+        wSbean = new WSbean();
+        wSbean.setParametername("sendby");
+        wSbean.setParametervalue(map.get("sendby"));
+        wSbean.setXMLType(XMLType.XSD_STRING);
+        list.add(wSbean);
+
+        wSbean = new WSbean();
+        wSbean.setParametername("content");
+        wSbean.setParametervalue(map.get("content"));
+        wSbean.setXMLType(XMLType.XSD_STRING);
+        list.add(wSbean);
+
+        wSbean = new WSbean();
+        wSbean.setParametername("processby");
+        wSbean.setParametervalue(map.get("processby"));
+        wSbean.setXMLType(XMLType.XSD_STRING);
+        list.add(wSbean);
+
+        String r1 = WebServiceBase.call("RaiseWorkflowb", list);
+        return r1;
+    }
+
+    public String RaiseWorkflow(Map<String,String> map){
+        List<WSbean> list = new ArrayList<>();
+        WSbean wSbean = new WSbean();
+        wSbean.setParametername("formevent");
+        wSbean.setParametervalue(map.get("formevent"));
+        wSbean.setXMLType(XMLType.XSD_STRING);
+        list.add(wSbean);
+
+        wSbean = new WSbean();
+        wSbean.setParametername("templateid");
+        wSbean.setParametervalue(map.get("templateid"));
+        wSbean.setXMLType(XMLType.XSD_INT);
+        list.add(wSbean);
+
+        wSbean = new WSbean();
+        wSbean.setParametername("dataid");
+        wSbean.setParametervalue(map.get("dataid"));
+        wSbean.setXMLType(XMLType.XSD_INT);
+        list.add(wSbean);
+
+        wSbean = new WSbean();
+        wSbean.setParametername("statecaption");
+        wSbean.setParametervalue(map.get("statecaption"));
+        wSbean.setXMLType(XMLType.XSD_STRING);
+        list.add(wSbean);
+
+        wSbean = new WSbean();
+        wSbean.setParametername("sendby");
+        wSbean.setParametervalue(map.get("sendby"));
+        wSbean.setXMLType(XMLType.XSD_STRING);
+        list.add(wSbean);
+
+        wSbean = new WSbean();
+        wSbean.setParametername("content");
+        wSbean.setParametervalue(map.get("content"));
+        wSbean.setXMLType(XMLType.XSD_STRING);
+        list.add(wSbean);
+
+        wSbean = new WSbean();
+        wSbean.setParametername("processby");
+        wSbean.setParametervalue(map.get("processby"));
+        wSbean.setXMLType(XMLType.XSD_STRING);
+        list.add(wSbean);
+
+        String r1 = WebServiceBase.call("RaiseWorkflow", list);
+        return r1;
+    }
 
 
     public static void main(String[] args) {

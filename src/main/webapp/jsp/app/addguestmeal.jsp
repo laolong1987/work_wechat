@@ -202,7 +202,7 @@
     </div>
     <div class="text-right">
         <div style="width: 300px;text-decoration:underline;color: black">
-            <a href="#">查看列表</a>
+            <a href="${ctx}/approval/self-list/323">查看列表</a>
         </div>
     </div>
 </div>
@@ -223,7 +223,7 @@
         var yczl= $("#yczl").val();
 
         if("工作用餐"==yctype && "早餐"==yczl){
-            $("#ycbz").html("<option value='' disabled selected>请选择用餐时间(必填)</option>");
+            $("#ycbz").html("<option value='' disabled selected>请选择用餐标准(必填)</option>");
             $("#ycbz").append("<option value='4'>4元</option>");
 
             $("#ycdd").html("<option value='' disabled selected>请选择用餐地点(必填)</option>");
@@ -233,7 +233,7 @@
         }
 
         if(("工作用餐"==yctype && "中餐"==yczl) || ("工作用餐"==yctype && "晚餐"==yczl) ){
-            $("#ycbz").html("<option value='' disabled selected>请选择用餐时间(必填)</option>");
+            $("#ycbz").html("<option value='' disabled selected>请选择用餐标准(必填)</option>");
             $("#ycbz").append("<option value='10'>10元</option>");
 
             $("#ycdd").html("<option value='' disabled selected>请选择用餐地点(必填)</option>");
@@ -243,7 +243,7 @@
         }
 
         if("工作用餐"==yctype && "夜点"==yczl ){
-            $("#ycbz").html("<option value='' disabled selected>请选择用餐时间(必填)</option>");
+            $("#ycbz").html("<option value='' disabled selected>请选择用餐标准(必填)</option>");
             $("#ycbz").append("<option value='4'>4元</option>");
             $("#ycbz").append("<option value='6'>6元</option>");
 
@@ -255,7 +255,7 @@
 
 
         if("接待用餐"==yctype && "早餐"==yczl ){
-            $("#ycbz").html("<option value='' disabled selected>请选择用餐时间(必填)</option>");
+            $("#ycbz").html("<option value='' disabled selected>请选择用餐标准(必填)</option>");
             $("#ycbz").append("<option value='4'>4元</option>");
 
             $("#ycdd").html("<option value='' disabled selected>请选择用餐地点(必填)</option>");
@@ -265,7 +265,7 @@
 
 
         if("接待用餐"==yctype && "中餐"==yczl ){
-            $("#ycbz").html("<option value='' disabled selected>请选择用餐时间(必填)</option>");
+            $("#ycbz").html("<option value='' disabled selected>请选择用餐标准(必填)</option>");
             $("#ycbz").append("<option value='10'>10元</option>");
             $("#ycbz").append("<option value='15'>15元</option>");
 
@@ -276,7 +276,7 @@
         }
 
         if("接待用餐"==yctype && "晚餐"==yczl ){
-            $("#ycbz").html("<option value='' disabled selected>请选择用餐时间(必填)</option>");
+            $("#ycbz").html("<option value='' disabled selected>请选择用餐标准(必填)</option>");
             $("#ycbz").append("<option value='10'>10元</option>");
             $("#ycbz").append("<option value='15'>15元</option>");
 
@@ -285,7 +285,7 @@
             $("#ycdd").append("<option value='其他'>其他</option>");
         }
         if("接待用餐"==yctype && "夜点"==yczl ){
-            $("#ycbz").html("<option value='' disabled selected>请选择用餐时间(必填)</option>");
+            $("#ycbz").html("<option value='' disabled selected>请选择用餐标准(必填)</option>");
             $("#ycbz").append("<option value='4'>4元</option>");
             $("#ycbz").append("<option value='6'>6元</option>");
 

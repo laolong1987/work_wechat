@@ -27,7 +27,6 @@ public class WebServiceBase {
     public static String call(String function,List<WSbean> wSbeans){
         String result="";
         String serviceEpr = "http://d.bm21.com.cn:20003/Services/CoreService.asmx?WSDL";
-        System.out.println(serviceEpr.replace("?op=","WSDL"));
         serviceEpr=serviceEpr.replace("?op=","WSDL");
         try {
             Service service = new Service();
@@ -135,11 +134,7 @@ public class WebServiceBase {
 //            System.out.println("-----------------------------------------");
 //        }
         List<WSbean> list = new ArrayList<>();
-        WSbean wSbean = new WSbean();
-        wSbean.setParametername("instance");
-        wSbean.setParametervalue("349");
-        wSbean.setXMLType(XMLType.XSD_INT);
-        String r1 = WebServiceBase.call("CreateFormInstance", list);
+        String r1 = WebServiceBase.call("GetEmployeeUsers", list);
         System.out.println(r1);
     }
 }

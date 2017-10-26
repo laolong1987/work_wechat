@@ -162,7 +162,7 @@
     </div>
     <div class="text-right">
         <div style="width: 300px;text-decoration:underline;color: black">
-            <a href="#">查看列表</a>
+            <a href="${ctx}/approval/self-list/349">查看列表</a>
         </div>
     </div>
 </div>

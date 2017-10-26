@@ -54,6 +54,38 @@ public class Employee {
     @Column(name ="Yx")
     private String Yx;
 
+    @Column(name ="IsLockedOut")
+    private String IsLockedOut;
+
+    @Column(name ="PositionName")
+    private String PositionName;
+
+    @Column(name ="SortIndex")
+    private String SortIndex;
+
+    public String getPositionName() {
+        return PositionName;
+    }
+
+    public void setPositionName(String positionName) {
+        PositionName = positionName;
+    }
+
+    public String getSortIndex() {
+        return SortIndex;
+    }
+
+    public void setSortIndex(String sortIndex) {
+        SortIndex = sortIndex;
+    }
+
+    public String getIsLockedOut() {
+        return IsLockedOut;
+    }
+
+    public void setIsLockedOut(String isLockedOut) {
+        IsLockedOut = isLockedOut;
+    }
 
     public String getSjhm() {
         return Sjhm;
