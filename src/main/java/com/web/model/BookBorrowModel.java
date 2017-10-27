@@ -74,9 +74,11 @@ public class BookBorrowModel extends ApplyBaseModel {
 
         if (dataArray.size() > 0) {
             JSONObject data = dataArray.getJSONObject(0);
-            this.attachment = data.getString("_ATTACHMENTS");
+            String attachment = data.getString("_ATTACHMENTS");
             if (StringUtils.isEmpty(attachment)) {
-                this.attachment = "无";
+                setAttachment("无");
+            } else {
+                setAttachment(attachment);
             }
 
             this.orderNum = data.getString("_FORMNO");
@@ -95,16 +97,16 @@ public class BookBorrowModel extends ApplyBaseModel {
 
             this.orderDate = data.getString("sqrq");
 
-            this.applicant=data.getString("jlr");
+            this.applicant = data.getString("jlr");
 
             JSONArray subdatas = data.getJSONArray("subdatas");
-            List<BookBorrowDetailModel> modelList =new ArrayList<>();
+            List<BookBorrowDetailModel> modelList = new ArrayList<>();
             for (int i = 0; i < subdatas.size(); i++) {
                 JSONObject sbuData = subdatas.getJSONObject(i);
                 BookBorrowDetailModel model = new BookBorrowDetailModel(sbuData);
                 modelList.add(model);
             }
-            this.detailList=modelList;
+            this.detailList = modelList;
         }
 
     }

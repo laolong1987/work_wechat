@@ -16,7 +16,7 @@
 %>
 <html>
 <head>
-  <title>加班申请单</title>
+  <title>劳保总务用品领用单</title>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport"
@@ -108,44 +108,7 @@
     <div class="attr-name f-fl  ">领用人：</div>
     <div class="attr-value f-fl  ">${object.applicant}</div>
   </div>
-  <div class="info-row mgt-20">
-    <c:forEach var="item" items="${noticeList}" varStatus="status">
-      <div class="process-${fn:length(noticeList)-status.index} clearfloat">
-        <div class="flow"></div>
-        <div
-          class="process-text">${item.receiverName} ${item.noticeType} ${item.action}</div>
-        <div class="process-date">${item.processTime}</div>
-      </div>
 
-    </c:forEach>
-  </div>
-
-  <div class="process-button ">
-    <div class="refuse">拒绝</div>
-    <div class="agree">同意</div>
-  </div>
-  <div class="approach-reason clearfloat f-dn" id="refuse-reason">
-    <div class="tip">请填写您拒绝的原因：</div>
-    <textarea class="reason"></textarea>
-
-    <div class="close">取消</div>
-    <div class="submit">提交</div>
-
-  </div>
-
-</div>
-<script type="text/javascript" src='<%=webRoot%>/js/jquery.min.js'></script>
-<script>
-  $(function () {
-    $(".refuse").on("click", function () {
-      $("#refuse-reason").removeClass("f-dn");
-    })
-
-    $(".close").on("click", function () {
-      $("#refuse-reason").addClass("f-dn");
-    })
-
-  })
-</script>
+  <%@include file="common-submit.jsp"%>
 </body>
 </html>

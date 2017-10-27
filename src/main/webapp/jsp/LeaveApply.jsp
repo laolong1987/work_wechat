@@ -90,7 +90,7 @@
     <c:choose>
       <c:when test="${fn:contains(editfields, 'BanzuYJ')}">
         <input class="attr-value f-fl edit" type="text" name="BanzuYJ"
-               value="${object.groupApproach}">
+               value="${object.groupApproach}"  placeholder="请输入……">
       </c:when>
       <c:otherwise>
         <div class="attr-value f-fl  ">${object.groupApproach}</div>
@@ -104,7 +104,7 @@
     <c:choose>
       <c:when test="${fn:contains(editfields, 'DepartYJ')}">
         <input class="attr-value f-fl edit" type="text" name="DepartYJ"
-               value="${object.departmentApproach}">
+               value="${object.departmentApproach}"  placeholder="请输入……">
       </c:when>
       <c:otherwise>
         <div class="attr-value f-fl  ">${object.departmentApproach}</div>
@@ -118,7 +118,7 @@
     <c:choose>
       <c:when test="${fn:contains(editfields, 'RzbYJ')}">
         <input class="attr-value f-fl edit" type="text" name="RzbYJ"
-               value="${object.humanResourceApproach}">
+               value="${object.humanResourceApproach}"  placeholder="请输入……">
       </c:when>
       <c:otherwise>
         <div class="attr-value f-fl  ">${object.humanResourceApproach}</div>
@@ -132,7 +132,7 @@
     <c:choose>
       <c:when test="${fn:contains(editfields, 'GsYJ')}">
         <input class="attr-value f-fl edit" type="text" name="GsYJ"
-               value="${object.firmApproach}">
+               value="${object.firmApproach}" placeholder="请输入……">
       </c:when>
       <c:otherwise>
         <div class="attr-value f-fl  ">${object.firmApproach}</div>
@@ -140,46 +140,6 @@
     </c:choose>
   </div>
 
-
-  <div class="info-row  mgt-20 ">
-    <c:forEach var="item" items="${noticeList}" varStatus="status">
-
-      <div class="process-${fn:length(noticeList)-status.index} clearfloat">
-        <div class="flow"></div>
-        <div
-          class="process-text">${item.receiverName} ${item.noticeType} ${item.action}</div>
-        <div class="process-date">${item.processTime}</div>
-      </div>
-
-    </c:forEach>
-  </div>
-
-  <div class="process-button ">
-    <div class="refuse">拒绝</div>
-    <div class="agree">同意</div>
-  </div>
-  <div class="approach-reason clearfloat f-dn" id="refuse-reason">
-    <div class="tip">请填写您拒绝的原因：</div>
-    <textarea class="reason"></textarea>
-
-    <div class="close">取消</div>
-    <div class="submit">提交</div>
-
-  </div>
-
-</div>
-<script type="text/javascript" src='<%=webRoot%>/js/jquery.min.js'></script>
-<script>
-  $(function () {
-    $(".refuse").on("click", function () {
-      $("#refuse-reason").removeClass("f-dn");
-    })
-
-    $(".close").on("click", function () {
-      $("#refuse-reason").addClass("f-dn");
-    })
-
-  })
-</script>
+  <%@include file="common-submit.jsp"%>
 </body>
 </html>

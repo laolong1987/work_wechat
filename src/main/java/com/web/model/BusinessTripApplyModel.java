@@ -148,9 +148,11 @@ public class BusinessTripApplyModel extends ApplyBaseModel {
 
         if (dataArray.size() > 0) {
             JSONObject data = dataArray.getJSONObject(0);
-            this.attachment = data.getString("_ATTACHMENTS");
+            String attachment = data.getString("_ATTACHMENTS");
             if (StringUtils.isEmpty(attachment)) {
-                this.attachment = "无";
+                setAttachment("无");
+            } else {
+                setAttachment(attachment);
             }
 
             this.orderNum = data.getString("_FORMNO");
@@ -173,7 +175,7 @@ public class BusinessTripApplyModel extends ApplyBaseModel {
 
             this.applicant = data.getString("Gcry");
 
-            this.peopleNum=data.getString("Gcrs");
+            this.peopleNum = data.getString("Gcrs");
 
             this.leader = data.getString("Gcldxm");
 

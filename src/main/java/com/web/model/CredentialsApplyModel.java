@@ -83,11 +83,12 @@ public class CredentialsApplyModel extends ApplyBaseModel {
 
         if (dataArray.size() > 0) {
             JSONObject data = dataArray.getJSONObject(0);
-            this.attachment = data.getString("_ATTACHMENTS");
+            String attachment = data.getString("_ATTACHMENTS");
             if (StringUtils.isEmpty(attachment)) {
-                this.attachment = "无";
+                setAttachment("无");
+            } else {
+                setAttachment(attachment);
             }
-
             this.orderNum = data.getString("_FORMNO");
 
             this.subject = data.getString("_SUBJECT");
@@ -96,7 +97,7 @@ public class CredentialsApplyModel extends ApplyBaseModel {
 
             this.applicant = data.getString("name");
 
-            this.id=data.getString("gh");
+            this.id = data.getString("gh");
 
             this.department = data.getString("szbm");
 

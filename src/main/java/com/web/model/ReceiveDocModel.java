@@ -57,7 +57,6 @@ public class ReceiveDocModel extends ApplyBaseModel {
     private String finishDate;
 
 
-
     public String getFinishDate() {
         return finishDate;
     }
@@ -185,9 +184,11 @@ public class ReceiveDocModel extends ApplyBaseModel {
 
         if (dataArray.size() > 0) {
             JSONObject data = dataArray.getJSONObject(0);
-            this.attachment = data.getString("_ATTACHMENTS");
+            String attachment = data.getString("_ATTACHMENTS");
             if (StringUtils.isEmpty(attachment)) {
-                this.attachment = "无";
+                setAttachment("无");
+            } else {
+                setAttachment(attachment);
             }
 
             this.orderNum = data.getString("_FORMNO");
@@ -196,35 +197,35 @@ public class ReceiveDocModel extends ApplyBaseModel {
 
             this.templateId = data.getInteger("_TEMPLATE_ID");
 
-            this.receiveNum=data.getString("Swbh");
+            this.receiveNum = data.getString("Swbh");
 
-            this.SWBMJC=data.getString("SWBMJC");
+            this.SWBMJC = data.getString("SWBMJC");
 
-            this.no=data.getString("no");
+            this.no = data.getString("no");
 
-            this.receivedDate=data.getString("gsswdate");
+            this.receivedDate = data.getString("gsswdate");
 
-            this.sentDept=data.getString("LWJG");
+            this.sentDept = data.getString("LWJG");
 
-            this.zihao=data.getString("Zihao");
+            this.zihao = data.getString("Zihao");
 
-            this.zihaoSize=data.getString("ZihaoSize");
+            this.zihaoSize = data.getString("ZihaoSize");
 
-            this.sentDate=data.getString("LWRQ");
+            this.sentDate = data.getString("LWRQ");
 
-            this.attach=data.getString("attach");
+            this.attach = data.getString("attach");
 
-            this.reason=data.getString("reason");
+            this.reason = data.getString("reason");
 
-            this.sponsor=data.getString("ZBRY");
+            this.sponsor = data.getString("ZBRY");
 
-            this.reviewPeople=data.getString("YCRY");
+            this.reviewPeople = data.getString("YCRY");
 
-            this.instructions=data.getString("XZDYRY");
+            this.instructions = data.getString("XZDYRY");
 
-            this.waitReaders=data.getString("XZDYRY");
+            this.waitReaders = data.getString("XZDYRY");
 
-            this.finishDate=data.getString("datetime");
+            this.finishDate = data.getString("datetime");
 
         }
 

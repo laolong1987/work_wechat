@@ -1,5 +1,10 @@
 package com.web.model;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.springframework.util.StringUtils;
+
 /**
  * Created by admin on 2017/9/20.
  */
@@ -63,7 +68,23 @@ public class ApplyBaseModel {
     }
 
     public void setAttachment(String attachment) {
-        this.attachment = attachment;
+        if (StringUtils.isEmpty(attachment)) {
+            this.attachment = "无";
+
+        } else {
+            String rgex = "\\(&puot;(.*?)&puot;\\)";
+            Pattern pattern = Pattern.compile(rgex);// 匹配的模式
+            Matcher m = pattern.matcher(attachment);
+            String match = "";
+            while (m.find()) {
+                String matchRes = m.group(1);
+                String name = matchRes.substring(matchRes.lastIndexOf("/") + 1);
+                String href = "<a href='http://d.bm21.com.cn:20003" + matchRes + "' >" + name + "</a>";
+                match = match + href;
+            }
+            this.attachment = match;
+        }
+
     }
 
     public String getDepartment() {

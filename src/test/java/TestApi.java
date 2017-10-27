@@ -1,9 +1,10 @@
 
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.*;
 import com.common.HttpHelper;
 import com.web.component.wechat.api.WechatComponent;
 import com.web.model.WaitProcessModel;
@@ -104,7 +105,7 @@ public class TestApi {
     @Test
     public void getWaitProcessNotice() {
         //List<WaitProcessModel> res = approvalService.getWaitProcessNotice("220238",null,null);
-        List<WaitProcessModel> res = approvalService.getWaitProcessNotice("220345", "0", "100", "waitProcess");
+        List<WaitProcessModel> res = approvalService.getWaitProcessNotice("220238", "0", "100", "waitProcess");
 
         System.out.println(res);
     }
@@ -152,12 +153,14 @@ public class TestApi {
         System.out.println(res);
     }
 
+    @Test
     public void getSelfProcessedNotice() {
         //List<WaitProcessModel> res = approvalService.getWaitProcessNotice("220238",null,null);
-        List<WaitProcessModel> res = approvalService.getSelfProcessedNotice("220238", "0", "10", "2", "349");
+        List<WaitProcessModel> res = approvalService.getSelfProcessedNotice("220238", "0", "50", "2", "349");
 
         System.out.println(res);
     }
+
     @Test
     public void RaiseWorkflow() {
         String res = approvalService.raiseWorkflow("FormCanceled", "326", "2245", "部门经理", "admin", "请重新提交材料", "220238");
@@ -185,13 +188,127 @@ public class TestApi {
     @Test
     public void getDepartmentsTest() {
         String resultJson = approvalService.getDepartments();
-        System.out.println(resultJson);
+        JSONObject departmentJson = JSONObject.parseObject(resultJson);
+        JSONArray deptJsonArr = departmentJson.getJSONArray("data");
+        Map<Integer, Integer> childIdAsKey = new HashMap<>();
+        Map<Integer, JSONObject> deptMap = new HashMap<>();
+        Set<Integer> parentIdSet = new HashSet<>();
+
+        Set<Integer> childrenDept = new HashSet<>();
+        for (int i = 0; i < deptJsonArr.size(); i++) {
+            JSONObject obj = deptJsonArr.getJSONObject(i);
+            Integer key = obj.getInteger("DeptID");
+            if (parentIdSet.contains(key))
+                continue;
+            childrenDept.add(key);
+        }
+
+        String empStr = approvalService.getEmployeeUsers();
+        JSONObject empJson = JSONObject.parseObject(empStr);
+        Map<Integer, JSONArray> userList = new HashMap<>();
+        JSONArray userJsonArr = empJson.getJSONArray("data");
+        for (int i = 0; i < userJsonArr.size(); i++) {
+            JSONObject obj = userJsonArr.getJSONObject(i);
+            obj.put("realName", obj.getString("RealName"));
+            Integer key = obj.getInteger("DeptID");
+            if (userList.containsKey(key)) {
+                userList.get(key).add(obj);
+            } else {
+                JSONArray array = new JSONArray();
+                array.add(obj);
+                userList.put(key, array);
+            }
+        }
+        for (int i = 0; i < deptJsonArr.size(); i++) {
+            JSONObject obj = deptJsonArr.getJSONObject(i);
+            childIdAsKey.put(obj.getInteger("DeptID"), obj.getInteger("UpDeptID"));
+            deptMap.put(obj.getInteger("DeptID"), obj);
+            parentIdSet.add(obj.getInteger("UpDeptID"));
+        }
+        Map<Integer, JSONArray> childList = new HashMap<>();
+
+        for (Integer key : userList.keySet()) {
+            JSONObject dept = deptMap.get(key);
+            JSONObject obj = new JSONObject();
+            Integer parentId = dept.getInteger("UpDeptID");
+            obj.put("id", key);
+            obj.put("name", dept.getString("DeptName"));
+            obj.put("parentId", parentId);
+            obj.put("childList", new ArrayList<>());
+            obj.put("userList", userList.get(key));
+
+            if (childList.containsKey(parentId)) {
+                childList.get(parentId).add(obj);
+            } else {
+                JSONArray array = new JSONArray();
+                array.add(obj);
+                childList.put(parentId, array);
+            }
+
+        }
+        Map<Integer, JSONArray> treeDeptMap = createJsonTree(childList, deptMap);
+//        JSONArray = JSONArray
+        System.out.println();
+
+    }
+
+    public Map<Integer, JSONArray> createJsonTree(Map<Integer, JSONArray> dataMap, Map<Integer, JSONObject> deptMap) {
+        Map<Integer, JSONArray> childList = new HashMap<>();
+        for (Integer key : dataMap.keySet()) {
+            JSONObject dept = deptMap.get(key);
+            JSONObject obj = new JSONObject();
+            Integer parentId =null;
+            String deptName=null;
+            try{
+                parentId =  dept.getInteger("UpDeptID");
+                deptName = dept.getString("DeptName");
+            }catch (Exception e){
+                continue;
+            }
+
+
+            obj.put("id", key);
+            obj.put("name",deptName );
+            obj.put("parentId", parentId);
+            obj.put("childList",dataMap.get(key) );
+            obj.put("userList",new ArrayList<>());
+            if (childList.containsKey(parentId)) {
+                childList.get(parentId).add(obj);
+            } else {
+                JSONArray array = new JSONArray();
+                array.add(obj);
+                childList.put(parentId, array);
+            }
+
+        }
+        if (childList.size() != 1)
+            childList=  createJsonTree(childList, deptMap);
+
+        return childList;
     }
 
     @Test
     public void getEmployeeUsers() {
         String resultJson = approvalService.getEmployeeUsers();
         System.out.println(resultJson);
+    }
+
+    @Test
+    public void RegexTest() {
+        String str = "{\"attachments\":\"&&left;a href='javascript:ShowAtt(&puot;/UploadFiles/2017/2300/MB-20141016143700/4ea75645-9b7c-466e-a4d5-b9b41515960e/1副本.jpg&puot;)'&&right;1副本.jpg&&left;/a&&right;  (3483171 Byte);&&left;a href='javascript:ShowAtt(&puot;/UploadFiles/2017/2300/MB-20141016143700/2f1ffbad-37f7-4874-9e24-1eeb47e042f8/2副本.jpg&puot;)'&&right;2副本.jpg&&left;/a&&right;  (2938135 Byte)\"}";
+        String rgex = "\\(&puot;(.*?)&puot;\\)";
+
+        Pattern pattern = Pattern.compile(rgex);// 匹配的模式
+        Matcher m = pattern.matcher(str);
+        String match = "";
+        while (m.find()) {
+            match = m.group(1);
+            String name = match.substring(match.lastIndexOf("/"));
+            System.out.println(name);
+            System.out.println(match);
+        }
+
+
     }
 
 }

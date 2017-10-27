@@ -62,9 +62,11 @@ public class MaterialApplyModel extends ApplyBaseModel {
 
         if (dataArray.size() > 0) {
             JSONObject data = dataArray.getJSONObject(0);
-            this.attachment = data.getString("_ATTACHMENTS");
+            String attachment = data.getString("_ATTACHMENTS");
             if (StringUtils.isEmpty(attachment)) {
-                this.attachment = "无";
+                setAttachment("无");
+            } else {
+                setAttachment(attachment);
             }
 
             this.orderNum = data.getString("_FORMNO");

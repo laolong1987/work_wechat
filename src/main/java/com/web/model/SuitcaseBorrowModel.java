@@ -24,7 +24,7 @@ public class SuitcaseBorrowModel extends ApplyBaseModel {
     private Integer totalDay;
 
     //申请人
-   private String applicant;
+    private String applicant;
 
     //部门审核
     private String departmentApproachResult;
@@ -33,7 +33,7 @@ public class SuitcaseBorrowModel extends ApplyBaseModel {
     private String approachResult;
 
     //部门领导审核签证
-  private   List<SuitcaseDetailModel> detailList;
+    private List<SuitcaseDetailModel> detailList;
 
     public Integer getTotalDay() {
         return totalDay;
@@ -98,11 +98,12 @@ public class SuitcaseBorrowModel extends ApplyBaseModel {
 
         if (dataArray.size() > 0) {
             JSONObject data = dataArray.getJSONObject(0);
-            this.attachment = data.getString("_ATTACHMENTS");
+            String attachment = data.getString("_ATTACHMENTS");
             if (StringUtils.isEmpty(attachment)) {
-                this.attachment = "无";
+                setAttachment("无");
+            } else {
+                setAttachment(attachment);
             }
-
             this.orderNum = data.getString("_FORMNO");
 
             this.subject = data.getString("_SUBJECT");
@@ -121,18 +122,18 @@ public class SuitcaseBorrowModel extends ApplyBaseModel {
             } else {
                 this.orderDate = DateUtil.formatUTCDate(orderDateStr, "yyyy-MM-dd");
             }
-            String returnDateStr=data.getString("Ghrqz");
+            String returnDateStr = data.getString("Ghrqz");
             if (StringUtils.isEmpty(returnDateStr)) {
                 this.returnDate = "--";
             } else {
-                this.returnDate =  DateUtil.formatUTCDate(returnDateStr, "yyyy-MM-dd");
+                this.returnDate = DateUtil.formatUTCDate(returnDateStr, "yyyy-MM-dd");
             }
 
             this.applicant = data.getString("Xming");
 
             this.approachResult = data.getString("Bmldsh");
             this.approachResult = data.getString("Zjbsp");
-            this.totalDay =data.getInteger("Yjts");
+            this.totalDay = data.getInteger("Yjts");
 
             JSONArray subdatas = data.getJSONArray("subdatas");
             List<SuitcaseDetailModel> modelList = new ArrayList<>();

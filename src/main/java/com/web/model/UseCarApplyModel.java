@@ -39,12 +39,11 @@ public class UseCarApplyModel extends ApplyBaseModel {
     private String destination;
 
     //车辆用途
-    private String reason ;
+    private String reason;
 
 
     //申请人
     private String applicant;
-
 
 
     //备注
@@ -152,9 +151,11 @@ public class UseCarApplyModel extends ApplyBaseModel {
 
         if (dataArray.size() > 0) {
             JSONObject data = dataArray.getJSONObject(0);
-            this.attachment = data.getString("_ATTACHMENTS");
+            String attachment = data.getString("_ATTACHMENTS");
             if (StringUtils.isEmpty(attachment)) {
-                this.attachment = "无";
+                setAttachment("无");
+            } else {
+                setAttachment(attachment);
             }
 
             this.orderNum = data.getString("_FORMNO");
@@ -165,29 +166,29 @@ public class UseCarApplyModel extends ApplyBaseModel {
 
             this.applicant = data.getString("ydr");
 
-            this.applicantPhone=data.getString("ydrphone");
+            this.applicantPhone = data.getString("ydrphone");
 
             this.department = data.getString("ydbm");
 
-            this.orderDate=data.getString("ydrq");
+            this.orderDate = data.getString("ydrq");
 
-            this.startTime= data.getString("starttime");
+            this.startTime = data.getString("starttime");
 
-            this.endTime=data.getString("endtime");
+            this.endTime = data.getString("endtime");
 
-            this.address=data.getString("pickupaddress");
+            this.address = data.getString("pickupaddress");
 
-            this.passengers=data.getString("ccry");
+            this.passengers = data.getString("ccry");
 
-            this.driver=data.getString("driver");
+            this.driver = data.getString("driver");
 
-            this.driverPhone=data.getString("driverphone");
+            this.driverPhone = data.getString("driverphone");
 
-            this.destination=data.getString("destination");
+            this.destination = data.getString("destination");
 
             this.reason = data.getString("clyt");
 
-            this.carType=data.getString("selectautomobile");
+            this.carType = data.getString("selectautomobile");
 
             this.remark = data.getString("remark");
 

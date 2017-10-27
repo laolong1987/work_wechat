@@ -64,7 +64,11 @@ public class ApprovalService {
         wSbeans.add(wSbean);
         String response = "";
         if ("waitProcess".equalsIgnoreCase(apiType)) {
-
+            WSbean type = new WSbean();
+            type.setParametername("nType");
+            type.setParametervalue("收件");
+            type.setXMLType(XMLType.XSD_STRING);
+            wSbeans.add(type);
             response = WebServiceBase.call(config.getGetWaitProcessNotice(), wSbeans, url);
         } else if ("processed".equalsIgnoreCase(apiType)) {
 
@@ -409,10 +413,10 @@ public class ApprovalService {
     }
 
     public String getEmployeeUsers() {
-         String url = config.getBase() + config.getGetEmployeeUsers();
-         List<WSbean> wSbeans = new ArrayList<>();
-         String response = WebServiceBase.call(config.getGetEmployeeUsers(), wSbeans, url);
-         return response;
-     }
+        String url = config.getBase() + config.getGetEmployeeUsers();
+        List<WSbean> wSbeans = new ArrayList<>();
+        String response = WebServiceBase.call(config.getGetEmployeeUsers(), wSbeans, url);
+        return response;
+    }
 
 }

@@ -35,12 +35,17 @@ public class ApprovalController {
 
         //获取审批事件列表
         MayProcessItemsModel mayProcessItemsModel = approvalService.getMayProcessItemsModel(templateId, dataId, "220238");
-
+        if (mayProcessItemsModel != null) {
+            request.setAttribute("stateCaption", mayProcessItemsModel.getStateCaption());
+            request.setAttribute("eventList", mayProcessItemsModel.getEventList());
+            request.setAttribute("editfields", mayProcessItemsModel.getEditFields());
+            request.setAttribute("approval",true);
+        }else{
+            request.setAttribute("approval",false);
+        }
         request.setAttribute("templateId", templateId);
         request.setAttribute("dataId", dataId);
         request.setAttribute("sentBy", request.getParameter("sentby"));
-        request.setAttribute("stateCaption", mayProcessItemsModel.getStateCaption());
-        request.setAttribute("eventList", mayProcessItemsModel.getEventList());
         request.setAttribute("noticeList", noticeList);
         String page = "";
         if ("350".equals(templateId)) {//法定节假日加班申请单
@@ -137,7 +142,7 @@ public class ApprovalController {
     @RequestMapping("/self-list/{templateId}")
     public String selfList(@PathVariable("templateId") String templateId, HttpServletRequest request, HttpServletResponse response) {
 
-        List<WaitProcessModel> processedList = approvalService.getSelfProcessedNotice("220238", "0", "10", "2", templateId);
+        List<WaitProcessModel> processedList = approvalService.getSelfProcessedNotice("220238", "0", "20", "2", templateId);
         request.setAttribute("processedList", processedList);
         request.setAttribute("templateId", templateId);
         return "jsp/SelfApplyList";
