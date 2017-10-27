@@ -3,9 +3,11 @@ package com.common;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.web.component.WebServiceApiConfig;
 import org.apache.axis.client.Call;
 import org.apache.axis.client.Service;
 import org.apache.axis.encoding.XMLType;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.xml.namespace.QName;
 import javax.xml.rpc.ParameterMode;
@@ -25,6 +27,7 @@ public class WebServiceBase {
     public static String call(String function,List<WSbean> wSbeans){
         String result="";
         String serviceEpr = "http://d.bm21.com.cn:20003/Services/CoreService.asmx?WSDL";
+        serviceEpr=serviceEpr.replace("?op=","WSDL");
         try {
             Service service = new Service();
             Call call = (Call) service.createCall();
@@ -131,11 +134,7 @@ public class WebServiceBase {
 //            System.out.println("-----------------------------------------");
 //        }
         List<WSbean> list = new ArrayList<>();
-        WSbean wSbean = new WSbean();
-        wSbean.setParametername("instance");
-        wSbean.setParametervalue("349");
-        wSbean.setXMLType(XMLType.XSD_INT);
-        String r1 = WebServiceBase.call("CreateFormInstance", list);
+        String r1 = WebServiceBase.call("GetEmployeeUsers", list);
         System.out.println(r1);
     }
 }
