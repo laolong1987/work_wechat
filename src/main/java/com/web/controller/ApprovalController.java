@@ -11,6 +11,7 @@ import com.web.service.WorkFromService;
 import com.web.service.ws.ApprovalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -32,6 +33,22 @@ public class ApprovalController {
         String formInstanceRes = approvalService.getFormInstance(templateId, dataId);
         JSONObject formInstanceJson = JSONObject.parseObject(formInstanceRes);
         List<NoticeListModel> noticeList = approvalService.getNoticeList(templateId, dataId);
+        String status="";
+        if (noticeList.size() > 0) {
+            for (NoticeListModel noticeListModel : noticeList) {
+                status = noticeListModel.getAction();
+                if (!StringUtils.isEmpty(status))
+                    break;
+            }
+        }
+
+        if(status.equals("同意")){
+            request.setAttribute("aprovalSeal",1);
+        }else if("不同意".equals(status)){
+            request.setAttribute("aprovalSeal",2);
+        }else{
+            request.setAttribute("aprovalSeal",0);
+        }
 
         //获取审批事件列表
         MayProcessItemsModel mayProcessItemsModel = approvalService.getMayProcessItemsModel(templateId, dataId, "220238");
@@ -39,9 +56,9 @@ public class ApprovalController {
             request.setAttribute("stateCaption", mayProcessItemsModel.getStateCaption());
             request.setAttribute("eventList", mayProcessItemsModel.getEventList());
             request.setAttribute("editfields", mayProcessItemsModel.getEditFields());
-            request.setAttribute("approval",true);
-        }else{
-            request.setAttribute("approval",false);
+            request.setAttribute("approval", true);
+        } else {
+            request.setAttribute("approval", false);
         }
         request.setAttribute("templateId", templateId);
         request.setAttribute("dataId", dataId);

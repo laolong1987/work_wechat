@@ -44,7 +44,8 @@
   <div class="waitProcess">
     <div class="data-list">
       <c:forEach var="item" items="${waitProcessList}">
-        <a href="<%=webRoot%>/approval/apply/${item.templateId}/${item.dataId}?sentby=${item.sendBy}">
+        <a
+          href="<%=webRoot%>/approval/apply/${item.templateId}/${item.dataId}?sentby=${item.sendBy}">
           <div class="approach-list">
             <div class="clearfloat title">
               <span class="attr-name">单号：</span>
@@ -76,8 +77,9 @@
         <a href="<%=webRoot%>/approval/apply/${item.templateId}/${item.dataId}">
           <div class="approach-list">
             <div class="clearfloat title">
-              <span class="attr-name">单号：</span>
-              <span class="attr-value">${item.orderNum}</span>
+
+              <span class="attr-name">主题：</span>
+              <span class="attr-value">${item.subject}</span>
               <span class="doc-date">${item.writeDate}</span>
             </div>
             <div class="content">
@@ -86,8 +88,8 @@
                 <span class="attr-value">${item.templateType}</span>
               </div>
               <div class="clearfloat">
-                <span class="attr-name">主题：</span>
-                <span class="attr-value">${item.subject}</span>
+                <span class="attr-name">单号：</span>
+                <span class="attr-value">${item.orderNum}</span>
               </div>
             </div>
             <div class="status">${item.status}</div>
@@ -108,18 +110,18 @@
       var _class = "." + $(this).attr("hide");
       $(_class).addClass("f-dn").siblings().removeClass("f-dn");
     });
-    loadData(".waitProcess",".data-list","waitProcess");
-    loadData(".processed",".data-list","processed");
+    loadData(".waitProcess", ".data-list", "waitProcess");
+    loadData(".processed", ".data-list", "processed");
 
   })
 
-  function loadData($container,$content, apiType) {
+  function loadData($container, $content, apiType) {
     var pageNum = 1;
     var load = true;
     var finished = false;
     $($container).scroll(function () {
       var scrollTrigger = 0.8;
-      var node=$(this);
+      var node = $(this);
       if ($(this).scrollTop() / ($(this).find($content).height() - $(this).height()) > scrollTrigger && load && !finished) {
         //console.log('autopagerizing triggered');
 
@@ -127,7 +129,7 @@
         //        console.log($(this).scrollTop() / ($(this).find(".data-list").height() - $(this).height()))
         load = false;
         $.ajax({
-          url: "list/" + apiType +"/"+ pageNum,
+          url: "list/" + apiType + "/" + pageNum,
           method: "get",
           data: "",
           dataType: "JSON",
@@ -137,10 +139,10 @@
 
             var elements = "";
             $.each(res, function (index, item) {
-              var status =item.status;
-              if(status==null)
-                  status ="";
-              elements += ' <a href="apply/' + item.templateId + '/' + item.dataId + '?sentby='+item.sentBy+'">' + '<div class="approach-list"><div class="clearfloat title">' +
+              var status = item.status;
+              if (status == null)
+                status = "";
+              elements += ' <a href="apply/' + item.templateId + '/' + item.dataId + '?sentby=' + item.sentBy + '">' + '<div class="approach-list"><div class="clearfloat title">' +
                 '<span class="attr-name">单号：</span><span class="attr-value">' + item.orderNum + '</span><span class="doc-date">' + item.writeDate +
                 '</span></div><div class="content"><div class="clearfloat"><span class="attr-name">简称：</span><span class="attr-value">' + item.templateType +
                 '</span></div><div class="clearfloat"><span class="attr-name">主题：</span><span class="attr-value">' + item.subject +

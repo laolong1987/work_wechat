@@ -94,12 +94,18 @@ public class ApprovalService {
                         continue;
 
                     if ("processed".equalsIgnoreCase(apiType)) {//获取状态
-                        String action = "";
+                        String status = "";
                         List<NoticeListModel> noticeList = getNoticeList(String.valueOf(model.getTemplateId()), String.valueOf(model.getDataId()));
                         if (noticeList.size() > 0) {
-                            action = noticeList.get(0).getAction();
+                            for (NoticeListModel noticeListModel : noticeList) {
+
+                                status = noticeListModel.getAction();
+                                if (!StringUtils.isEmpty(status))
+                                    break;
+                            }
+
                         }
-                        String status = StringUtils.isEmpty(action) ? "审批中" : action;
+
                         model.setStatus(status);
 
                     }
@@ -179,12 +185,17 @@ public class ApprovalService {
                         continue;
 
                     //获取状态
-                    String action = "";
+                    String status = "";
                     List<NoticeListModel> noticeList = getNoticeList(String.valueOf(model.getTemplateId()), String.valueOf(model.getDataId()));
                     if (noticeList.size() > 0) {
-                        action = noticeList.get(0).getAction();
+                        for (NoticeListModel noticeListModel : noticeList) {
+
+                            status = noticeListModel.getAction();
+                            if (!StringUtils.isEmpty(status))
+                                break;
+                        }
+
                     }
-                    String status = StringUtils.isEmpty(action) ? "审批中" : action;
                     model.setStatus(status);
 
 

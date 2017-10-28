@@ -112,7 +112,7 @@ public class TestApi {
 
     @Test
     public void GetFormInstance() {
-        String res = approvalService.getFormInstance("321", "1538");
+        String res = approvalService.getFormInstance("358", "1342");
         System.out.println(res);
     }
 

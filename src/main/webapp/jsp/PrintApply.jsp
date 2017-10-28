@@ -34,17 +34,7 @@
 </head>
 <body>
 <div class="container-detail">
-  <div class="info-row subject ">
-
-    <div class="clearfloat">
-      <div class="attr-name f-fl vehicle-middle ">类型：</div>
-      <div class="attr-value f-fl vehicle-middle ">${object.subject}</div>
-    </div>
-    <div class="clearfloat">
-      <div class="attr-name f-fl vehicle-middle ">单号：</div>
-      <div class="attr-value f-fl vehicle-middle ">${object.orderNum}</div
-    </div>
-  </div>
+  <%@include file="common-head.jsp"%>
 
   <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">申请人：</div>
@@ -81,12 +71,12 @@
   </div>
 
   <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">需求部门意见：</div>
+    <div class="attr-name f-fl  " attr-name="Aqyyj" >需求部门意见：</div>
     <div class="attr-value f-fl  ">${object.departmentApproach}</div>
   </div>
   <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">总经部意见：</div>
-    <div class="attr-value f-fl  ">${object.approachResult}</div>
+    <div class="attr-value f-fl"  attr-name="Bmzryj">${object.approachResult}</div>
   </div>
 
   <%@include file="common-submit.jsp"%>

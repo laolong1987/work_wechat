@@ -34,17 +34,7 @@
 </head>
 <body>
 <div class="container-detail">
-  <div class="info-row subject ">
-
-    <div class="clearfloat">
-      <div class="attr-name f-fl vehicle-middle ">类型：</div>
-      <div class="attr-value f-fl vehicle-middle ">${object.subject}</div>
-    </div>
-    <div class="clearfloat">
-      <div class="attr-name f-fl vehicle-middle ">单号：</div>
-      <div class="attr-value f-fl vehicle-middle ">${object.orderNum}</div>
-    </div>
-  </div>
+  <%@include file="common-head.jsp"%>
 
   <div class="receive-doc-title">
     <span>收文编号：</span><span class="content">${object.receiveNum}</span>

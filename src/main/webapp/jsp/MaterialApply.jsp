@@ -34,16 +34,7 @@
 </head>
 <body>
 <div class="container-detail">
-  <div class="info-row subject ">
-    <div class="clearfloat">
-      <div class="attr-name f-fl vehicle-middle ">类型：</div>
-      <div class="attr-value f-fl vehicle-middle ">${object.subject}</div>
-    </div>
-    <div class="clearfloat">
-      <div class="attr-name f-fl vehicle-middle ">单号：</div>
-      <div class="attr-value f-fl vehicle-middle ">${object.orderNum}</div>
-    </div>
-  </div>
+  <%@include file="common-head.jsp"%>
 
 
   <div class="info-row mgt-20 clearfloat">
@@ -97,16 +88,16 @@
 
   <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">附注：</div>
-    <div class="attr-value f-fl  ">${object.remark}</div>
+    <div class="attr-value f-fl  " attr-name="Fulu">${object.remark}</div>
   </div>
   <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">审核人：</div>
-    <div class="attr-value f-fl  ">${object.reviewer}</div>
+    <div class="attr-value f-fl  "  attr-name="Zhuguan">${object.reviewer}</div>
   </div>
 
   <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">领用人：</div>
-    <div class="attr-value f-fl  ">${object.applicant}</div>
+    <div class="attr-value f-fl  " attr-name="Lyren">${object.applicant}</div>
   </div>
 
   <%@include file="common-submit.jsp"%>
