@@ -120,6 +120,7 @@ public class WorkController {
         String destination=ConvertUtil.safeToString(request.getParameter("destination"),"");
         String clyt=ConvertUtil.safeToString(request.getParameter("clyt"),"");
         String remark=ConvertUtil.safeToString(request.getParameter("remark"),"");
+        String ccry=ConvertUtil.safeToString(request.getParameter("usernames"),"");
 
 
 //        Employee employee= orgService.findEmployee("220238");
@@ -139,6 +140,7 @@ public class WorkController {
         data.put("destination",destination);
         data.put("clyt",clyt);
         data.put("remark",remark);
+        data.put("ccry",ccry);
 
         data.put("Ygxm","华安");
         data.put("_SUBJECT","华安用车申请单");
