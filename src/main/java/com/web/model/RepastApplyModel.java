@@ -165,9 +165,11 @@ public class RepastApplyModel extends ApplyBaseModel {
 
         if (dataArray.size() > 0) {
             JSONObject data = dataArray.getJSONObject(0);
-            this.attachment = data.getString("_ATTACHMENTS");
+            String attachment = data.getString("_ATTACHMENTS");
             if (StringUtils.isEmpty(attachment)) {
-                this.attachment = "无";
+                setAttachment("无");
+            } else {
+                setAttachment(attachment);
             }
 
             this.orderNum = data.getString("_FORMNO");
@@ -176,7 +178,7 @@ public class RepastApplyModel extends ApplyBaseModel {
 
             this.templateId = data.getInteger("_TEMPLATE_ID");
 
-            this.applicant=data.getString("sqr");
+            this.applicant = data.getString("sqr");
 
             this.department = data.getString("sqbm");
 
@@ -192,16 +194,16 @@ public class RepastApplyModel extends ApplyBaseModel {
 
             this.address = data.getString("ycdd");
 
-            this.foodNumber =data.getInteger("ycsl");
+            this.foodNumber = data.getInteger("ycsl");
 
-            this.remark=data.getString("ycremark");
+            this.remark = data.getString("ycremark");
 
-            this.actuallyStandard=data.getInteger("sjycbz");
+            this.actuallyStandard = data.getInteger("sjycbz");
 
-            this.actuallyFoodNumber =data.getString("sjycsl");
+            this.actuallyFoodNumber = data.getString("sjycsl");
 
-            this.totalConsumption =data.getInteger("xfje");
-            this.approachResult=data.getString("bmsh");
+            this.totalConsumption = data.getInteger("xfje");
+            this.approachResult = data.getString("bmsh");
 
         }
 

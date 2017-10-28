@@ -57,7 +57,7 @@ public class SentDocModel extends ApplyBaseModel {
     //抄送单位
     private String ccername2;
     //抄报单位
-        private String ccername1;
+    private String ccername1;
 
 
     //缮印
@@ -254,9 +254,11 @@ public class SentDocModel extends ApplyBaseModel {
 
         if (dataArray.size() > 0) {
             JSONObject data = dataArray.getJSONObject(0);
-            this.attachment = data.getString("_ATTACHMENTS");
+            String attachment = data.getString("_ATTACHMENTS");
             if (StringUtils.isEmpty(attachment)) {
-                this.attachment = "无";
+                setAttachment("无");
+            } else {
+                setAttachment(attachment);
             }
 
             this.orderNum = data.getString("_FORMNO");
@@ -279,33 +281,33 @@ public class SentDocModel extends ApplyBaseModel {
 
             this.noyear = data.getString("noyear");
 
-            this.sponsor= data.getString("hostdept");
+            this.sponsor = data.getString("hostdept");
 
             this.hqbm = data.getString("hqbm");
 
             this.audit = data.getString("audit");
 
-            this.writer=data.getString("writer");
+            this.writer = data.getString("writer");
 
-            this.approval=data.getString("approval");
+            this.approval = data.getString("approval");
 
-            this.reason=data.getString("reason");
+            this.reason = data.getString("reason");
 
-            this.mainSender=data.getString("mainsender");
+            this.mainSender = data.getString("mainsender");
 
-            this.departmentAudit=data.getString("departmentaudit");
+            this.departmentAudit = data.getString("departmentaudit");
 
-            this.ccername1=data.getString("ccername1");
+            this.ccername1 = data.getString("ccername1");
 
-            this.ccername2=data.getString("ccername2");
+            this.ccername2 = data.getString("ccername2");
 
-            this.reviewer =data.getString("reviewer");
+            this.reviewer = data.getString("reviewer");
 
-            this.kid=data.getString("kid");
+            this.kid = data.getString("kid");
 
-            this.checkperson=data.getString("checkperson");
+            this.checkperson = data.getString("checkperson");
 
-            this.fen=data.getString("fen");
+            this.fen = data.getString("fen");
 
 
         }

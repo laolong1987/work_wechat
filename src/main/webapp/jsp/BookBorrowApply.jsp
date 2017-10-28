@@ -103,17 +103,6 @@
 
   </c:forEach>
 
-  <div class="info-row">
-    <c:forEach var="item" items="${noticeList}" varStatus="status">
-      <div class="process-${fn:length(noticeList)-status.index} clearfloat">
-        <div class="flow"></div>
-        <div
-          class="process-text">${item.receiverName} ${item.noticeType} ${item.action}</div>
-        <div class="process-date">${item.processTime}</div>
-      </div>
-
-    </c:forEach>
-  </div>
   <%@include file="common-submit.jsp"%>
 </body>
 </html>

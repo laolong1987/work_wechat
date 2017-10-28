@@ -93,9 +93,11 @@ public class SealApplyModel extends ApplyBaseModel {
 
         if (dataArray.size() > 0) {
             JSONObject data = dataArray.getJSONObject(0);
-            this.attachment = data.getString("_ATTACHMENTS");
+            String attachment = data.getString("_ATTACHMENTS");
             if (StringUtils.isEmpty(attachment)) {
-                this.attachment = "无";
+                setAttachment("无");
+            } else {
+                setAttachment(attachment);
             }
 
             this.orderNum = data.getString("_FORMNO");
@@ -114,15 +116,13 @@ public class SealApplyModel extends ApplyBaseModel {
 
             this.leader = data.getString("chargeleader");
 
-            this.useType=data.getString("Yylb");
+            this.useType = data.getString("Yylb");
 
-            this.purpose=data.getString("Yysx");
+            this.purpose = data.getString("Yysx");
 
-            this.department=data.getString("depart");
+            this.department = data.getString("depart");
 
-            this.applyDate=data.getString("applydate");
-
-
+            this.applyDate = data.getString("applydate");
 
 
         }

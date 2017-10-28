@@ -115,9 +115,11 @@ public class PrintApplyModel extends ApplyBaseModel {
 
         if (dataArray.size() > 0) {
             JSONObject data = dataArray.getJSONObject(0);
-            this.attachment = data.getString("_ATTACHMENTS");
+            String attachment = data.getString("_ATTACHMENTS");
             if (StringUtils.isEmpty(attachment)) {
-                this.attachment = "无";
+                setAttachment("无");
+            } else {
+                setAttachment(attachment);
             }
 
             this.orderNum = data.getString("_FORMNO");
@@ -137,18 +139,18 @@ public class PrintApplyModel extends ApplyBaseModel {
             } else {
                 this.finishDate = DateUtil.formatUTCDate(finishedDateStr, "yyyy-MM-dd");
             }
-            this.supplier=data.getString("Zhuanye");
+            this.supplier = data.getString("Zhuanye");
 
-            this.printContent=data.getString("YSNR");
+            this.printContent = data.getString("YSNR");
 
-            this.departmentApproach=data.getString("Aqyyj");
+            this.departmentApproach = data.getString("Aqyyj");
 
-            this.approachResult =data.getString("Bmzryj");
+            this.approachResult = data.getString("Bmzryj");
 
             this.department = data.getString("Sbbm");
-            this.finishedContent=data.getString("JHRN");
+            this.finishedContent = data.getString("JHRN");
 
-            this.price=data.getInteger("HDJG");
+            this.price = data.getInteger("HDJG");
 
         }
 

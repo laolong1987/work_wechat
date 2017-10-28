@@ -16,7 +16,7 @@
 %>
 <html>
 <head>
-  <title>加班申请单</title>
+  <title>饭客申请</title>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport"
@@ -104,62 +104,60 @@
   </div>
   <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">实际用餐标准：</div>
-    <div class="attr-value f-fl  ">${object.actuallyStandard}</div>
+    <c:choose>
+      <c:when test="${fn:contains(editfields, 'sjycbz')}">
+        <input class="attr-value f-fl edit" type="text" name="sjycbz"
+               value="${object.actuallyStandard}" placeholder="请输入">
+      </c:when>
+      <c:otherwise>
+        <div class="attr-value f-fl  ">${object.actuallyStandard}</div>
+      </c:otherwise>
+    </c:choose>
+
   </div>
   <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">实际用用餐数量：</div>
-    <div class="attr-value f-fl  ">${object.actuallyFoodNumber}</div>
+    <c:choose>
+      <c:when test="${fn:contains(editfields, 'sjycsl')}">
+        <input class="attr-value f-fl edit" type="text" name="sjycsl"
+               value="${object.actuallyFoodNumber}" placeholder="请输入">
+      </c:when>
+      <c:otherwise>
+        <div class="attr-value f-fl  ">${object.actuallyFoodNumber}</div>
+      </c:otherwise>
+    </c:choose>
+
   </div>
   <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">共消费金额：</div>
-    <div class="attr-value f-fl  ">${object.totalConsumption}</div>
+    <c:choose>
+      <c:when test="${fn:contains(editfields, 'xfje')}">
+        <input class="attr-value f-fl edit" type="text" name="xfje"
+               value="${object.totalConsumption}" placeholder="请输入">
+      </c:when>
+      <c:otherwise>
+        <div class="attr-value f-fl  ">${object.totalConsumption}</div>
+      </c:otherwise>
+    </c:choose>
+
   </div>
   <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">部门审核：</div>
-    <div class="attr-value f-fl  ">${object.approachResult}</div>
+    <c:choose>
+      <c:when test="${fn:contains(editfields, 'bmsh')}">
+        <input class="attr-value f-fl edit" type="text" name="bmsh"
+               value="${object.approachResult}" placeholder="请输入">
+      </c:when>
+      <c:otherwise>
+        <div class="attr-value f-fl  ">${object.approachResult}</div>
+      </c:otherwise>
+    </c:choose>
+
   </div>
   <div class="remark">
     注：中餐请于11点前提交申请，晚餐请于16点前提交申请。
   </div>
 
-  <div class="info-row">
-    <c:forEach var="item" items="${noticeList}" varStatus="status">
-      <div class="process-${fn:length(noticeList)-status.index} clearfloat">
-        <div class="flow"></div>
-        <div
-          class="process-text">${item.receiverName} ${item.noticeType} ${item.action}</div>
-        <div class="process-date">${item.processTime}</div>
-      </div>
-
-    </c:forEach>
-  </div>
-
-  <div class="process-button ">
-    <div class="refuse">拒绝</div>
-    <div class="agree">同意</div>
-  </div>
-  <div class="approach-reason clearfloat f-dn" id="refuse-reason">
-    <div class="tip">请填写您拒绝的原因：</div>
-    <textarea class="reason"></textarea>
-
-    <div class="close">取消</div>
-    <div class="submit">提交</div>
-
-  </div>
-
-</div>
-<script type="text/javascript" src='<%=webRoot%>/js/jquery.min.js'></script>
-<script>
-  $(function () {
-    $(".refuse").on("click", function () {
-      $("#refuse-reason").removeClass("f-dn");
-    })
-
-    $(".close").on("click", function () {
-      $("#refuse-reason").addClass("f-dn");
-    })
-
-  })
-</script>
+  <%@include file="common-submit.jsp" %>
 </body>
 </html>

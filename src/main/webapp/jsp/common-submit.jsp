@@ -6,54 +6,72 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<c:choose>
-
-  <c:when test="${fn:length(noticeList)==2}">
-    <div class="process-button ">
-      <c:forEach var="item" items="${eventList}" varStatus="status">
-        <c:if test="${status.index==0}">
-          <div class="refuse approval" data="${item.event}">${item.name}</div>
-        </c:if>
-        <c:if test="${status.index==1}">
-          <div class="agree approval" data="${item.event}">${item.name}</div>
-        </c:if>
-
-      </c:forEach>
+<div class="info-row">
+  <c:forEach var="item" items="${noticeList}" varStatus="status">
+    <div class="process-${fn:length(noticeList)-status.index} clearfloat">
+      <div class="flow"></div>
+      <div
+        class="process-text">${item.receiverName} ${item.noticeType} ${item.action}</div>
+      <div class="process-date">${item.processTime}</div>
     </div>
-  </c:when>
-  <c:otherwise>
-    <div class="process-button ">
-      <c:forEach var="item" items="${eventList}" varStatus="status">
-        <c:if test="${status.index%2==0}">
-          <div class="red-btn approval" data="${item.event}">${item.name}</div>
-        </c:if>
-        <c:if test="${status.index%2==1}">
-          <div class="blue-btn approval" data="${item.event}">${item.name}</div>
-        </c:if>
 
-      </c:forEach>
-    </div>
-  </c:otherwise>
-
-</c:choose>
-<div class="approach-reason clearfloat f-dn" id="refuse-reason">
-  <div class="tip">请填写审批意见：</div>
-  <textarea class="reason" id="suggest"></textarea>
-
-  <div class="close">取消</div>
-  <div class="submit">提交</div>
-
+  </c:forEach>
 </div>
-<form id="approval-sbmt" action="" method="post">
-  <input type="hidden" name="event" id="event" value="">
-  <input type="hidden" name="content" id="content" value="">
-  <input type="hidden" name="templateId" id="templateId" value="${templateId}">
-  <input type="hidden" name="dataId" id="dataId" value="${dataId}">
-  <input type="hidden" name="stateCaption" id="stateCaption"
-         value="${stateCaption}">
-  <input type="hidden" name="sendBy" id="sendBy" value="${sentBy}">
-</form>
+<c:if test="${approval}">
+  <c:choose>
 
+    <c:when test="${fn:length(noticeList)==2}">
+      <div class="process-button ">
+        <c:forEach var="item" items="${eventList}" varStatus="status">
+          <c:if test="${status.index==0}">
+            <div class="refuse approval" data="${item.event}">${item.name}</div>
+          </c:if>
+          <c:if test="${status.index==1}">
+            <div class="agree approval" data="${item.event}">${item.name}</div>
+          </c:if>
+
+        </c:forEach>
+      </div>
+    </c:when>
+    <c:otherwise>
+      <div class="process-button ">
+        <c:forEach var="item" items="${eventList}" varStatus="status">
+          <c:if test="${status.index%2==0}">
+            <div class="red-btn approval"
+                 data="${item.event}">${item.name}</div>
+          </c:if>
+          <c:if test="${status.index%2==1}">
+            <div class="blue-btn approval"
+                 data="${item.event}">${item.name}</div>
+          </c:if>
+
+        </c:forEach>
+      </div>
+    </c:otherwise>
+
+  </c:choose>
+  <div class="approach-reason clearfloat f-dn" id="refuse-reason">
+    <div class="tip">请填写审批意见：</div>
+    <textarea class="reason" id="suggest"></textarea>
+
+    <div class="close">取消</div>
+    <div class="submit">提交</div>
+
+  </div>
+  <form id="approval-sbmt" action="" method="post">
+    <input type="hidden" name="event" id="event" value="">
+    <input type="hidden" name="content" id="content" value="">
+    <input type="hidden" name="templateId" id="templateId"
+           value="${templateId}">
+    <input type="hidden" name="dataId" id="dataId" value="${dataId}">
+    <input type="hidden" name="stateCaption" id="stateCaption"
+           value="${stateCaption}">
+    <input type="hidden" name="sendBy" id="sendBy" value="${sentBy}">
+  </form>
+</c:if>
+</div>
+<div class="up-loading">
+  <img alt="loading" src="http://cache.shchengdian.com/uploading.gif">
 </div>
 <script type="text/javascript" src='../../../js/jquery.min.js'></script>
 <script>
@@ -61,6 +79,7 @@
     $(".approval").on("click", function () {
       $("#refuse-reason").removeClass("f-dn");
       var event = $(this).attr("data")
+      $("#suggest").val($(this).text());
       $("#event").val(event);
     })
 
@@ -70,24 +89,28 @@
 
     })
     $(".submit").on("click", function () {
-      var suggest = $("#suggest").val();
-      if (suggest == '') {
-        alert("请填写审批意见")
-        return false;
-      }
+
       $("#content").val(suggest);
+      var inputs = $(".edit");
+      for (var i = 0; i < inputs.length; i++) {
+        $("#approval-sbmt").append('<input type="hidden" name="' + inputs[i].name + '" value="' + inputs[i].value + '"/>')
+      }
+      $(".up-loading").css("display", "block")
       $.ajax({
         url: "<%=webRoot%>/approval/doApproval",
         type: "POST",
         data: $("#approval-sbmt").serializeJson(),
         success: function (data) {
           if (data == 'success') {
+            $(".up-loading").css("display", "none")
+            alert("审批成功")
             window.location.reload(true);
           }
         }
       })
     })
 
+    $(":input").focus();
   })
 
   $.fn.serializeJson = function () {
