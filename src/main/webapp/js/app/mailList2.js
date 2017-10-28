@@ -10,7 +10,7 @@ var obj = {
                     "childList": [
                     {
                     "childList": [
-                    
+
                     ],
                     "id": 4,
                     "name": "校长室2222",
@@ -56,7 +56,7 @@ var obj = {
                     "parentId": 2,
                     "parentIds": "0,1,2,",
                     "userList": [
-                    	{	
+                    	{
                     		"id": 111,
 		                    "realName": "杨武(test)2",
 		                    "userName": "yang",
@@ -104,7 +104,7 @@ var obj = {
 		                    "parentId": 3,
 		                    "parentIds": "0,1,3,",
 		                    "childList": [
-		                    	
+
 		                    ],
 		                    "userList": [
 		                    	{
