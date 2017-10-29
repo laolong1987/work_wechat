@@ -98,7 +98,7 @@
 <div class="container">
     <div class="row top">
         <div class="col-xs-6">
-            <span class="ziti1">企划部 张欢欢</span>
+            <span class="ziti1">${dept} ${name}</span>
         </div>
         <div class="col-xs-6">
             <span class="ziti1">2017-09-29 15:38</span>
