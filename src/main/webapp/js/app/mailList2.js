@@ -15,7 +15,7 @@ $.ajax({
 });
 
 
-// 全选 全选取消 
+// 全选 全选取消
 $(document).on('click', '#indexPage .all-input input[type=checkbox]', function(event) {
 	if($(this).prop("checked")) {
 		// 勾选全部checkbox
@@ -202,7 +202,7 @@ function allSelctCheck() {
 function allSelectPeoInfo() {
 	// 清空默认值
 	var allPeoId = [];
-	var allSelctPeo = []; 
+	var allSelctPeo = [];
 	var noRepeatId = [];
 	// 遍历input里的属性值
 	$("#indexPage .item-input").find('input[type=checkbox]').each(function(index, el) {
@@ -211,8 +211,8 @@ function allSelectPeoInfo() {
 			// 判断当前的peoId是否重复
 			var repeatBoolen = jQuery.inArray($(this).attr("peoId"), allPeoId);
 			allPeoId.push(thisPeoId);
-			// 如果重复则返回正数，如果不重复则返回-1则添加入数组	
-			if(repeatBoolen == -1) {				
+			// 如果重复则返回正数，如果不重复则返回-1则添加入数组
+			if(repeatBoolen == -1) {
 				var peoInfo = {
 					surname:  $(this).parent("div").siblings('.touxiang').html(),
 					fullname: $(this).parent("div").siblings("div:nth-child(3)").html(),
@@ -221,7 +221,7 @@ function allSelectPeoInfo() {
 				}
 				allSelctPeo.push(peoInfo);
 				noRepeatId.push($(this).attr("peoId"));
-			} 
+			}
 		}
 	});
 	console.log(allSelctPeo);
@@ -247,14 +247,14 @@ $(document).on('click', '#selectPage label', function(event) {
 			$(this).iCheck('uncheck');
 			if($(this).parents(".list-con").length != 0 ) {
 				$(this).parents(".list-con").siblings('label').find('input[type=checkbox]').iCheck('uncheck');
-			} 
+			}
 		}
 	});
 	// 删除当前的联系人
 	$(this).remove();
 	// 设置显示选择几人
 	$(".sel-btn strong,.show-peo-num strong").html($(".yxzr label").length);
-	
+
 	// 当已选联系人为0，则直接下拉联系人页面
 	if($(".yxzr label").length == 0) {
 		$.closePopup()
