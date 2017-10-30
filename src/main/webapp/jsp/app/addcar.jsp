@@ -135,7 +135,7 @@
         <label class="col-xs-3 control-label lab lab2">乘车人员</label>
         <div class="col-xs-9">
             <%--<input  type="text" class="touming" placeholder="请选择乘车人员" id="usernames" onclick="opendepartment()" value="" required>--%>
-            <textarea class="touming" rows="5" name="usernames" id="usernames" onclick="opendepartment()" placeholder="请选择(必填)"></textarea>
+            <textarea class="touming" rows="5" name="usernames" id="usernames" onclick="opendepartment('usernames')" placeholder="请选择(必填)"></textarea>
         </div>
         <%--<label class="col-xs-4 control-label lab lab3">请选择(必填)--%>
         <%--</label>--%>

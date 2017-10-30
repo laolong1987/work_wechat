@@ -27,7 +27,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
-                <iframe src="${ctx}/work/department" style="width: 100%;height: 600px">
+                <iframe src="${ctx}/work/department" id="tree" name="tree" style="width: 100%;height: 600px">
                 </iframe>
             </div>
         </div>
@@ -36,17 +36,24 @@
 <script type="text/javascript" src='${ctx}/js/app/jquery.min.js'></script>
 <script type="text/javascript" src='${ctx}/js/bootstrap.min.js'></script>
 <script>
-    function opendepartment(){
+    var uunames='';
+
+    function opendepartment(name){
         $('#myModal').modal('show');
+        uunames=name;
     }
 
     function closedepartment(){
         $('#myModal').modal('hide');
+        document.getElementById('tree').contentWindow.location.reload(true);
     }
 
     function adddepartment(dname){
+        $("#"+uunames).val(dname);
         closedepartment();
-        $("#usernames").val(dname);
+//        $("#usernames").val(dname);
+
+
     }
 
 </script>
