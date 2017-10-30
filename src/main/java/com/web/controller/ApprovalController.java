@@ -51,7 +51,7 @@ public class ApprovalController {
         }
 
         //获取审批事件列表
-        MayProcessItemsModel mayProcessItemsModel = approvalService.getMayProcessItemsModel(templateId, dataId, "220238");
+        MayProcessItemsModel mayProcessItemsModel = approvalService.getMayProcessItemsModel(templateId, dataId, "220345");
         if (mayProcessItemsModel != null) {
             request.setAttribute("stateCaption", mayProcessItemsModel.getStateCaption());
             request.setAttribute("eventList", mayProcessItemsModel.getEventList());
@@ -133,10 +133,10 @@ public class ApprovalController {
     @RequestMapping("list")
     public String list(HttpServletRequest request, HttpServletResponse response) {
 
-        List<WaitProcessModel> waitProcessList = approvalService.getWaitProcessNotice("220238", "0", "10", "waitProcess");
+        List<WaitProcessModel> waitProcessList = approvalService.getWaitProcessNotice("220345", "0", "10", "waitProcess");
         request.setAttribute("waitProcessList", waitProcessList);
 
-        List<WaitProcessModel> processedList = approvalService.getWaitProcessNotice("220238", "0", "10", "processed");
+        List<WaitProcessModel> processedList = approvalService.getWaitProcessNotice("220345", "0", "10", "processed");
         request.setAttribute("processedList", processedList);
         return "jsp/ApproachList";
     }
@@ -146,9 +146,9 @@ public class ApprovalController {
     public List<WaitProcessModel> nextPageList(@PathVariable("type") String type, @PathVariable("page") String page) {
         List<WaitProcessModel> list = new ArrayList<>();
         if ("waitProcess".equalsIgnoreCase(type)) {
-            list = approvalService.getWaitProcessNotice("220238", page, "10", "waitProcess");
+            list = approvalService.getWaitProcessNotice("220345", page, "10", "waitProcess");
         } else if ("processed".equalsIgnoreCase(type)) {
-            list = approvalService.getWaitProcessNotice("220238", page, "10", "processed");
+            list = approvalService.getWaitProcessNotice("220345", page, "10", "processed");
 
         }
 

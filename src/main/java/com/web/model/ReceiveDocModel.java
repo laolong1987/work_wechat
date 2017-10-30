@@ -221,7 +221,7 @@ public class ReceiveDocModel extends ApplyBaseModel {
 
             this.reviewPeople = data.getString("YCRY");
 
-            this.instructions = data.getString("XZDYRY");
+            this.instructions = data.getString("pibanyijian");
 
             this.waitReaders = data.getString("XZDYRY");
 
