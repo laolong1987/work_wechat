@@ -3,6 +3,8 @@ package com.web.entity;
 import javax.persistence.*;
 import java.util.Date;
 
+import com.alibaba.fastjson.JSONObject;
+
 /**
  * Created by gaoyang on 17/8/30.
  */
@@ -230,5 +232,9 @@ public class Employee {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
+//    public JSONObject toWechatJSONObject(){
+//        JSONObject object =new JSONObject();
+//    }
 }
 

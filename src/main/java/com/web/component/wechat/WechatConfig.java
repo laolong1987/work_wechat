@@ -33,6 +33,9 @@ public class WechatConfig {
     @Value("${getAuthUserInfoUrl}")
     private String getAuthUserInfoUrl;
 
+    @Value("${createUser}")
+    private String createUser;
+
 
     public String getCorpID() {
         return corpID;
@@ -95,5 +98,14 @@ public class WechatConfig {
 
     public void setGetAuthUserInfoUrl(String getAuthUserInfoUrl) {
         this.getAuthUserInfoUrl = getAuthUserInfoUrl;
+    }
+
+
+    public String getCreateUser() {
+        return createUser;
+    }
+
+    public void setCreateUser(String createUser) {
+        this.createUser = createUser;
     }
 }

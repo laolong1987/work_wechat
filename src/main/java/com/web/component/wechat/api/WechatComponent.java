@@ -8,6 +8,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.utils.HttpUtil;
 import com.web.component.AccessToken;
 import com.web.component.wechat.WechatConfig;
+import com.web.entity.Employee;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +54,20 @@ public class WechatComponent {
         }
             return userId;
     }
+
+    public String createUser(JSONObject jsonObject) {
+           String url = wechatConfig.getCreateUser() + AccessToken.getInstance().getUpToken();
+
+           String response = HttpUtil.httpRequest(url, "POST", jsonObject.toString());
+           String userId = null;
+           System.out.println(response);
+           JSONObject resJson = JSONObject.parseObject(response);
+           if (resJson.getInteger("errcode") == 0 && resJson.containsKey("UserId")){
+               userId=resJson.getString("UserId");
+           }
+               return userId;
+       }
+
+
 
 }

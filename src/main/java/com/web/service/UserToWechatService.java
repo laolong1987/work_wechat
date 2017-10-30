@@ -1,6 +1,9 @@
 package com.web.service;
 
-import com.web.dao.UserDao;
+import java.util.List;
+
+import com.web.dao.OrgDao;
+import com.web.entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +14,10 @@ import org.springframework.stereotype.Service;
 public class UserToWechatService {
 
     @Autowired
-    UserDao userDao;
+    OrgDao orgDao;
 
-//    public boolean insertToWechat(){
+//    public boolean employeeToWechat(){
+//       List<Employee> employeeList = orgDao.findEmployee();
 //
 //    }
 

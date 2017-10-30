@@ -38,6 +38,7 @@ public class DeptmentController {
         for (int i = 0; i < userJsonArr.size(); i++) {
             JSONObject obj = userJsonArr.getJSONObject(i);
             obj.put("realName", obj.getString("RealName"));
+            obj.put("id", i+1001);
             Integer key = obj.getInteger("DeptID");
             if (userList.containsKey(key)) {
                 userList.get(key).add(obj);
