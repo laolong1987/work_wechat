@@ -48,8 +48,9 @@
           href="<%=webRoot%>/approval/apply/${item.templateId}/${item.dataId}?sentby=${item.sendBy}">
           <div class="approach-list">
             <div class="clearfloat title">
-              <span class="attr-name">单号：</span>
-              <span class="attr-value">${item.orderNum}</span>
+              <span class="attr-name">主题：</span>
+              <span class="attr-value">${item.subject}</span>
+
               <span class="doc-date">${item.writeDate}</span>
             </div>
             <div class="content">
@@ -58,8 +59,8 @@
                 <span class="attr-value">${item.templateType}</span>
               </div>
               <div class="clearfloat">
-                <span class="attr-name">主题：</span>
-                <span class="attr-value">${item.subject}</span>
+                <span class="attr-name">单号：</span>
+                <span class="attr-value">${item.orderNum}</span>
               </div>
             </div>
             <div class="status">${item.status}</div>

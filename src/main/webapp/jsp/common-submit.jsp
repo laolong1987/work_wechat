@@ -142,9 +142,16 @@
       if(editField!=null || editField!=''){
         var attrName = $(this).attr("attr-name");
         if (editField.match(attrName) != null) {
-          var node = '<input class="attr-value f-fl edit" type="text" name="' + attrName + '" value="" placeholder="请输入……"> ';
-          $(this).parent().append(node);
-          $(this).hide();
+          if(attrName=='ZBRY' || attrName=='YCRY'|| attrName=='XZDYRY'){
+             var node = '<input class="attr-value f-fl edit"  name="'+attrName+' id="usernames" type="text" name="' + attrName + '" value="" onclick="opendepartment()"  placeholder="请选择……"> ';
+              $(this).parent().append(node);
+              $(this).hide();
+          }else{
+            var node = '<input class="attr-value f-fl edit" type="text" name="' + attrName + '" value="" placeholder="请输入……"> ';
+            $(this).parent().append(node);
+            $(this).hide();
+          }
+
 
         }
       }
