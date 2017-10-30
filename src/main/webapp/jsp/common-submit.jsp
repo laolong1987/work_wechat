@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="info-row">
+<div class="info-row mgt-20">
   <c:forEach var="item" items="${noticeList}" varStatus="status">
     <div class="process-${fn:length(noticeList)-status.index} clearfloat">
       <div class="flow"></div>
@@ -23,13 +23,14 @@
     <c:when test="${fn:length(noticeList)==2}">
       <div class="process-button ">
         <c:forEach var="item" items="${eventList}" varStatus="status">
-          <c:if test="${status.index==0}">
-            <div class="refuse approval" data="${item.event}">${item.name}</div>
+          <c:if test="${item.event eq 'FormNext'}">
+            <div class="agree approval"
+                 data="${item.event}">${item.name}</div>
           </c:if>
-          <c:if test="${status.index==1}">
-            <div class="agree approval" data="${item.event}">${item.name}</div>
+          <c:if test="${item.event eq 'FormCanceled'}">
+            <div class="refuse approval"
+                 data="${item.event}">${item.name}</div>
           </c:if>
-
         </c:forEach>
       </div>
     </c:when>
@@ -76,6 +77,7 @@
 <script type="text/javascript" src='../../../js/jquery.min.js'></script>
 <script>
   $(function () {
+    var editField='${editfields}';
     $(".approval").on("click", function () {
       $("#refuse-reason").removeClass("f-dn");
       var event = $(this).attr("data")
@@ -111,6 +113,51 @@
     })
 
     $(":input").focus();
+    $(".refuse").on('touchstart', function () {
+      $(this).css("background", "linear-gradient(135deg, #ff0000, #d60000)");
+    });
+    $(".refuse").on('touchend', function () {
+      $(this).attr("style", "");
+    });
+    $(".agree").on('touchstart', function () {
+      $(this).css("background", "linear-gradient(135deg, #00d3ff, #0095d2)");
+    });
+    $(".agree").on('touchend', function () {
+      $(this).attr("style", "");
+    });
+    $(".close").on('touchstart', function () {
+      $(this).css("background", "linear-gradient(135deg, #484848, #151515)");
+    });
+    $(".close").on('touchend', function () {
+      $(this).attr("style", "");
+    });
+    $(".submit").on('touchstart', function () {
+      $(this).css("background", "linear-gradient(135deg, #00ffff, #00aad5)");
+    });
+    $(".submit").on('touchend', function () {
+      $(this).attr("style", "");
+    });
+
+    $("[attr-name]").each(function () {
+      if(editField!=null || editField!=''){
+        var attrName = $(this).attr("attr-name");
+        if (editField.match(attrName) != null) {
+          if(attrName=='ZBRY' || attrName=='YCRY'|| attrName=='XZDYRY'){
+             var node = '<input class="attr-value f-fl edit"  name="'+attrName+' id="usernames" type="text" name="' + attrName + '" value="" onclick="opendepartment()"  placeholder="请选择……"> ';
+              $(this).parent().append(node);
+              $(this).hide();
+          }else{
+            var node = '<input class="attr-value f-fl edit" type="text" name="' + attrName + '" value="" placeholder="请输入……"> ';
+            $(this).parent().append(node);
+            $(this).hide();
+          }
+
+
+        }
+      }
+
+    })
+
   })
 
   $.fn.serializeJson = function () {
@@ -131,4 +178,6 @@
     });
     return serializeObj;
   };
+
+
 </script>

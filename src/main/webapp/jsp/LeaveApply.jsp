@@ -34,17 +34,7 @@
 </head>
 <body>
 <div class="container-detail">
-  <div class="info-row subject ">
-
-    <div class="clearfloat">
-      <div class="attr-name f-fl vehicle-middle ">类型：</div>
-      <div class="attr-value f-fl vehicle-middle ">${object.subject}</div>
-    </div>
-    <div class="clearfloat">
-      <div class="attr-name f-fl vehicle-middle ">单号：</div>
-      <div class="attr-value f-fl vehicle-middle ">${object.orderNum}</div>
-    </div>
-  </div>
+  <%@include file="common-head.jsp"%>
 
   <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">编号：</div>
@@ -101,15 +91,8 @@
 
   <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">部门意见：</div>
-    <c:choose>
-      <c:when test="${fn:contains(editfields, 'DepartYJ')}">
-        <input class="attr-value f-fl edit" type="text" name="DepartYJ"
-               value="${object.departmentApproach}"  placeholder="请输入……">
-      </c:when>
-      <c:otherwise>
-        <div class="attr-value f-fl  ">${object.departmentApproach}</div>
-      </c:otherwise>
-    </c:choose>
+    <div class="attr-value f-fl  " attr-name="DepartYJ">${object.departmentApproach}</div>
+
   </div>
 
   <div class="info-row mgt-20 clearfloat">

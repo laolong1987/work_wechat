@@ -34,17 +34,7 @@
 </head>
 <body>
 <div class="container-detail">
-  <div class="info-row subject ">
-
-    <div class="clearfloat">
-      <div class="attr-name f-fl vehicle-middle ">类型：</div>
-      <div class="attr-value f-fl vehicle-middle ">${object.subject}</div>
-    </div>
-    <div class="clearfloat">
-      <div class="attr-name f-fl vehicle-middle ">单号：</div>
-      <div class="attr-value f-fl vehicle-middle ">${object.orderNum}</div>
-    </div>
-  </div>
+  <%@include file="common-head.jsp"%>
 
   <div class="receive-doc-title">
     <span>收文编号：</span><span class="content">${object.receiveNum}</span>
@@ -87,28 +77,28 @@
 
   <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">主办人员：</div>
-    <div class="attr-value f-fl  ">${object.sponsor}</div>
+    <div class="attr-value f-fl  " attr-name="ZBRY">${object.sponsor}</div>
   </div>
 
   <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">阅处人员：</div>
-    <div class="attr-value f-fl  ">${object.reviewPeople}</div>
+    <div class="attr-value f-fl  "  attr-name="YCRY">${object.reviewPeople}</div>
   </div>
 
   <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">拟办和批示：</div>
-    <div class="attr-value f-fl  ">${object.instructions}</div>
+    <div class="attr-value f-fl  " attr-name="pibanyijian">${object.instructions}</div>
   </div>
 
 
   <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">待阅人员：</div>
-    <div class="attr-value f-fl  ">${object.waitReaders}</div>
+    <div class="attr-value f-fl  "  attr-name="XZDYRY">${object.waitReaders}</div>
   </div>
  <div class="receive-doc-fd">
    <span >本文件审阅完成日期：${object.finishDate}</span>
  </div>
-
+    <jsp:include page="./app/adddepartment.jsp" />
   <%@include file="common-submit.jsp"%>
 </body>
 </html>

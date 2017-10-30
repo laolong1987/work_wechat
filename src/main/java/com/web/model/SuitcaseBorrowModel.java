@@ -131,7 +131,7 @@ public class SuitcaseBorrowModel extends ApplyBaseModel {
 
             this.applicant = data.getString("Xming");
 
-            this.approachResult = data.getString("Bmldsh");
+            this.departmentApproachResult = data.getString("Bmldsh");
             this.approachResult = data.getString("Zjbsp");
             this.totalDay = data.getInteger("Yjts");
 

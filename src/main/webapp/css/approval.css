@@ -29,7 +29,7 @@ html, body {
 }
 
 .info-row {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.3);
   padding: .2rem 0;
   font-size: .24rem;
   color: #000;
@@ -51,10 +51,11 @@ html, body {
 }
 
 .subject {
-  height: 1.58rem;
+  height: 1.4rem;
   padding: .52rem 0;
   font-size: .28rem;
   font-weight: 400;
+  position:relative;
 }
 
 .vehicle-middle {
@@ -203,7 +204,7 @@ html, body {
 }
 
 .process-button .agree {
-  float: left;
+  float: right;
   width: 3.75rem;
   height: 1rem;
   background: linear-gradient(135deg, #00aaf1, #006f9d);
@@ -226,7 +227,7 @@ html, body {
 }
 
 .approach-nav-choose {
-color:#00aaf1;
+color:#0084d7;
   background: url("../images/choose-navbg.png") no-repeat center center/cover !important;
 }
 
@@ -471,4 +472,18 @@ display:none;
 text-align: center;
   padding-top: 3.2rem;
 
+}
+
+.accept-seal,.refuse-seal{
+  position: absolute;
+  bottom:0;
+  right: 0;
+  width:1.88rem;
+  height: 1.3rem;
+}
+.accept-seal{
+  background: url(../images/accept.png) no-repeat center center/cover;
+}
+.refuse-seal{
+  background: url(../images/refuse.png) no-repeat center center/cover;
 }

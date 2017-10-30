@@ -57,4 +57,11 @@ public class LoginController {
 
     }
 
+    @RequestMapping("/test/{userId}")
+       public String testUsetid(@PathVariable("userId") String userId, HttpServletRequest request) {
+         request.getSession().setAttribute("newsUserId",userId);
+         return "redirect:/news/listnews";
+
+       }
+
 }

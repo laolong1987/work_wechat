@@ -34,17 +34,7 @@
 </head>
 <body>
 <div class="container-detail">
-  <div class="info-row subject ">
-
-    <div class="clearfloat">
-      <div class="attr-name f-fl vehicle-middle ">类型：</div>
-      <div class="attr-value f-fl vehicle-middle ">${object.subject}</div>
-    </div>
-    <div class="clearfloat">
-      <div class="attr-name f-fl vehicle-middle ">单号：</div>
-      <div class="attr-value f-fl vehicle-middle ">${object.orderNum}</div>
-    </div>
-  </div>
+  <%@include file="common-head.jsp"%>
 
   <div class="info-row mgt-20 clearfloat">
     <div class="dept">${object.department}</div>
@@ -99,11 +89,11 @@
   </div>
   <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">会签意见：</div>
-    <div class="attr-value f-fl  ">${object.reviewer}</div>
+    <div class="attr-value f-fl  " attr-name="reviewer">${object.reviewer}</div>
   </div>
   <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">缮印：</div>
-    <div class="attr-value f-fl  ">${object.kid}</div>
+    <div class="attr-value f-fl  " attr-name="kid">${object.kid}</div>
   </div>
   <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">校对：</div>
