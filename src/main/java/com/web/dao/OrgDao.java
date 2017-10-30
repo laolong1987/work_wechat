@@ -5,6 +5,7 @@ import com.common.BaseDao;
 import com.common.SearchTemplate;
 import com.utils.ConvertUtil;
 import com.utils.DateUtil;
+import com.web.entity.Dept;
 import com.web.entity.Employee;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -107,6 +108,14 @@ public class OrgDao extends BaseDao{
         return list;
     }
 
+    public List<Dept> findDept(){
+        StringBuffer sql = new StringBuffer();
+        sql.append("select * from dept ");
+        Map map = new HashMap();
+        List<Dept> list = super.findObjects(sql.toString(), map, Dept.class);
+        return list;
+    }
+
     public List<Employee> findEmployee(String ygbh){
         StringBuffer sql = new StringBuffer();
         sql.append("select * from employee");
@@ -116,7 +125,21 @@ public class OrgDao extends BaseDao{
         return list;
     }
 
+    public List<Dept> findDept(String deptid){
+        StringBuffer sql = new StringBuffer();
+        sql.append("select * from dept ");
+        sql.append(" where deptid='").append(deptid).append("'");
+        Map map = new HashMap();
+        List<Dept> list = super.findObjects(sql.toString(), map, Dept.class);
+        return list;
+    }
+
+
     public void saveEmployee(Employee employee){
         super.save(employee);
+    }
+
+    public void saveDept(Dept dept){
+        super.save(dept);
     }
 }

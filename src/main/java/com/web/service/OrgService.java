@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.common.HttpHelper;
 import com.common.SearchTemplate;
 import com.web.dao.OrgDao;
+import com.web.entity.Dept;
 import com.web.entity.Employee;
 import com.web.service.ws.ApprovalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -158,7 +159,8 @@ public class OrgService {
                     emp.setYx(job.getString("EMail"));
                     emp.setSortIndex(job.getString("SortIndex"));
                     emp.setPositionName(job.getString("PositionName"));
-                    emp.setStatus(1);
+                    emp.setStatus(0);
+                    emp.setType(1);
                     list.add(emp);
                 }
 
@@ -201,6 +203,67 @@ public class OrgService {
         }
     }
 
+
+    public void updateDept(){
+        List<Dept> list = new ArrayList<>();
+        //查询
+
+        String ret2 = approvalService.getDepartments();
+//            System.out.println(ret2);
+        JSONObject jo2 = JSON.parseObject(ret2);
+        JSONArray jsonArray = JSON.parseArray(jo2.getString("data"));
+        for (int i = 0; i < jsonArray.size(); i++) {
+            JSONObject job = jsonArray.getJSONObject(i);
+//                    System.out.println(i+"----"+job.toJSONString());
+            Dept dept=new Dept();
+            dept.setDeptID(job.getString("DeptID"));
+            dept.setDeptName(job.getString("DeptName"));
+            dept.setSortIndex(job.getString("SortIndex"));
+            dept.setUpDeptID(job.getString("UpDeptID"));
+            dept.setStatus(1);
+            list.add(dept);
+        }
+
+
+        //更新
+        if (list.size() > 0) {
+//            orgDao.addorg(list);
+            List<Dept> list2 = orgDao.findDept(); //获取全部人员
+            for (Dept e1 : list) {// 循环最新的数据 找出需要 增加的人员
+                boolean upflag = true;
+                for (Dept e2 : list2) {
+                    if (e1.getDeptID().equals(e2.getDeptID())) {
+                        upflag = false;
+                        break;
+                    }
+                }
+                if (upflag) {// 新增
+                    e1.setType(1);
+                    e1.setStatus(0); //新增的用户默认是在职
+                    orgDao.saveDept(e1);
+                }
+            }
+
+            for (Dept e2 : list2) { // 循环数据库的数据 找出 已删除的人员
+                boolean upflag = true;
+                for (Dept e1 : list) {
+                    if (e1.getDeptID().equals(e2.getDeptID())) {
+                        upflag = false;
+                        break;
+                    }
+                }
+                if(upflag){ //删除
+                    e2.setType(1);
+                    e2.setStatus(1);//删除的用户默认是在离职
+                    orgDao.saveDept(e2);
+                }
+            }
+        }
+    }
+
+
+
+
     public Employee findEmployee(String ygbh){
         List<Employee> list=orgDao.findEmployee(ygbh);
         if(list.size()>0){
@@ -210,6 +273,13 @@ public class OrgService {
         }
     }
 
-
+    public Dept findDept(String deptid){
+        List<Dept> list=orgDao.findDept(deptid);
+        if(list.size()>0){
+            return list.get(0);
+        }else{
+            return null;
+        }
+    }
 
 }

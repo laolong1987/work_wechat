@@ -105,11 +105,11 @@
 <div class="container">
     <div class="row top">
         <div class="col-xs-6">
-            <span class="ziti1">张欢欢</span>
+            <span class="ziti1">${name}</span>
         </div>
         <div class="col-xs-6">
             <span class="ziti2">申请部门:</span>
-            <span class="ziti1">总经理工作部</span>
+            <span class="ziti1">${dept}</span>
         </div>
     </div>
     <form  id="addform" action="createguestmeal" name="addform" method="post" >

@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.utils.ConvertUtil;
 import com.utils.DateUtil;
 import com.utils.StringUtil;
+import com.web.entity.Dept;
 import com.web.entity.Employee;
 import com.web.entity.News;
 import com.web.entity.Newsflag;
@@ -45,7 +46,14 @@ public class WorkController {
 
 //        System.out.println(approvalService.getDepartments());
 //        System.out.println(approvalService.getEmployeeUsers());
-//orgService.updateEmp();
+//orgService.updateDept();
+
+        String userid=ConvertUtil.safeToString(request.getSession().getAttribute("newsUserId"),"");
+
+        Employee employee= orgService.findEmployee(userid);
+        Dept dept=orgService.findDept(employee.getZzdwbm());
+        request.setAttribute("name",employee.getYgxm());
+        request.setAttribute("dept",dept.getDeptName());
         return "/jsp/app/addleave";
     }
 
@@ -58,19 +66,24 @@ public class WorkController {
         String date2=ConvertUtil.safeToString(request.getParameter("date2"),"");
         String desc=ConvertUtil.safeToString(request.getParameter("desc"),"");
 
-//        Employee employee= orgService.findEmployee("220238");
+
+        String userid=ConvertUtil.safeToString(request.getSession().getAttribute("newsUserId"),"");
+
+        Employee employee= orgService.findEmployee(userid);
+        Dept dept=orgService.findDept(employee.getZzdwbm());
         JSONObject data=new JSONObject();
-//        data.put("Depart",employee.getZzdwmc());
-        data.put("Depart","总经理工作部");
-        data.put("Position","部门经理");
+        data.put("Depart",dept.getDeptName());
+//        data.put("Depart","总经理工作部");
+//        data.put("Position","部门经理");
+        data.put("Position",employee.getPositionName());
         data.put("QjDays",day+".0");
         data.put("QjEnd",date2);
         data.put("QjStart",date1);
         data.put("QjType",type);
         data.put("Qjly",desc);
-//        data.put("Ygxm",employee.getYgxm().replace(" ",""));
-        data.put("Ygxm","华安");
-        data.put("Writer","220238");
+        data.put("Ygxm",employee.getYgxm());
+//        data.put("Ygxm","华安");
+        data.put("Writer",userid);
         data.put("_SUBJECT","华安请假单");
 
         JSONObject json=new JSONObject();
@@ -83,7 +96,7 @@ public class WorkController {
         System.out.println(FormConfigID);
         String result= workFromService.StartFormWorkflow(resultJson.getString("FormConfigID"));
         System.out.println(result);
-        String result2= approvalService.getMayProcessItems(resultJson.getString("TemplateID"),resultJson.getString("DataID"),"220238");
+        String result2= approvalService.getMayProcessItems(resultJson.getString("TemplateID"),resultJson.getString("DataID"),userid);
         System.out.println(result2);
 
         Map<String,String> map=new HashMap<>();
@@ -92,9 +105,9 @@ public class WorkController {
         map.put("templateid",resultJson.getString("TemplateID"));
         map.put("dataid",resultJson.getString("DataID"));
         map.put("statecaption","开始");
-        map.put("sendby","220238");
+        map.put("sendby",userid);
         map.put("content","");
-        map.put("processby","220238");
+        map.put("processby",userid);
         String result3=workFromService.RaiseWorkflow(map);
         System.out.println(result3);
         return "redirect:../approval/self-list/349";
@@ -104,7 +117,12 @@ public class WorkController {
 
     @RequestMapping(value = "/addcar", method = RequestMethod.GET)
     public String addcar(HttpServletRequest request,HttpServletResponse response) {
+        String userid=ConvertUtil.safeToString(request.getSession().getAttribute("newsUserId"),"");
 
+        Employee employee= orgService.findEmployee(userid);
+        Dept dept=orgService.findDept(employee.getZzdwbm());
+        request.setAttribute("name",employee.getYgxm());
+        request.setAttribute("dept",dept.getDeptName());
         return "/jsp/app/addcar";
     }
 
@@ -122,14 +140,16 @@ public class WorkController {
         String remark=ConvertUtil.safeToString(request.getParameter("remark"),"");
         String ccry=ConvertUtil.safeToString(request.getParameter("usernames"),"");
 
+        String userid=ConvertUtil.safeToString(request.getSession().getAttribute("newsUserId"),"");
 
-//        Employee employee= orgService.findEmployee("220238");
+        Employee employee= orgService.findEmployee(userid);
+        Dept dept=orgService.findDept(employee.getZzdwbm());
         JSONObject data=new JSONObject();
 //        data.put("Depart",employee.getZzdwmc());
 //        data.put("Position","普通职员");
-        data.put("Depart","总经理工作部");
-        data.put("Position","部门经理");
-//        data.put("Ygxm",employee.getYgxm().replace(" ",""));
+        data.put("Depart",dept.getDeptName());
+        data.put("Position",employee.getPositionName());
+        data.put("Ygxm",employee.getYgxm());
 
         data.put("ydrphone",ydrphone);
         data.put("starttime",starttime);
@@ -142,9 +162,8 @@ public class WorkController {
         data.put("remark",remark);
         data.put("ccry",ccry);
 
-        data.put("Ygxm","华安");
         data.put("_SUBJECT","华安用车申请单");
-        data.put("Writer","220238");
+        data.put("Writer",userid);
         JSONObject json=new JSONObject();
         json.put("FormType","321");
         json.put("data",data);
@@ -164,17 +183,19 @@ public class WorkController {
 // {"name":"destination","type":"String"},{"name":"driver","type":"String"},{"name":"ydrq","type":"String"},
 // {"name":"Sfwd","type":"String"},{"name":"zrs","type":"String"}],"FormType":321,"ShortTitle":"用车申请单"}
 
-        String result2= approvalService.getMayProcessItems(resultJson.getString("TemplateID"),resultJson.getString("DataID"),"220238");
+        String result2= approvalService.getMayProcessItems(resultJson.getString("TemplateID"),resultJson.getString("DataID"),userid);
         System.out.println(result2);
 
         Map<String,String> map=new HashMap<>();
         map.put("formevent","FormNext");
-        map.put("configid",resultJson.getString("FormConfigID"));
+//        map.put("configid",resultJson.getString("FormConfigID"));
+        map.put("templateid",resultJson.getString("TemplateID"));
+        map.put("dataid",resultJson.getString("DataID"));
         map.put("statecaption","开始");
-        map.put("sendby","220238");
-        map.put("content","123");
-        map.put("processby","220238");
-        String result3=workFromService.RaiseWorkflowb(map);
+        map.put("sendby",userid);
+        map.put("content","");
+        map.put("processby",userid);
+        String result3=workFromService.RaiseWorkflow(map);
         System.out.println(result3);
 
         return "redirect:../approval/self-list/321";
@@ -184,6 +205,12 @@ public class WorkController {
 
     @RequestMapping(value = "/addguestmeal", method = RequestMethod.GET)
     public String addguestmeal(HttpServletRequest request,HttpServletResponse response) {
+        String userid=ConvertUtil.safeToString(request.getSession().getAttribute("newsUserId"),"");
+
+        Employee employee= orgService.findEmployee(userid);
+        Dept dept=orgService.findDept(employee.getZzdwbm());
+        request.setAttribute("name",employee.getYgxm());
+        request.setAttribute("dept",dept.getDeptName());
 
         return "/jsp/app/addguestmeal";
     }
@@ -207,13 +234,17 @@ public class WorkController {
         String ycdd=ConvertUtil.safeToString(request.getParameter("ycdd"),"");
 
 
-//        Employee employee= orgService.findEmployee("220238");
+        String userid=ConvertUtil.safeToString(request.getSession().getAttribute("newsUserId"),"");
+
+        Employee employee= orgService.findEmployee(userid);
+        Dept dept=orgService.findDept(employee.getZzdwbm());
+
         JSONObject data=new JSONObject();
-//        data.put("Depart",employee.getZzdwmc());
+        data.put("Depart",dept.getDeptName());
 //        data.put("Position","普通职员");
-        data.put("Depart","总经理工作部");
-        data.put("Position","部门经理");
-        data.put("sqbm","部门经理");
+//        data.put("Depart","总经理工作部");
+        data.put("Position",employee.getPositionName());
+        data.put("sqbm",employee.getPositionName());
         data.put("lfdwjry",lfdwjry);
         data.put("ycrq",ycrq);
         data.put("yctype",yctype);
@@ -229,8 +260,8 @@ public class WorkController {
 //        data.put("Ygxm",employee.getYgxm().replace(" ",""));
         data.put("_SUBJECT","华安客饭申请");
 
-        data.put("sqr","华安");
-        data.put("Writer","220238");
+        data.put("sqr",employee.getYgxm());
+        data.put("Writer",userid);
         JSONObject json=new JSONObject();
         json.put("FormType","323");
         json.put("data",data);
@@ -249,7 +280,7 @@ public class WorkController {
         JSONObject resultJson = JSON.parseObject(FormConfigID);
         String result= workFromService.StartFormWorkflow(resultJson.getString("FormConfigID"));
         System.out.println(result);
-        String result2= approvalService.getMayProcessItems(resultJson.getString("TemplateID"),resultJson.getString("DataID"),"220238");
+        String result2= approvalService.getMayProcessItems(resultJson.getString("TemplateID"),resultJson.getString("DataID"),userid);
         System.out.println(result2);
 
         Map<String,String> map=new HashMap<>();
@@ -258,9 +289,9 @@ public class WorkController {
         map.put("templateid",resultJson.getString("TemplateID"));
         map.put("dataid",resultJson.getString("DataID"));
         map.put("statecaption","开始");
-        map.put("sendby","220238");
+        map.put("sendby",userid);
         map.put("content","");
-        map.put("processby","220238");
+        map.put("processby",userid);
         String result3=workFromService.RaiseWorkflow(map);
         System.out.println(result3);
         return "redirect:../approval/self-list/323";
