@@ -46,7 +46,7 @@ public class WorkController {
 
 //        System.out.println(approvalService.getDepartments());
 //        System.out.println(approvalService.getEmployeeUsers());
-//orgService.updateDept();
+//orgService.updateDept(); 220238
 
         String userid=ConvertUtil.safeToString(request.getSession().getAttribute("newsUserId"),"");
 
