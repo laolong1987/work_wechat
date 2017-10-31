@@ -10,7 +10,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -115,9 +114,9 @@
     <form  id="addform" action="createguestmeal" name="addform" method="post" >
 
     <div class="row content2">
-        <label class="col-xs-3 control-label lab lab2">来访人员/事由</label>
+        <label class="col-xs-3 control-label lab lab2">人员/事由</label>
         <div class="col-xs-9">
-            <textarea class="touming" rows="5" name="lfdwjry" id="lfdwjry" placeholder=""  required></textarea>
+            <textarea class="touming" rows="5" name="lfdwjry" id="lfdwjry" placeholder="请输入来访人员"  required></textarea>
         </div>
     </div>
 
@@ -208,14 +207,17 @@
 </div>
 <script type="text/javascript" src='${ctx}/js/jquery.min.js'></script>
 <script type="text/javascript" src='${ctx}/js/bootstrap.min.js'></script>
-<script type="text/javascript" src='${ctx}/js/bootstrap-datetimepicker.min.js'></script>
-<script type="text/javascript" src='${ctx}/js/bootstrap-datetimepicker.zh-CN.js'></script>
+<script type="text/javascript"
+        src="http://cache.shchengdian.com/plugins/mobiscroll.custom-3.0.0-beta2.min.js"
+        charset="UTF-8"></script>
 <script>
-    $(".form_datetime").datetimepicker({
-        format: "yyyy-mm-dd hh:ii",
-        autoclose: true,
-        todayBtn: true,
-        language:'zh-CN'
+    $('.form_datetime').mobiscroll().datetime({
+        theme: 'Mobiscroll',
+        lang: 'zh',
+        display: 'center',
+//    dateFormat: 'yyyy-MM-dd HH:mm',
+        min: new Date(2000, 1, 1),
+        disabled: false
     });
 
     function addoption(){
@@ -336,7 +338,7 @@
             alert('请填写用餐地点');
             return
         }
-
+        $(".btn").attr("disabled", true);
         $("#addform").submit();
     }
 

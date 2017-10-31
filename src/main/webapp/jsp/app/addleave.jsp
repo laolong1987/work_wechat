@@ -10,7 +10,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -170,13 +169,19 @@
 <script type="text/javascript" src='${ctx}/js/bootstrap.min.js'></script>
 <script type="text/javascript" src='${ctx}/js/bootstrap-datetimepicker.min.js'></script>
 <script type="text/javascript" src='${ctx}/js/bootstrap-datetimepicker.zh-CN.js'></script>
+<script type="text/javascript"
+        src="http://cache.shchengdian.com/plugins/mobiscroll.custom-3.0.0-beta2.min.js"
+        charset="UTF-8"></script>
 <script>
-    $(".form_datetime").datetimepicker({
-        format: "yyyy-mm-dd hh:ii",
-        autoclose: true,
-        todayBtn: true,
-        language:'zh-CN'
-    });
+
+$('.form_datetime').mobiscroll().datetime({
+    theme: 'Mobiscroll',
+    lang: 'zh',
+    display: 'center',
+//    dateFormat: 'yyyy-MM-dd HH:mm',
+    min: new Date(2000, 1, 1),
+    disabled: false
+});
 
 
     function  btnCount_Click(){
@@ -196,9 +201,9 @@
     //计算天数差的函数，通用
     function  DateDiff(sDate1,  sDate2){    //sDate1和sDate2是2006-12-18格式
         var  aDate,  oDate1,  oDate2,  iDays
-        aDate  =  sDate1.split("-")
+        aDate  =  sDate1.split("/")
         oDate1  =  new  Date(aDate[1]  +  '-'  +  aDate[2]  +  '-'  +  aDate[0])    //转换为12-18-2006格式
-        aDate  =  sDate2.split("-")
+        aDate  =  sDate2.split("/")
         oDate2  =  new  Date(aDate[1]  +  '-'  +  aDate[2]  +  '-'  +  aDate[0])
         iDays  =  parseInt(Math.abs(oDate1  -  oDate2)  /  1000  /  60  /  60  /24)+1  //把相差的毫秒数转换为天数
         return  iDays
@@ -238,6 +243,7 @@
         }
 
         $("#day").val(DateDiff(a,b));
+        $(".btn").attr("disabled", true);
         $("#addform").submit();
     }
 

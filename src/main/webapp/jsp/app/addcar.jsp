@@ -10,7 +10,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -106,7 +105,7 @@
     </div>
     <form  id="addform" action="createcar" name="addform" method="post" >
     <div class="row content">
-        <label class="col-xs-3 control-label lab lab2">预定人电话</label>
+        <label class="col-xs-3 control-label lab lab2">预定电话</label>
         <div class="col-xs-9">
             <input  type="text" class="touming" placeholder="请填写预定人电话(必填)" value="" id="ydrphone" name="ydrphone" required>
         </div>
@@ -116,7 +115,7 @@
     <div class="row content">
         <label class="col-xs-3 control-label lab lab2">出发时间</label>
         <div class="col-xs-5">
-            <input  type="text" class=" form_datetime touming" placeholder="请选择出发时间" name="starttime" id="starttime" value="" required>
+            <input  type="text" class="form_datetime touming" placeholder="请选择出发时间" name="starttime" id="starttime" value="" required>
         </div>
         <label class="col-xs-4 control-label lab lab3" for="starttime">请选择(必填)
         </label>
@@ -203,32 +202,21 @@
 <script type="text/javascript" src='${ctx}/js/app/jquery.min.js'></script>
 <%--<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>--%>
 <script type="text/javascript" src='${ctx}/js/bootstrap.min.js'></script>
-<script type="text/javascript" src='${ctx}/js/bootstrap-datetimepicker.min.js'></script>
-<script type="text/javascript" src='${ctx}/js/bootstrap-datetimepicker.zh-CN.js'></script>
+<%--<script type="text/javascript" src='${ctx}/js/bootstrap-datetimepicker.min.js'></script>--%>
+<%--<script type="text/javascript" src='${ctx}/js/bootstrap-datetimepicker.zh-CN.js'></script>--%>
+<script type="text/javascript"
+        src="http://cache.shchengdian.com/plugins/mobiscroll.custom-3.0.0-beta2.min.js"
+        charset="UTF-8"></script>
 <script>
-    $(".form_datetime").datetimepicker({
-        format: "yyyy-mm-dd hh:ii",
-        autoclose: true,
-        todayBtn: true,
-        language:'zh-CN'
-    });
 
-
-    function  btnCount_Click(){
-        s1  =  "2007-01-04"
-        s2  =  "2007-01-05"
-        alert("第一个日期；"+s1+"/n第二个日期："+s2+"/n相差"+DateDiff(s1,s2)+"天")
-    }
-    //计算天数差的函数，通用
-    function  DateDiff(sDate1,  sDate2){    //sDate1和sDate2是2006-12-18格式
-        var  aDate,  oDate1,  oDate2,  iDays
-        aDate  =  sDate1.split("-")
-        oDate1  =  new  Date(aDate[1]  +  '-'  +  aDate[2]  +  '-'  +  aDate[0])    //转换为12-18-2006格式
-        aDate  =  sDate2.split("-")
-        oDate2  =  new  Date(aDate[1]  +  '-'  +  aDate[2]  +  '-'  +  aDate[0])
-        iDays  =  parseInt(Math.abs(oDate1  -  oDate2)  /  1000  /  60  /  60  /24)+1  //把相差的毫秒数转换为天数
-        return  iDays
-    }
+$('.form_datetime').mobiscroll().datetime({
+    theme: 'Mobiscroll',
+    lang: 'zh',
+    display: 'center',
+//    dateFormat: 'yyyy-MM-dd HH:mm',
+    min: new Date(2000, 1, 1),
+    disabled: false
+});
 
     function add(){
         var ydrphone=$("#ydrphone").val();
@@ -252,6 +240,7 @@
             alert('请填写车辆用途');
             return
         }
+        $(".btn").attr("disabled", true);
         $("#addform").submit();
     }
 </script>

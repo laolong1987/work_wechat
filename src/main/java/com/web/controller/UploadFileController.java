@@ -383,7 +383,10 @@ public class UploadFileController {
         OutputStream out = response.getOutputStream();
         try {
             FileUtils.copyFile(saveFile, out);
-        } finally {
+        }catch (Exception e){
+            System.out.println("no imgfile");
+        }
+        finally {
             IOUtils.closeQuietly(out);
         }
 

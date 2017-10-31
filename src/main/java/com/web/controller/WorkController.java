@@ -127,7 +127,7 @@ public class WorkController {
     }
 
 
-    @RequestMapping(value = "/createcar", method = RequestMethod.GET)
+    @RequestMapping(value = "/createcar", method = RequestMethod.POST)
     public String createcar(HttpServletRequest request,HttpServletResponse response) {
         String ydrphone=ConvertUtil.safeToString(request.getParameter("ydrphone"),"");
         String starttime=ConvertUtil.safeToString(request.getParameter("starttime"),"");
@@ -147,9 +147,9 @@ public class WorkController {
         JSONObject data=new JSONObject();
 //        data.put("Depart",employee.getZzdwmc());
 //        data.put("Position","普通职员");
-        data.put("Depart",dept.getDeptName());
+        data.put("ydbm",dept.getDeptName());
         data.put("Position",employee.getPositionName());
-        data.put("Ygxm",employee.getYgxm());
+        data.put("ydr",employee.getYgxm());
 
         data.put("ydrphone",ydrphone);
         data.put("starttime",starttime);

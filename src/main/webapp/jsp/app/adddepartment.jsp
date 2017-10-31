@@ -27,7 +27,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
-                <iframe src="${ctx}/work/department" id="tree" name="tree" style="width: 100%;height: 600px">
+                <iframe src="${ctx}/work/department" id="tree" name="tree" style="width: 100%;height: 600px;border: 0">
                 </iframe>
             </div>
         </div>

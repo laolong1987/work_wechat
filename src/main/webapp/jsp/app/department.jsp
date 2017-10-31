@@ -26,8 +26,10 @@
 <div id="indexPage">
     <div class="bar bar-footer pull-right">
         <span class="sel-btn">已选择: <strong>0</strong>人</span>
-        <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary" onclick='add();' />确认</a>
-        <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_default" onclick='parent.window.closedepartment();'>取消</a>
+        <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary"  style="width: 90px;background-image: url(${ctx}/images/add/btn.png);
+                background-size:100% 100%;
+                color: white;" onclick='add();' />确认</a>
+        <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_default"  style="width: 90px;" onclick='parent.window.closedepartment();'>取消</a>
     </div>
     <div class="content sel-con">
         <div class="weui-cells weui-cells_checkbox">
