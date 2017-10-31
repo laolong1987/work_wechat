@@ -1,7 +1,7 @@
 package com.web.component.wechat.api;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.util.Date;
 import java.util.Properties;
 
 import com.alibaba.fastjson.JSONObject;
@@ -48,25 +48,47 @@ public class WechatComponent {
         String response = HttpUtil.httpRequest(url, "GET", null);
         String userId = null;
         JSONObject resJson = JSONObject.parseObject(response);
-        if (resJson.getInteger("errcode") == 0 && resJson.containsKey("UserId")){
-            userId=resJson.getString("UserId");
+        if (resJson.getInteger("errcode") == 0 && resJson.containsKey("UserId")) {
+            userId = resJson.getString("UserId");
         }
-            return userId;
+        return userId;
     }
 
     public boolean createUser(JSONObject jsonObject) {
-            String url = wechatConfig.getCreateUser() + AccessToken.getInstance().getUpToken();
+        String url = wechatConfig.getCreateUser() +  generateToken(wechatConfig.getContactsSecret());
 
-            String response = HttpUtil.httpRequest(url, "POST", jsonObject.toString());
-            boolean created = false;
+        String response = HttpUtil.httpRequest(url, "POST", jsonObject.toString());
+        boolean created = false;
+        System.out.println(response);
+        JSONObject resJson = JSONObject.parseObject(response);
+        if (resJson.getInteger("errcode") == 0) {
+            created = true;
+        }
+        return created;
+    }
 
-            JSONObject resJson = JSONObject.parseObject(response);
-            if (resJson.getInteger("errcode") == 0) {
-                created=true;
-            }
-            return created;
-       }
+    public String createDepartment(JSONObject jsonObject) {
+        String url = wechatConfig.getCreateDepartment() + generateToken(wechatConfig.getContactsSecret());
 
+        String response = HttpUtil.httpRequest(url, "POST", jsonObject.toString());
+        return response;
+    }
+
+    public String generateToken(String corpSecret) {
+        String url = "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=" + wechatConfig.getCorpID() + "&corpsecret=" + corpSecret;
+        String accessTokenInfo = HttpUtil.getUrl(url);
+        try {
+            accessTokenInfo = new String(accessTokenInfo.getBytes("ISO-8859-1"), "utf-8");
+
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        JSONObject tokenInfo = JSONObject.parseObject(accessTokenInfo);
+       String token = tokenInfo.getString("access_token");
+
+       return token;
+    }
 
 
 }

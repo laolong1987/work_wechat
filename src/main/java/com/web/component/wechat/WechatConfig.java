@@ -36,6 +36,15 @@ public class WechatConfig {
     @Value("${createUser}")
     private String createUser;
 
+    @Value("${contactsSecret}")
+    private String contactsSecret;
+
+    @Value("${approvalSecret}")
+    private String approvalSecret;
+
+    @Value("${createDepartment}")
+    private String createDepartment;
+
 
     public String getCorpID() {
         return corpID;
@@ -101,12 +110,36 @@ public class WechatConfig {
     }
 
 
-
     public String getCreateUser() {
         return createUser;
     }
 
     public void setCreateUser(String createUser) {
         this.createUser = createUser;
+    }
+
+
+    public String getCreateDepartment() {
+        return createDepartment;
+    }
+
+    public void setCreateDepartment(String createDepartment) {
+        this.createDepartment = createDepartment;
+    }
+
+    public String getContactsSecret() {
+        return contactsSecret;
+    }
+
+    public void setContactsSecret(String contactsSecret) {
+        this.contactsSecret = contactsSecret;
+    }
+
+    public String getApprovalSecret() {
+        return approvalSecret;
+    }
+
+    public void setApprovalSecret(String approvalSecret) {
+        this.approvalSecret = approvalSecret;
     }
 }
