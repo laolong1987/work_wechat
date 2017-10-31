@@ -12,4 +12,7 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 
 <link href="${ctx}/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<link href="${ctx}/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+<%--<link href="${ctx}/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />--%>
+<link
+        href="http://cache.shchengdian.com/plugins/mobiscroll.custom-3.0.0-beta2.min.css"
+        rel="stylesheet">
