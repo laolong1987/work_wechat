@@ -47,7 +47,6 @@ public class WechatComponent {
         String url = wechatConfig.getGetAuthUserInfoUrl(AccessToken.getInstance().getUpToken(), code);
         String response = HttpUtil.httpRequest(url, "GET", null);
         String userId = null;
-        System.out.println(response);
         JSONObject resJson = JSONObject.parseObject(response);
         if (resJson.getInteger("errcode") == 0 && resJson.containsKey("UserId")){
             userId=resJson.getString("UserId");
@@ -55,17 +54,17 @@ public class WechatComponent {
             return userId;
     }
 
-    public String createUser(JSONObject jsonObject) {
-           String url = wechatConfig.getCreateUser() + AccessToken.getInstance().getUpToken();
+    public boolean createUser(JSONObject jsonObject) {
+            String url = wechatConfig.getCreateUser() + AccessToken.getInstance().getUpToken();
 
-           String response = HttpUtil.httpRequest(url, "POST", jsonObject.toString());
-           String userId = null;
-           System.out.println(response);
-           JSONObject resJson = JSONObject.parseObject(response);
-           if (resJson.getInteger("errcode") == 0 && resJson.containsKey("UserId")){
-               userId=resJson.getString("UserId");
-           }
-               return userId;
+            String response = HttpUtil.httpRequest(url, "POST", jsonObject.toString());
+            boolean created = false;
+
+            JSONObject resJson = JSONObject.parseObject(response);
+            if (resJson.getInteger("errcode") == 0) {
+                created=true;
+            }
+            return created;
        }
 
 
