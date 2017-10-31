@@ -6,6 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+  request.setAttribute("contextPath", request.getContextPath());
+  String rootUrl = "http://" + request.getServerName() + ":"
+    + request.getServerPort() + request.getContextPath();
+%>
 <div class="info-row mgt-20">
   <c:forEach var="item" items="${noticeList}" varStatus="status">
     <div class="process-${fn:length(noticeList)-status.index} clearfloat">
@@ -74,7 +79,8 @@
 <div class="up-loading">
   <img alt="loading" src="http://cache.shchengdian.com/uploading.gif">
 </div>
-<script type="text/javascript" src='../../../js/jquery.min.js'></script>
+<script type="text/javascript" src='<%=rootUrl%>/js/app/jquery.min.js'></script>
+<script type="text/javascript" src='<%=rootUrl%>/js/bootstrap.min.js'></script>
 <script>
   $(function () {
     var editField='${editfields}';
@@ -143,7 +149,7 @@
         var attrName = $(this).attr("attr-name");
         if (editField.match(attrName) != null) {
           if(attrName=='ZBRY' || attrName=='YCRY'|| attrName=='XZDYRY'){
-             var node = '<input class="attr-value f-fl edit"  name="'+attrName+' id="usernames" type="text" name="' + attrName + '" value="" onclick="opendepartment()"  placeholder="请选择……"> ';
+             var node = '<input class="attr-value f-fl edit"  id="'+attrName+'" type="text" name="' + attrName + '" value="" onclick="opendepartment(\''+attrName+'\')"  placeholder="请选择……"> ';
               $(this).parent().append(node);
               $(this).hide();
           }else{

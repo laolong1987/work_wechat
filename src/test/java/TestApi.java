@@ -8,8 +8,7 @@ import com.alibaba.fastjson.*;
 import com.common.HttpHelper;
 import com.web.component.wechat.api.WechatComponent;
 import com.web.model.WaitProcessModel;
-import com.web.service.OrgService;
-import com.web.service.WorkFromService;
+import com.web.service.*;
 import com.web.service.ws.ApprovalService;
 import org.junit.Before;
 import org.junit.Test;
@@ -42,6 +41,9 @@ public class TestApi {
 
     @Autowired
     private OrgService orgService;
+
+    @Autowired
+    private UserToWechatService userToWechatService;
 
     public void testMpNews() {
         JSONObject data = new JSONObject();
@@ -257,21 +259,21 @@ public class TestApi {
         for (Integer key : dataMap.keySet()) {
             JSONObject dept = deptMap.get(key);
             JSONObject obj = new JSONObject();
-            Integer parentId =null;
-            String deptName=null;
-            try{
-                parentId =  dept.getInteger("UpDeptID");
+            Integer parentId = null;
+            String deptName = null;
+            try {
+                parentId = dept.getInteger("UpDeptID");
                 deptName = dept.getString("DeptName");
-            }catch (Exception e){
+            } catch (Exception e) {
                 continue;
             }
 
 
             obj.put("id", key);
-            obj.put("name",deptName );
+            obj.put("name", deptName);
             obj.put("parentId", parentId);
-            obj.put("childList",dataMap.get(key) );
-            obj.put("userList",new ArrayList<>());
+            obj.put("childList", dataMap.get(key));
+            obj.put("userList", new ArrayList<>());
             if (childList.containsKey(parentId)) {
                 childList.get(parentId).add(obj);
             } else {
@@ -282,7 +284,7 @@ public class TestApi {
 
         }
         if (childList.size() != 1)
-            childList=  createJsonTree(childList, deptMap);
+            childList = createJsonTree(childList, deptMap);
 
         return childList;
     }
@@ -310,5 +312,38 @@ public class TestApi {
 
 
     }
+
+    @Test
+    public void getDepartTest() {
+        String resultJson = approvalService.getDepartments();
+        JSONObject departmentJson = JSONObject.parseObject(resultJson);
+        JSONArray deptJsonArr = departmentJson.getJSONArray("data");
+        Map<Integer, Integer> childIdAsKey = new HashMap<>();
+        Map<Integer, JSONObject> deptMap = new HashMap<>();
+        Set<Integer> parentIdSet = new HashSet<>();
+
+        Set<Integer> childrenDept = new HashSet<>();
+        for (int i = 0; i < deptJsonArr.size(); i++) {
+            JSONObject obj = deptJsonArr.getJSONObject(i);
+            System.out.println(obj.toJSONString());
+        }
+
+
+    }
+
+    @Test
+    public void createDepartTest() {
+
+        String res = userToWechatService.createDepartment();
+        System.out.println(res);
+    }
+
+    @Test
+    public void createUserTest() {
+
+        boolean res = userToWechatService.employeeToWechat();
+        System.out.println(res);
+    }
+
 
 }

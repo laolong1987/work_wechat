@@ -22,6 +22,7 @@ import java.util.Map;
  * Created by gaoyang on 16/2/29.
  */
 @Repository
+@Transactional
 public class OrgDao extends BaseDao{
 
     /**
