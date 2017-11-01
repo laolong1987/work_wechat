@@ -101,7 +101,7 @@ html, body {
   text-align: left;
 }
 
-.process-1, .process-2, .process-3, .process-4 {
+.process-1, .process-2, .process-3, .process-0 {
   position: relative;
   padding: 0 .2rem;
 }
@@ -166,19 +166,19 @@ html, body {
   letter-spacing: .03rem;
 }
 
-.process-4 .flow {
+.process-0 .flow {
   width: .6rem;
   height: 1.2rem;
   background: url(../images/flow.png) no-repeat 0 0/cover;
 }
 
-.process-4 .process-text {
+.process-0 .process-text {
   position: absolute;
   top: 0;
   left: 1.03rem;
 }
 
-.process-4 .process-date {
+.process-0.process-date {
   position: absolute;
   top: 0;
   right: 0.32rem;

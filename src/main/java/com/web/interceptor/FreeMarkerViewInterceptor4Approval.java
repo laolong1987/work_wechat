@@ -46,8 +46,7 @@ public class FreeMarkerViewInterceptor4Approval implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
                              Object object) throws Exception {
         // TODO Auto-generated method stub
-        //String name = StringUtil.safeToString(request.getSession().getAttribute("approvalUserId"), "");
-        String name = "aaa";
+        String name = StringUtil.safeToString(request.getSession().getAttribute("approvalUserId"), "");
         if (!StringUtils.isEmpty(name)) {
             return true;
         } else {

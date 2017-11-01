@@ -44,6 +44,8 @@ public class LoginController {
         if (userId != null) {
             if(agentId.equalsIgnoreCase(wechatConfig.getApprovalAgentId())){
                 request.getSession().setAttribute("approvalUserId",userId);
+                //临时使用
+                request.getSession().setAttribute("newsUserId",userId);
             }else if (agentId.equalsIgnoreCase(wechatConfig.getNewsAgentId())){
                 request.getSession().setAttribute("newsUserId",userId);
             }
@@ -59,6 +61,7 @@ public class LoginController {
 
     @RequestMapping("/test/{userId}")
        public String testUsetid(@PathVariable("userId") String userId, HttpServletRequest request) {
+        request.getSession().setAttribute("approvalUserId",userId);
          request.getSession().setAttribute("newsUserId",userId);
          return "redirect:/news/listnews";
 

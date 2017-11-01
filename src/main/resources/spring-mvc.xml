@@ -37,13 +37,15 @@
       <mvc:mapping path="/admin/news/**" />
       <bean class="com.web.interceptor.FreeMarkerViewInterceptorAdmin"></bean>
     </mvc:interceptor>
-    <!--
-        <mvc:interceptor>
+    <mvc:interceptor>
+      <mvc:mapping path="/approval/**" />
+      <mvc:mapping path="/news/**" />
+      <mvc:mapping path="/work/**" />
+      <mvc:exclude-mapping path="/login/**"/>
+      <bean
+        class="com.web.interceptor.FreeMarkerViewInterceptor4Approval"></bean>
+    </mvc:interceptor>
 
-          <mvc:mapping path="/approval/**" />
-          <bean class="com.web.interceptor.FreeMarkerViewInterceptor4Approval"></bean>
-        </mvc:interceptor>
-    -->
   </mvc:interceptors>
 
   <!-- 定义视图解析器 -->

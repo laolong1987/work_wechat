@@ -17,7 +17,7 @@ public class AccessToken {
 
     private AccessToken() {
         corpid = "wwee9bb9537a842b61";
-        corpSecret = "wjn23wsY9z5tJVxO74PWNdGsC6dyiaD8FHDDSIVNIlQ";
+        corpSecret = "wiP2KVvw5wg7qJYGGOPvgH8ARE4a8y9mzvpQrU5uLWE";
         createtime = new Date().getTime() / 1000;
     }
 
