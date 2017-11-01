@@ -97,6 +97,11 @@
             background-size:100% 100%;
             color: white;
         }
+
+        .moren{
+            color:  #aab2bd;
+        }
+
         .touming:focus{outline:none !important;}
     </style>
 </head>
@@ -161,7 +166,7 @@
         <label class="col-xs-3 control-label lab lab2">用餐时间</label>
         <div class="col-xs-5">
             <select class="touming" id="yczl" name="yczl" onchange="addoption()" >
-            <option value="" disabled selected>请选择用餐时间</option>
+            <option value="" class="moren" disabled selected>请选择用餐时间</option>
             <option value="早餐">早餐</option>
             <option value="中餐">中餐</option>
             <option value="晚餐">晚餐</option>
@@ -176,7 +181,7 @@
             <label class="col-xs-3 control-label lab lab2">用餐标准</label>
             <div class="col-xs-5">
             <select class="touming" name="ycbz" id="ycbz">
-                <option value="" disabled selected>请选择用餐标准</option>
+                <option value="" class="moren" disabled selected>请选择用餐标准</option>
             </select>
         </div>
         <label class="col-xs-4 control-label lab lab3" for="ycbz">请选择(必填)
@@ -187,16 +192,16 @@
         <label class="col-xs-3 control-label lab lab2">用餐地点</label>
         <div class="col-xs-5">
             <select class="touming" name="ycdd" id="ycdd">
-                <option value="" disabled selected>请选择用餐地点</option>
+                <option value="" class="moren" disabled selected>请选择用餐地点</option>
             </select>
         </div>
         <label class="col-xs-4 control-label lab lab3" for="ycdd">请选择(必填)
         </label>
     </div>
 </form>
-    <div class="text-center tip">注：中餐请于1点钱提交申请，晚餐请于16点钱提交申请</div>
+    <div class="text-center tip" style="margin-bottom: 50px">注：中餐请于1点钱提交申请，晚餐请于16点钱提交申请</div>
 
-    <div class="text-center">
+    <div  style="position:fixed;bottom:20px;margin:auto;left:0; right:0;text-align: center">
         <button type="button" class="btn btn-primary addbtn" onclick="add()">提交审批</button>
     </div>
     <div class="text-right">

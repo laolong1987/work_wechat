@@ -99,7 +99,7 @@
         <div class="col-xs-6">
             <span class="ziti1">${dept} ${name}</span>
         </div>
-        <div class="col-xs-6">
+        <div class="col-xs-6 text-right">
             <span class="ziti1">2017-09-29 15:38</span>
         </div>
     </div>
@@ -182,14 +182,14 @@
         </div>
     </div>
 
-    <div class="row content2">
+    <div class="row content2" style="margin-bottom: 50px">
         <label class="col-xs-3 control-label lab lab2">备注</label>
         <div class="col-xs-9">
             <textarea class="touming" rows="5" name="remark" id="remark" placeholder="如 1.是否往返 2.是否多目的地"></textarea>
         </div>
     </div>
 </form>
-    <div class="text-center">
+    <div  style="position:fixed;bottom:20px;margin:auto;left:0; right:0;text-align: center">
         <button type="button" class="btn btn-primary addbtn" onclick="add()">提交审批</button>
     </div>
     <div class="text-right">
