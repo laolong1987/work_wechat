@@ -51,8 +51,7 @@ html, body {
 }
 
 .subject {
-  height: 1.4rem;
-  padding: .52rem 0;
+  padding: .32rem 0;
   font-size: .28rem;
   font-weight: 400;
   position:relative;
@@ -178,7 +177,7 @@ html, body {
   left: 1.03rem;
 }
 
-.process-0.process-date {
+.process-0 .process-date {
   position: absolute;
   top: 0;
   right: 0.32rem;
@@ -281,12 +280,11 @@ color:#0084d7;
 
 .approach-list .status {
   position: absolute;
-  right: .72rem;
+  right: .48rem;
   top: 1.08rem;
   font-size: .3rem;
   font-weight: 500;
   color: #1FB10C;
-  width: 1rem;
 }
 
 .f-dn {
@@ -380,7 +378,7 @@ color:#0084d7;
   content: "";
   width: 1.55rem;
   height: .24rem;
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid #7c7c7c;
   margin: 0 auto;
 }
 
@@ -487,3 +485,13 @@ text-align: center;
 .refuse-seal{
   background: url(../images/refuse.png) no-repeat center center/cover;
 }
+
+.sent-doc-printNum{
+  text-align: right;
+  padding-right: .64rem;
+}
+.sent-doc-printNum span{
+  padding-left:.48rem;
+  text-align: right;
+}
+

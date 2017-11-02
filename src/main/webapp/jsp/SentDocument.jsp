@@ -34,7 +34,7 @@
 </head>
 <body>
 <div class="container-detail">
-  <%@include file="common-head.jsp"%>
+  <%@include file="common-head.jsp" %>
 
   <div class="info-row mgt-20 clearfloat">
     <div class="dept">${object.department}</div>
@@ -45,16 +45,29 @@
       <span>字：</span><span class="s2">${object.noyear}</span>
       <span>第${object.no}号</span>
     </div>
-    <div class="attr-name f-fl  ">主办部门：</div>
-    <div class="attr-value f-fl  ">${object.sponsor}</div>
-    <div class="attr-name f-fl  ">会签：</div>
-    <div class="attr-value f-fl  ">${object.hqbm}</div>
-    <div class="attr-name f-fl  ">核稿：</div>
-    <div class="attr-value f-fl  ">${object.audit}</div>
-    <div class="attr-name f-fl  ">拟稿人：</div>
-    <div class="attr-value f-fl  ">${object.writer}</div>
-    <div class="attr-name f-fl  ">签发：</div>
-    <div class="attr-value f-fl  ">${object.approval}</div>
+    <div class="clearfloat">
+      <div class="attr-name f-fl  ">主办部门：</div>
+      <div class="attr-value f-fl  ">${object.sponsor}</div>
+    </div>
+    <div class="clearfloat">
+      <div class="attr-name f-fl  ">会签：</div>
+      <div class="attr-value f-fl  ">${object.hqbm}</div>
+    </div>
+    <div class="clearfloat">
+
+      <div class="attr-name f-fl  ">核稿：</div>
+      <div class="attr-value f-fl  ">${object.audit}</div>
+    </div>
+    <div>
+      <div class="attr-name f-fl  ">拟稿人：</div>
+      <div class="attr-value f-fl  ">${object.writer}</div>
+    </div>
+    <div>
+      <div class="attr-name f-fl  ">签发：</div>
+      <div class="attr-value f-fl  ">${object.approval}</div>
+
+    </div>
+
   </div>
 
   <div class="info-row mgt-20 clearfloat">
@@ -100,11 +113,11 @@
     <div class="attr-value f-fl  ">${object.checkperson}</div>
   </div>
 
-  <div class="info-row mgt-20 clearfloat">
+  <div class="info-row mgt-20 clearfloat sent-doc-printNum">
     <span class="">${object.sentDate}</span>印
     <span class="">${object.fen}</span>份
   </div>
 
-  <%@include file="common-submit.jsp"%>
+  <%@include file="common-submit.jsp" %>
 </body>
 </html>

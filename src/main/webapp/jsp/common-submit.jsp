@@ -13,12 +13,33 @@
 %>
 <div class="info-row mgt-20">
   <c:forEach var="item" items="${noticeList}" varStatus="status">
-      <div class="process-${(fn:length(noticeList)-status.index)%4} clearfloat">
+    <c:choose>
+      <c:when test="${status.index==0}">
+        <div class="process-0 clearfloat">
           <div class="flow"></div>
           <div
             class="process-text">${item.receiverName} ${item.noticeType} ${item.action}</div>
           <div class="process-date">${item.processTime}</div>
         </div>
+      </c:when>
+      <c:when test="${(fn:length(noticeList)-status.index)==1}">
+        <div class="process-1 clearfloat">
+          <div class="flow"></div>
+          <div
+            class="process-text">${item.receiverName} ${item.noticeType} ${item.action}</div>
+          <div class="process-date">${item.processTime}</div>
+        </div>
+      </c:when>
+      <c:otherwise>
+        <div
+          class="process-${status.index%2 +2} clearfloat">
+          <div class="flow"></div>
+          <div
+            class="process-text">${item.receiverName} ${item.noticeType} ${item.action}</div>
+          <div class="process-date">${item.processTime}</div>
+        </div>
+      </c:otherwise>
+    </c:choose>
   </c:forEach>
 </div>
 <c:if test="${approval}">
@@ -82,7 +103,7 @@
 <script type="text/javascript" src='<%=rootUrl%>/js/bootstrap.min.js'></script>
 <script>
   $(function () {
-    var editField='${editfields}';
+    var editField = '${editfields}';
     $(".approval").on("click", function () {
       $("#refuse-reason").removeClass("f-dn");
       var event = $(this).attr("data")
@@ -144,14 +165,14 @@
     });
 
     $("[attr-name]").each(function () {
-      if(editField!=null || editField!=''){
+      if (editField != null || editField != '') {
         var attrName = $(this).attr("attr-name");
         if (editField.match(attrName) != null) {
-          if(attrName=='ZBRY' || attrName=='YCRY'|| attrName=='XZDYRY'){
-             var node = '<input class="attr-value f-fl edit"  id="'+attrName+'" type="text" name="' + attrName + '" value="" onclick="opendepartment(\''+attrName+'\')"  placeholder="请选择……"> ';
-              $(this).parent().append(node);
-              $(this).hide();
-          }else{
+          if (attrName == 'ZBRY' || attrName == 'YCRY' || attrName == 'XZDYRY') {
+            var node = '<input class="attr-value f-fl edit"  id="' + attrName + '" type="text" name="' + attrName + '" value="" onclick="opendepartment(\'' + attrName + '\')"  placeholder="请选择……"> ';
+            $(this).parent().append(node);
+            $(this).hide();
+          } else {
             var node = '<input class="attr-value f-fl edit" type="text" name="' + attrName + '" value="" placeholder="请输入……"> ';
             $(this).parent().append(node);
             $(this).hide();
