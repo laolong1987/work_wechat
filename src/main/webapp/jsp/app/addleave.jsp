@@ -149,14 +149,14 @@
         </div>
     </div>
 
-    <div class="row content2">
+    <div class="row content2" style="margin-bottom: 50px">
         <label class="col-xs-2 control-label lab lab2">理由</label>
         <div class="col-xs-10">
             <textarea class="touming" rows="5" name="desc" id="desc" placeholder="请填写备注(必填)"  required></textarea>
         </div>
     </div>
     </form>
-    <div class="text-center">
+    <div  style="position:fixed;bottom:20px;margin:auto;left:0; right:0;text-align: center">
         <button type="button" class="btn btn-primary addbtn" onclick="add()">提交审批</button>
     </div>
     <div class="text-right">
