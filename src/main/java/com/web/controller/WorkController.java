@@ -84,7 +84,7 @@ public class WorkController {
         data.put("Ygxm",employee.getYgxm());
 //        data.put("Ygxm","华安");
         data.put("Writer",userid);
-        data.put("_SUBJECT","华安请假单");
+        data.put("_SUBJECT",employee.getYgxm()+"请假单");
 
         JSONObject json=new JSONObject();
         json.put("FormType","349");
@@ -162,7 +162,7 @@ public class WorkController {
         data.put("remark",remark);
         data.put("ccry",ccry);
 
-        data.put("_SUBJECT","华安用车申请单");
+        data.put("_SUBJECT",employee.getYgxm()+"用车申请单");
         data.put("Writer",userid);
         JSONObject json=new JSONObject();
         json.put("FormType","321");
@@ -258,7 +258,7 @@ public class WorkController {
         data.put("ycsj",yczl);
         data.put("sjycsl",ycsl);
 //        data.put("Ygxm",employee.getYgxm().replace(" ",""));
-        data.put("_SUBJECT","华安客饭申请");
+        data.put("_SUBJECT",employee.getYgxm()+"客饭申请");
 
         data.put("sqr",employee.getYgxm());
         data.put("Writer",userid);

@@ -11,6 +11,7 @@ import com.web.entity.Employee;
 import com.web.service.ws.ApprovalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -139,6 +140,7 @@ public class OrgService {
 //        }
 //    }
 
+    @Transactional
     public void updateEmp() {
         List<Employee> list = new ArrayList<>();
         //查询
@@ -203,7 +205,7 @@ public class OrgService {
         }
     }
 
-
+    @Transactional
     public void updateDept(){
         List<Dept> list = new ArrayList<>();
         //查询
