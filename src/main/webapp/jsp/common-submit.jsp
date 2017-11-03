@@ -45,14 +45,14 @@
 <c:if test="${approval}">
   <c:choose>
 
-    <c:when test="${fn:length(noticeList)==2}">
+    <c:when test="${fn:length(eventList)==2}">
       <div class="process-button ">
         <c:forEach var="item" items="${eventList}" varStatus="status">
-          <c:if test="${item.event eq 'FormNext'}">
+          <c:if test="${status.index%2==0}">
             <div class="agree approval"
-                 data="${item.event}">${item.name}</div>
+                            data="${item.event}">${item.name}</div>
           </c:if>
-          <c:if test="${item.event eq 'FormCanceled'}">
+          <c:if test="${status.index%2==1}">
             <div class="refuse approval"
                  data="${item.event}">${item.name}</div>
           </c:if>
@@ -96,9 +96,21 @@
   </form>
 </c:if>
 </div>
-<div class="up-loading">
-  <img alt="loading" src="http://cache.shchengdian.com/uploading.gif">
+<div id="loadingToast" class="f-dn" style="font-size: 0.32rem;">
+    <div class="weui-mask_transparent"></div>
+    <div class="weui-toast">
+        <i class="weui-loading weui-icon_toast"></i>
+        <p class="weui-toast__content">数据提交中</p>
+    </div>
 </div>
+<div id="toast" class="f-dn" style="font-size: 0.32rem;">
+    <div class="weui-mask_transparent"></div>
+    <div class="weui-toast">
+        <i class="weui-icon-success-no-circle weui-icon_toast"></i>
+        <p class="weui-toast__content">审批成功</p>
+    </div>
+</div>
+
 <script type="text/javascript" src='<%=rootUrl%>/js/app/jquery.min.js'></script>
 <script type="text/javascript" src='<%=rootUrl%>/js/bootstrap.min.js'></script>
 <script>
@@ -113,26 +125,28 @@
 
     $(".close").on("click", function () {
       $("#refuse-reason").addClass("f-dn");
-
-
     })
     $(".submit").on("click", function () {
 
-      $("#content").val(suggest);
+      $("#content").val( $("#suggest").val());
       var inputs = $(".edit");
       for (var i = 0; i < inputs.length; i++) {
         $("#approval-sbmt").append('<input type="hidden" name="' + inputs[i].name + '" value="' + inputs[i].value + '"/>')
       }
-      $(".up-loading").css("display", "block")
+      $("#loadingToast").removeClass("f-dn")
       $.ajax({
         url: "<%=webRoot%>/approval/doApproval",
         type: "POST",
         data: $("#approval-sbmt").serializeJson(),
         success: function (data) {
           if (data == 'success') {
-            $(".up-loading").css("display", "none")
-            alert("审批成功")
-            window.location.reload(true);
+            $("#loadingToast").addClass("f-dn")
+            $("#toast").removeClass("f-dn")
+           setTimeout(function () {
+             $("#toast").addClass("f-dn")
+             window.location.reload(true);
+           },2000)
+
           }
         }
       })
@@ -162,6 +176,8 @@
     });
     $(".submit").on('touchend', function () {
       $(this).attr("style", "");
+      $("#refuse-reason").removeClass("f-dn");
+
     });
 
     $("[attr-name]").each(function () {
