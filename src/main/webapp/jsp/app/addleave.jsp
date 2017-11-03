@@ -71,7 +71,7 @@
             background-origin: content-box;
         }
         .addbtn{
-            width: 300px;height: 35px;margin-top: 45px;
+            width: 100%;height: 50px;;
             background-image: url(${ctx}/images/add/btn.png);
             background-size:100% 100%;
             color: white;
@@ -88,12 +88,41 @@
             background-color: transparent;
             -webkit-appearance: initial;
         }
+        .topbut{
+            position:fixed;top:0;margin:auto;left:0; right:0;
+            background-image: url(${ctx}/images/add/smallbg.png);
+            background-size:100% 100%;
+            height: 54px;
+            width: 100%;
+            text-align: right;
+            z-index: 999;
+        }
+        .topbut button{
+            width: 80px;
+            height: 30px;
+            margin-right: 20px;
+            margin-top: 8px;
+            background-image: url(${ctx}/images/add/listbtn.png);
+            background-size:100% 100%;
+            color: white;
+            font-family: PingFangSC;
+            font-size: 13px;
+        }
+        .topbut img{
+            margin-right: 20px;
+            width: 20px;
+            margin-top: 4px;
+        }
         .touming:focus{outline:none !important;}
     </style>
 </head>
 <body>
+<div class="topbut">
+    <button type="button" class="btn btn-default" onclick="tolist()">查看列表</button>
+    <%--<img src="${ctx}/images/add/arrowtop.png">--%>
+</div>
 <div class="container">
-    <div class="row top">
+    <div class="row top" style="margin-top: 60px">
         <div class="col-xs-4">
             <span class="ziti1">${name}</span>
         </div>
@@ -103,7 +132,7 @@
         </div>
     </div>
     <form  id="addform" action="createleave" name="addform" method="post" >
-        <input  type="hidden" id="day" name="day" >
+        <%--<input  type="hidden" id="day" name="day" >--%>
     <div class="row content">
         <label class="col-xs-2 control-label lab lab2">类型</label>
         <div class="col-xs-6">
@@ -144,9 +173,11 @@
 
     <div class="row content">
         <label class="col-xs-2 control-label lab lab2">计</label>
-        <div class="col-xs-10">
-            <p class="form-control-static" style="margin-top: 7px" id="days"></p>
+        <div class="col-xs-6">
+            <%--<p class="form-control-static" style="margin-top: 7px" id="days"></p>--%>
+            <input  type="number" class="touming"  name="day" id="day" value="" required>
         </div>
+        <label class="col-xs-4 control-label lab lab3">天</label>
     </div>
 
     <div class="row content2" style="margin-bottom: 50px">
@@ -156,19 +187,19 @@
         </div>
     </div>
     </form>
-    <div  style="position:fixed;bottom:20px;margin:auto;left:0; right:0;text-align: center">
+    <div  style="position:fixed;bottom:0;margin:auto;left:0; right:0;text-align: center">
         <button type="button" class="btn btn-primary addbtn" onclick="add()">提交审批</button>
     </div>
-    <div class="text-right">
-        <div style="width: 300px;text-decoration:underline;color: black">
-            <a href="${ctx}/approval/self-list/349">查看列表</a>
-        </div>
-    </div>
+    <%--<div class="text-right">--%>
+        <%--<div style="width: 300px;text-decoration:underline;color: black">--%>
+            <%--<a href="${ctx}/approval/self-list/349">查看列表</a>--%>
+        <%--</div>--%>
+    <%--</div>--%>
 </div>
 <script type="text/javascript" src='${ctx}/js/jquery.min.js'></script>
-<script type="text/javascript" src='${ctx}/js/bootstrap.min.js'></script>
-<script type="text/javascript" src='${ctx}/js/bootstrap-datetimepicker.min.js'></script>
-<script type="text/javascript" src='${ctx}/js/bootstrap-datetimepicker.zh-CN.js'></script>
+<%--<script type="text/javascript" src='${ctx}/js/bootstrap.min.js'></script>--%>
+<%--<script type="text/javascript" src='${ctx}/js/bootstrap-datetimepicker.min.js'></script>--%>
+<%--<script type="text/javascript" src='${ctx}/js/bootstrap-datetimepicker.zh-CN.js'></script>--%>
 <script type="text/javascript"
         src="http://cache.shchengdian.com/plugins/mobiscroll.custom-3.0.0-beta2.min.js"
         charset="UTF-8"></script>
@@ -196,7 +227,8 @@ $('.form_datetime').mobiscroll().datetime({
                 days=c;
             }
         }
-        $("#days").text(days+"天");
+//        $("#days").text(days+"天");
+        $("#day").val(days);
     }
     //计算天数差的函数，通用
     function  DateDiff(sDate1,  sDate2){    //sDate1和sDate2是2006-12-18格式
@@ -245,6 +277,10 @@ $('.form_datetime').mobiscroll().datetime({
         $("#day").val(DateDiff(a,b));
         $(".btn").attr("disabled", true);
         $("#addform").submit();
+    }
+
+    function tolist(){
+        window.location.href='${ctx}/approval/self-list/349';
     }
 
 </script>

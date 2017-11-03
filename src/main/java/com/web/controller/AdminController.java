@@ -4,6 +4,7 @@ package com.web.controller;
 import com.utils.ConvertUtil;
 import com.utils.MD5Util;
 import com.web.entity.Admin;
+import com.web.service.OrgService;
 import com.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,9 @@ public class AdminController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private OrgService orgService;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
@@ -93,6 +97,22 @@ public class AdminController {
         return result;
     }
 
-
+    /**
+     * 更新部门信息
+     *
+     * @param request
+     * @param response
+     *
+     * @return
+     */
+    @RequestMapping(value = "/updateuser")
+    public String updateuser(HttpServletRequest request,
+                             HttpServletResponse response) {
+        System.out.println("----updateDept----");
+        orgService.updateDept();
+        System.out.println("----updateEmp----");
+        orgService.updateEmp();
+        return "/jsp/manage/tologin";
+    }
 
 }

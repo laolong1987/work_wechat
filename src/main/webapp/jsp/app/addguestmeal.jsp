@@ -92,7 +92,7 @@
             margin-top: 10px;
         }
         .addbtn{
-            width: 300px;height: 35px;margin-top: 45px;
+            width: 100%;height: 50px;;
             background-image: url(${ctx}/images/add/btn.png);
             background-size:100% 100%;
             color: white;
@@ -101,12 +101,40 @@
         .moren{
             color:  #aab2bd;
         }
-
+        .topbut{
+            position:fixed;top:0;margin:auto;left:0; right:0;
+            background-image: url(${ctx}/images/add/smallbg.png);
+            background-size:100% 100%;
+            height: 54px;
+            width: 100%;
+            text-align: right;
+            z-index: 999;
+        }
+        .topbut button{
+            width: 80px;
+            height: 30px;
+            margin-right: 20px;
+            margin-top: 8px;
+            background-image: url(${ctx}/images/add/listbtn.png);
+            background-size:100% 100%;
+            color: white;
+            font-family: PingFangSC;
+            font-size: 13px;
+        }
+        .topbut img{
+            margin-right: 20px;
+            width: 20px;
+            margin-top: 4px;
+        }
         .touming:focus{outline:none !important;}
     </style>
 </head>
 <body>
-<div class="container">
+<div class="topbut">
+    <button type="button" class="btn btn-default" onclick="tolist()">查看列表</button>
+    <%--<img src="${ctx}/images/add/arrowtop.png">--%>
+</div>
+<div class="container" style="margin-top: 60px">
     <div class="row top">
         <div class="col-xs-6">
             <span class="ziti1">${name}</span>
@@ -138,7 +166,7 @@
     <div class="row content">
         <label class="col-xs-3 control-label lab lab2">用餐人数</label>
         <div class="col-xs-5">
-            <input  type="number" class="touming" placeholder="请填写人数"  value="" id="ycsl" name="ycsl" required>
+            <input  type="number" class="touming" placeholder="请填写人数"  value="1" id="ycsl" name="ycsl" required>
         </div>
         <label class="col-xs-4 control-label lab">客
         </label>
@@ -154,11 +182,9 @@
 
     <div class="row" style="margin-top: 10px">
         <label class="col-xs-3 control-label lab lab2">用餐种类</label>
-        <div class="col-xs-4 lab">
-            <input type="radio" name="yctype" id="optionsRadios1" onclick="addoption()" value="工作用餐" checked>工作用餐
-        </div>
-        <div class="col-xs-3 lab">
-            <input type="radio" name="yctype" id="optionsRadios2" onclick="addoption()" value="接待用餐">接待用餐
+        <div class="col-xs-9 lab">
+            <input type="radio" name="yctype" id="optionsRadios1" onclick="addoption()" value="工作用餐" checked><label for="optionsRadios1">工作用餐</label>
+            <input type="radio" name="yctype" id="optionsRadios2" onclick="addoption()" style="margin-left: 20px" value="接待用餐"><label for="optionsRadios2">接待用餐</label>
         </div>
     </div>
 
@@ -201,14 +227,14 @@
 </form>
     <div class="text-center tip" style="margin-bottom: 50px">注：中餐请于1点钱提交申请，晚餐请于16点钱提交申请</div>
 
-    <div  style="position:fixed;bottom:20px;margin:auto;left:0; right:0;text-align: center">
+    <div  style="position:fixed;bottom:0;margin:auto;left:0; right:0;text-align: center">
         <button type="button" class="btn btn-primary addbtn" onclick="add()">提交审批</button>
     </div>
-    <div class="text-right">
-        <div style="width: 300px;text-decoration:underline;color: black">
-            <a href="${ctx}/approval/self-list/323">查看列表</a>
-        </div>
-    </div>
+    <%--<div class="text-right">--%>
+        <%--<div style="width: 300px;text-decoration:underline;color: black">--%>
+            <%--<a href="${ctx}/approval/self-list/323">查看列表</a>--%>
+        <%--</div>--%>
+    <%--</div>--%>
 </div>
 <script type="text/javascript" src='${ctx}/js/jquery.min.js'></script>
 <script type="text/javascript" src='${ctx}/js/bootstrap.min.js'></script>
@@ -216,7 +242,7 @@
         src="http://cache.shchengdian.com/plugins/mobiscroll.custom-3.0.0-beta2.min.js"
         charset="UTF-8"></script>
 <script>
-    $('.form_datetime').mobiscroll().datetime({
+    $('.form_datetime').mobiscroll().date({
         theme: 'Mobiscroll',
         lang: 'zh',
         display: 'center',
@@ -346,7 +372,9 @@
         $(".btn").attr("disabled", true);
         $("#addform").submit();
     }
-
+    function tolist(){
+        window.location.href='${ctx}/approval/self-list/323';
+    }
 </script>
 </body>
 </html>
