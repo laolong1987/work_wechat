@@ -6,7 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<link rel="stylesheet" type="text/css"
+        href=" http://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
 <div class="info-row subject ">
 
   <div class="clearfloat">

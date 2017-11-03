@@ -25,6 +25,8 @@
         href="http://cache.shchengdian.com/css/zv_index.css">
   <link rel="stylesheet" type="text/css"
         href="<%=webRoot%>/css/approval.css">
+
+
   <script>
     document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
     window.onresize = function () {

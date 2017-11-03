@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 import com.alibaba.fastjson.*;
 import com.common.HttpHelper;
+import com.web.component.wechat.WechatConfig;
 import com.web.component.wechat.api.WechatComponent;
 import com.web.model.WaitProcessModel;
 import com.web.service.*;
@@ -44,6 +45,9 @@ public class TestApi {
 
     @Autowired
     private UserToWechatService userToWechatService;
+
+    @Autowired
+    WechatConfig wechatConfig;
 
     public void testMpNews() {
         JSONObject data = new JSONObject();
@@ -331,19 +335,25 @@ public class TestApi {
 
     }
 
-    @Test
+
     public void createDepartTest() {
 
         String res = userToWechatService.createDepartment();
         System.out.println(res);
     }
 
-    @Test
     public void createUserTest() {
 
         boolean res = userToWechatService.employeeToWechat();
         System.out.println(res);
     }
+
+
+    @Test
+    public void getPropertyValue(){
+        System.out.println(wechatConfig.getApprovalAgentId());
+    }
+
 
 
 }
