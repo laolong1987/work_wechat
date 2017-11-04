@@ -91,7 +91,7 @@
         }
         .topbut{
             position:fixed;top:0;margin:auto;left:0; right:0;
-            background-image: url(${ctx}/images/add/smallbg.png);
+            background-image: url(${ctx}/images/add/topbg.png);
             background-size:100% 100%;
             height: 54px;
             width: 100%;
@@ -111,8 +111,22 @@
         }
         .topbut img{
             margin-right: 20px;
-            width: 20px;
+            width: 15px;
             margin-top: 4px;
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+        .rla {
+            padding-left: 40px;
+            cursor: pointer;
+            background: url(${ctx}/images/add/unchoose.png) no-repeat left top;
+            background-size:28% 100%;
+        }
+        .rla.cr{
+            background: url(${ctx}/images/add/choose.png) no-repeat left top;
+            background-size:28% 100%;
         }
         .touming:focus{outline:none !important;}
     </style>
@@ -120,7 +134,7 @@
 <body>
 <div class="topbut">
     <button type="button" class="btn btn-default" onclick="tolist()">查看列表</button>
-    <%--<img src="${ctx}/images/add/arrowtop.png">--%>
+    <img src="${ctx}/images/add/arrowtop.png" onclick="hidejt()" >
 </div>
 <div class="container">
     <div class="row top" style="margin-top: 60px">
@@ -189,10 +203,13 @@
         <div class="col-xs-2">
         </div>
         <div class="col-xs-4">
-            <input type="radio" name="Sfwd"  value="不是">市内
+            <input type="radio" class="radio" name="Sfwd" id="r1"  value="不是">
+            <label class="rla" for="r1"> &nbsp;市内</label>
         </div>
         <div class="col-xs-6">
-            <input type="radio" name="Sfwd"  value="是">市外
+            <input type="radio" class="radio" name="Sfwd" id="r2"  value="是">
+            <label class="rla" for="r2"> &nbsp;市外</label>
+
         </div>
     </div>
 
@@ -246,6 +263,30 @@ $('.form_datetime').mobiscroll().datetime({
     disabled: false
 });
 
+$(function() {
+    $('.rla').click(function(){
+        var radioId = $(this).attr('name');
+        $('.rla').removeClass('cr');
+        $(this).addClass('cr');
+        $('input[type="radio"]').removeAttr('checked') && $('#' + radioId).attr('checked', 'checked');
+    });
+
+        var p=0,t=0;
+
+        $(window).scroll(function(e){
+            p = $(this).scrollTop();
+
+            if(t<=p){//下滚
+            }
+            else{//上滚
+//                $(".").show();
+                $(".topbut").slideDown(300);
+
+            }
+            setTimeout(function(){t = p;},0);
+        });
+});
+
     function add(){
         var ydrphone=$("#ydrphone").val();
         if(''==ydrphone){
@@ -274,6 +315,11 @@ $('.form_datetime').mobiscroll().datetime({
 function tolist(){
     window.location.href='${ctx}/approval/self-list/321';
 }
+
+    function hidejt(){
+//        $(".").hide();
+        $(".topbut").slideUp(300);
+    }
 </script>
 </body>
 </html>

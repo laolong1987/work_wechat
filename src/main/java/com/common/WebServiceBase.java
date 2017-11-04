@@ -3,6 +3,7 @@ package com.common;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.utils.SettingUtil;
 import com.web.component.WebServiceApiConfig;
 import org.apache.axis.client.Call;
 import org.apache.axis.client.Service;
@@ -27,7 +28,7 @@ public class WebServiceBase {
     public static String call(String function,List<WSbean> wSbeans){
         String result="";
         String serviceEpr = "http://d.bm21.com.cn:20003/Services/CoreService.asmx?WSDL";
-        serviceEpr=serviceEpr.replace("?op=","WSDL");
+        serviceEpr= SettingUtil.getWSURL("base").replace("?op=","?WSDL");
         try {
             Service service = new Service();
             Call call = (Call) service.createCall();

@@ -33,7 +33,7 @@
         }
 
         .topdiv img {
-            /*width: 340px;height: 261px;*/
+            width: 340px;height: 220px;
         }
 
         .titlediv {
@@ -87,7 +87,7 @@
 <div class="container">
     <div class="topdiv">
         <img src="../file/doDownload/${news.topimg}" class="img-responsive" style="max-height: 260px">
-    </div>
+</div>
     <div class="titlediv row">
         <div class="col-xs-6 text-left">
             来源于:${news.source}

@@ -87,6 +87,25 @@
             box-shadow: 0px 5px 1px  #EBEBEB;
             /*background-color: #FFFFFF;*/
         }
+        .ms{
+            width: 38px;
+            margin-top: 1px;
+            margin-left: 3px;
+        }
+
+        .formdiv{
+            display: block;
+            width: 100%;
+            height: 34px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
     </style>
 
 </head>
@@ -95,7 +114,8 @@
     <div class="topdiv row">
         <div class="col-xs-1" style="padding: 0px">
             <div style="position: relative">
-                <span class="fa fa-commenting-o fa-2x" aria-hidden="true"> </span>
+                <img src="${ctx}/images/add/ms.png" class="ms">
+                <%--<span class="" aria-hidden="true"> </span>--%>
                 <%--<span class="badge" style="background-color: red;position: absolute ;right: -5px;top: 0">5</span>--%>
             </div>
         </div>
@@ -104,7 +124,7 @@
             <div class="has-feedback">
                 <div>
                     <span class="glyphicon glyphicon-search form-control-feedback" style="color: #DCDCDC"></span>
-                    <input type="text" name="title" id="title" class="form-control" placeholder="搜索关键字" value="${title}">
+                    <input type="text" name="title" id="title" class="formdiv" placeholder="搜索关键字" value="${title}">
                 </div>
             </div>
                 </form>
