@@ -90,7 +90,7 @@
         }
         .topbut{
             position:fixed;top:0;margin:auto;left:0; right:0;
-            background-image: url(${ctx}/images/add/smallbg.png);
+            background-image: url(${ctx}/images/add/topbg.png);
             background-size:100% 100%;
             height: 54px;
             width: 100%;
