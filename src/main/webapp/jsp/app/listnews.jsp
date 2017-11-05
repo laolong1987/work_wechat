@@ -40,8 +40,10 @@
             max-height: 100px;
         }
         .imgdiv{
-            padding-left: 0;
-            padding-right: 0;
+            /*padding-left: 0;*/
+            /*padding-right: 0;*/
+            height: 80px;
+            background-size: cover;
         }
 
         .listdiv{
@@ -81,6 +83,7 @@
         .time{
             color: #777777;
             font-size: 12px;
+            float:left
         }
         .box.read{
             background: linear-gradient(#E7E7E7,  #FFFFFF); /* 标准的语法（必须放在最后） */
@@ -154,16 +157,23 @@
             <%--</div>--%>
         <%--</div>--%>
             <c:forEach items="${list}" var="l">
-                <div class="row box read" onclick="shownews('${l.id}')">
-                    <div class="col-xs-3 imgdiv">
-                        <img src="${ctx}/file/doDownload/${l.topimg}"  class="">
+                <div class="row box
+                  <c:if test="${l.readflag eq 1}">
+                read
+                </c:if>
+                " onclick="shownews('${l.id}')">
+                    <div class="col-xs-3 imgdiv" style="background-image: url(${ctx}/file/doDownload/${l.topimg})">
+                        <%--<img src="${ctx}/file/doDownload/${l.topimg}"  class="">--%>
                     </div>
                     <div class="col-xs-9" style="">
                         <div class="cut">${l.title}</div>
                         <div><p class="content">${l.cont}</p></div>
                         <div class="time">发布于
-                            <fmt:formatDate value="${l.puttime}" pattern="yyyy-MM-dd HH:mm"/></div>
-
+                            <fmt:formatDate value="${l.puttime}" pattern="yyyy-MM-dd HH:mm"/>
+                        </div>
+                        <c:if test="${l.readflag eq 0}">
+                            <div style="float:right;color: red">未读</div>
+                        </c:if>
                     </div>
                 </div>
             </c:forEach>

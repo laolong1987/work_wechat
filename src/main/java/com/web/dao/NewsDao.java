@@ -56,4 +56,13 @@ public class NewsDao extends BaseDao{
         return super.findResult(sql.toString(), map);
     }
 
+    public List<Newsflag> findNewsidByreadid(String readid){
+        StringBuffer sql = new StringBuffer();
+        sql.append("select * from newsflag where readid=:readid ");
+        Map map = new HashMap();
+        map.put("readid",readid);
+        List<Newsflag> list = super.findObjects(sql.toString(), map, Newsflag.class);
+        return list;
+    }
+
 }

@@ -35,6 +35,10 @@ public class NewsService {
         newsDao.save(news);
     }
 
+    public void saveNewsflag(Newsflag newsflag){
+        newsDao.save(newsflag);
+    }
+
 
     public List<Newsflag> findNewsidByNewsId(String newsid){
         return newsDao.findNewsidByNewsId(newsid);
@@ -42,5 +46,9 @@ public class NewsService {
 
     public List<Map> searchNewsByEmpid(Map map){
         return newsDao.searchNewsByEmpid(map);
+    }
+
+    public List<Newsflag> findNewsidByreadid(String readid){
+        return newsDao.findNewsidByreadid(readid);
     }
 }

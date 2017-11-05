@@ -4,9 +4,11 @@ package com.web.controller;
 import com.utils.ConvertUtil;
 import com.utils.DateUtil;
 import com.utils.StringUtil;
+import com.web.entity.Employee;
 import com.web.entity.News;
 import com.web.entity.Newsflag;
 import com.web.service.NewsService;
+import com.web.service.OrgService;
 import com.web.service.UploadFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +36,8 @@ public class WorkNewsController {
     @Autowired
     NewsService newsService;
 
+    @Autowired
+    OrgService orgService;
 
 
     @RequestMapping(value = "/detailnews", method = RequestMethod.GET)
@@ -43,6 +47,21 @@ public class WorkNewsController {
             News news = newsService.getNews(id);
             request.setAttribute("news",news);
             request.setAttribute("puttime", DateUtil.SimpleDateUserFormat(news.getPuttime(),"yyyy-MM-dd HH:mm"));
+
+            //记录阅读人
+            String userid=ConvertUtil.safeToString(request.getSession().getAttribute("newsUserId"),"");
+            if(!"".equals(userid)){
+                Employee employee= orgService.findEmployee(userid);
+                if(null!=employee){
+                    Newsflag newsflag=new Newsflag();
+                    newsflag.setCreatetime(new Date());
+                    newsflag.setNewsid(id);
+                    newsflag.setUpdatetime(new Date());
+                    newsflag.setReadid(userid);
+                    newsflag.setReadname(employee.getYgxm());
+                    newsService.saveNewsflag(newsflag);
+                }
+            }
 
             List<Newsflag> newsflags=newsService.findNewsidByNewsId(String.valueOf(id));
             String names="";
@@ -66,8 +85,25 @@ public class WorkNewsController {
         Map p=new HashMap<>();
         p.put("title",title);
         List<Map> list=newsService.searchNewsByEmpid(p);
+
+        //记录阅读人
+        Map<String,String> readmap=new HashMap<>();
+        String userid=ConvertUtil.safeToString(request.getSession().getAttribute("newsUserId"),"");
+        if(!"".equals(userid)){
+            List<Newsflag> newsflags=newsService.findNewsidByreadid(userid);
+            for (Newsflag flag:newsflags) {
+                readmap.put(""+flag.getNewsid(),""+flag.getNewsid());
+            }
+        }
+
         for (Map map:list) {
             map.put("cont", StringUtil.Html2Text(ConvertUtil.safeToString(map.get("content"),"")));
+            String newsid= ConvertUtil.safeToString(map.get("id"),"");
+            String readflag="0";
+            if(readmap.containsKey(newsid)){
+                readflag="1";
+            }
+            map.put("readflag",readflag);
         }
         request.setAttribute("list",list);
         return "/jsp/app/listnews";

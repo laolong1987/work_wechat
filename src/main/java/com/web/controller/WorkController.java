@@ -50,10 +50,19 @@ public class WorkController {
 
         String userid=ConvertUtil.safeToString(request.getSession().getAttribute("newsUserId"),"");
 
+        if("".equals(userid)){
+            return "/jsp/app/noquanxian";
+        }
         Employee employee= orgService.findEmployee(userid);
+        if(null==employee){
+            return "/jsp/app/noquanxian";
+        }
         Dept dept=orgService.findDept(employee.getZzdwbm());
         request.setAttribute("name",employee.getYgxm());
         request.setAttribute("dept",dept.getDeptName());
+
+
+
         return "/jsp/app/addleave";
     }
 
@@ -118,8 +127,13 @@ public class WorkController {
     @RequestMapping(value = "/addcar", method = RequestMethod.GET)
     public String addcar(HttpServletRequest request,HttpServletResponse response) {
         String userid=ConvertUtil.safeToString(request.getSession().getAttribute("newsUserId"),"");
-
+        if("".equals(userid)){
+            return "/jsp/app/noquanxian";
+        }
         Employee employee= orgService.findEmployee(userid);
+        if(null==employee){
+            return "/jsp/app/noquanxian";
+        }
         Dept dept=orgService.findDept(employee.getZzdwbm());
         request.setAttribute("name",employee.getYgxm());
         request.setAttribute("dept",dept.getDeptName());
@@ -206,8 +220,13 @@ public class WorkController {
     @RequestMapping(value = "/addguestmeal", method = RequestMethod.GET)
     public String addguestmeal(HttpServletRequest request,HttpServletResponse response) {
         String userid=ConvertUtil.safeToString(request.getSession().getAttribute("newsUserId"),"");
-
+        if("".equals(userid)){
+            return "/jsp/app/noquanxian";
+        }
         Employee employee= orgService.findEmployee(userid);
+        if(null==employee){
+            return "/jsp/app/noquanxian";
+        }
         Dept dept=orgService.findDept(employee.getZzdwbm());
         request.setAttribute("name",employee.getYgxm());
         request.setAttribute("dept",dept.getDeptName());
