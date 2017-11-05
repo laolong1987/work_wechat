@@ -45,6 +45,9 @@ public class WechatConfig {
     @Value("${createDepartment}")
     private String createDepartment;
 
+    @Value("${secret}")
+    private String secret;
+
 
     public String getCorpID() {
         return corpID;
@@ -141,5 +144,21 @@ public class WechatConfig {
 
     public void setApprovalSecret(String approvalSecret) {
         this.approvalSecret = approvalSecret;
+    }
+
+    public String getAuthUrl() {
+        return authUrl;
+    }
+
+    public String getGetAuthUserInfoUrl() {
+        return getAuthUserInfoUrl;
+    }
+
+    public String getSecret() {
+        return secret;
+    }
+
+    public void setSecret(String secret) {
+        this.secret = secret;
     }
 }
