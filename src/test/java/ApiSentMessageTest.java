@@ -11,7 +11,7 @@ import org.junit.Test;
 public class ApiSentMessageTest {
 
 
-    @Test
+
     public void sentMpNews() {
         JSONObject data = new JSONObject();
 
@@ -75,7 +75,6 @@ public class ApiSentMessageTest {
         System.out.println(response);
     }
 
-    @Test
     public void sentTextCard() {
         JSONObject data = new JSONObject();
 

@@ -143,7 +143,7 @@
               var status = item.status;
               if (status == null)
                 status = "";
-              elements += ' <a href="apply/' + item.templateId + '/' + item.dataId + '?sentby=' + item.sentBy + '">' + '<div class="approach-list"><div class="clearfloat title">' +
+              elements += ' <a href="apply/' + item.templateId + '/' + item.dataId + '?sentby=' + item.sendBy + '">' + '<div class="approach-list"><div class="clearfloat title">' +
                 '<span class="attr-name">单号：</span><span class="attr-value">' + item.orderNum + '</span><span class="doc-date">' + item.writeDate +
                 '</span></div><div class="content"><div class="clearfloat"><span class="attr-name">简称：</span><span class="attr-value">' + item.templateType +
                 '</span></div><div class="clearfloat"><span class="attr-name">主题：</span><span class="attr-value">' + item.subject +
