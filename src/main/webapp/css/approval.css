@@ -39,13 +39,13 @@ html, body {
 }
 
 .info-row .attr-name {
-  width: 25%;
+  width: 28%;
   text-align: right;
   color: #7C7C7C;
 }
 
 .info-row .attr-value {
-  width: 70%;
+  width: 67%;
   text-align: left;
   padding-left: .2rem;
 }
@@ -431,6 +431,7 @@ color:#0084d7;
   height: .54rem;
   border: none;
   background: transparent;
+  margin-top:-.06rem;
 }
 
 .receive-doc-title {
