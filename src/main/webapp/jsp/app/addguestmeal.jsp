@@ -241,7 +241,7 @@
         </label>
     </div>
 </form>
-    <div class="text-center tip" style="margin-bottom: 50px">注：中餐请于1点钱提交申请，晚餐请于16点钱提交申请</div>
+    <div class="text-center tip" style="margin-bottom: 50px">注：中餐请于1点前提交申请，晚餐请于16点前提交申请</div>
 
     <div  style="position:fixed;bottom:0;margin:auto;left:0; right:0;text-align: center">
         <button type="button" class="btn btn-primary addbtn" onclick="add()">提交审批</button>
