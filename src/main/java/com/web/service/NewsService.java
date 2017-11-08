@@ -51,4 +51,13 @@ public class NewsService {
     public List<Newsflag> findNewsidByreadid(String readid){
         return newsDao.findNewsidByreadid(readid);
     }
+
+    public boolean findNewsidByreadid(String readid,String newsid){
+        List<Newsflag>  list= newsDao.findNewsidByreadid(readid,newsid);
+        if(list.size()>0){
+            return false;
+        }else{
+            return true;
+        }
+    }
 }

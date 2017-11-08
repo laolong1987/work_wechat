@@ -39,7 +39,7 @@ public class NewsDao extends BaseDao{
 
     public List<Newsflag> findNewsidByNewsId(String newsid){
         StringBuffer sql = new StringBuffer();
-        sql.append("select * from newsflag where newsid=:newsid ");
+        sql.append("select  * from newsflag where newsid=:newsid ");
         Map map = new HashMap();
         map.put("newsid",newsid);
         List<Newsflag> list = super.findObjects(sql.toString(), map, Newsflag.class);
@@ -65,4 +65,13 @@ public class NewsDao extends BaseDao{
         return list;
     }
 
+    public List<Newsflag> findNewsidByreadid(String readid,String newsid){
+        StringBuffer sql = new StringBuffer();
+        sql.append("select * from newsflag where readid=:readid and newsid=:newsid ");
+        Map map = new HashMap();
+        map.put("readid",readid);
+        map.put("newsid",newsid);
+        List<Newsflag> list = super.findObjects(sql.toString(), map, Newsflag.class);
+        return list;
+    }
 }
