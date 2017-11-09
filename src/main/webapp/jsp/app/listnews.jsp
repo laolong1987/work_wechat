@@ -171,7 +171,7 @@
                         <div class="time">发布于
                             <fmt:formatDate value="${l.puttime}" pattern="yyyy-MM-dd HH:mm"/>
                         </div>
-                        <c:if test="${l.readflag eq 0}">
+                        <c:if test="${userid ne '' && l.readflag eq 0}">
                             <div style="float:right;color: red">未读</div>
                         </c:if>
                     </div>

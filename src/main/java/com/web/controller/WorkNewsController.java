@@ -53,13 +53,15 @@ public class WorkNewsController {
             if(!"".equals(userid)){
                 Employee employee= orgService.findEmployee(userid);
                 if(null!=employee){
-                    Newsflag newsflag=new Newsflag();
-                    newsflag.setCreatetime(new Date());
-                    newsflag.setNewsid(id);
-                    newsflag.setUpdatetime(new Date());
-                    newsflag.setReadid(userid);
-                    newsflag.setReadname(employee.getYgxm());
-                    newsService.saveNewsflag(newsflag);
+                    if (newsService.findNewsidByreadid(userid,""+id)){
+                        Newsflag newsflag=new Newsflag();
+                        newsflag.setCreatetime(new Date());
+                        newsflag.setNewsid(id);
+                        newsflag.setUpdatetime(new Date());
+                        newsflag.setReadid(userid);
+                        newsflag.setReadname(employee.getYgxm());
+                        newsService.saveNewsflag(newsflag);
+                    }
                 }
             }
 
@@ -94,6 +96,8 @@ public class WorkNewsController {
             for (Newsflag flag:newsflags) {
                 readmap.put(""+flag.getNewsid(),""+flag.getNewsid());
             }
+        }else{
+            request.setAttribute("userid",userid);
         }
 
         for (Map map:list) {
