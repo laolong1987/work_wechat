@@ -106,7 +106,7 @@
 
   </div>
   <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">实际用用餐数量：</div>
+    <div class="attr-name f-fl  ">实际用餐数量：</div>
     <c:choose>
       <c:when test="${fn:contains(editfields, 'sjycsl')}">
         <input class="attr-value f-fl edit" type="text" name="sjycsl"
