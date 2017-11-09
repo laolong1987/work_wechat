@@ -43,6 +43,11 @@
 
   <div class="waitProcess">
     <div class="data-list">
+      <c:if test="${fn:length(waitProcessList)==0}">
+
+        <div class="none-data"><div class="data-not-find"></div>暂时没有数据待您审批</div>
+
+      </c:if>
       <c:forEach var="item" items="${waitProcessList}">
         <a
           href="<%=webRoot%>/approval/apply/${item.templateId}/${item.dataId}?sentby=${item.sendBy}">
@@ -74,6 +79,13 @@
 
   <div class="processed f-dn">
     <div class="data-list">
+      <c:if test="${fn:length(processedList)==0}">
+
+         <div class="none-data">
+           <div class="data-not-find"></div>
+           暂时没有审批数据</div>
+
+       </c:if>
       <c:forEach var="item" items="${processedList}">
         <a href="<%=webRoot%>/approval/apply/${item.templateId}/${item.dataId}">
           <div class="approach-list">
@@ -157,6 +169,19 @@
       }
     })
   }
+
+  function pushHistory() {
+     var state = {
+       title: "title",
+       url: "#"
+     };
+     window.history.pushState(state, "title", "#");
+  }
+   $(function(){
+     pushHistory();
+     window.addEventListener("popstate", function(e) {
+      }, false);
+  });
 
 </script>
 </body>

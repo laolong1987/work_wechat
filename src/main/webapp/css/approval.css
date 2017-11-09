@@ -504,3 +504,22 @@ text-align: center;
 -ms-user-select:none;
 user-select:none;
 }
+
+.none-data{
+  padding: 3.2rem 0;
+      margin: 0 auto;
+      text-align: center;
+      font-size: .34rem;
+       color: rgb(200,200,200);
+/* color: #0084d7;
+      opacity: 0.4; */
+
+}
+
+.data-not-find{
+  width: 1rem;
+  height: 1rem;
+  margin: 0 auto 0.42rem auto;
+  background: url("../images/notFind.png") no-repeat center center/cover;
+
+}
