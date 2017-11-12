@@ -39,11 +39,6 @@
   <%@include file="common-head.jsp"%>
 
   <div class="info-row mgt-20 clearfloat">
-    <div class="attr-name f-fl  ">类别：</div>
-    <div class="attr-value f-fl  ">${object.useType}</div>
-  </div>
-
-  <div class="info-row mgt-20 clearfloat">
     <div class="attr-name f-fl  ">部门：</div>
     <div class="attr-value f-fl  ">${object.department}</div>
   </div>

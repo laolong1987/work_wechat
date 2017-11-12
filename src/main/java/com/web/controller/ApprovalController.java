@@ -117,7 +117,7 @@ public class ApprovalController {
         } else if ("374".equals(templateId)) {//公差申请
             BusinessTripApplyModel model = new BusinessTripApplyModel(formInstanceJson);
             request.setAttribute("object", model);
-            page = "/jsp/BusinessTripApplyModel";
+            page = "/jsp/BusinessTripApply";
         } else if ("334".equals(templateId)) {//发文单
             SentDocModel model = new SentDocModel(formInstanceJson);
             request.setAttribute("object", model);

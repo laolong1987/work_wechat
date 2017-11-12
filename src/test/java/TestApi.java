@@ -111,7 +111,7 @@ public class TestApi {
     @Test
     public void getWaitProcessNotice() {
         //List<WaitProcessModel> res = approvalService.getWaitProcessNotice("220238",null,null);
-        List<WaitProcessModel> res = approvalService.getWaitProcessNotice("220238", "0", "100", "waitProcess");
+        List<WaitProcessModel> res = approvalService.getWaitProcessNotice("220238", "0", "500", "processed");
 
         System.out.println(res);
     }
@@ -162,7 +162,7 @@ public class TestApi {
     @Test
     public void getSelfProcessedNotice() {
         //List<WaitProcessModel> res = approvalService.getWaitProcessNotice("220238",null,null);
-        List<WaitProcessModel> res = approvalService.getSelfProcessedNotice("220238", "0", "50", "2", "349");
+        List<WaitProcessModel> res = approvalService.getSelfProcessedNotice("220184", "0", "50", "2", "321");
 
         System.out.println(res);
     }
