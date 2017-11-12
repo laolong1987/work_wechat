@@ -175,7 +175,7 @@
         <label class="col-xs-2 control-label lab lab2">计</label>
         <div class="col-xs-6">
             <%--<p class="form-control-static" style="margin-top: 7px" id="days"></p>--%>
-            <input  type="number" class="touming"  name="day" id="day" value="" required>
+            <input  type="text" class="touming"  name="day" id="day" value="" required>
         </div>
         <label class="col-xs-4 control-label lab lab3">天</label>
     </div>

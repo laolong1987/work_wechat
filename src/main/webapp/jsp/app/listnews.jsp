@@ -30,10 +30,12 @@
         }
         .box{
             /*box-shadow: 10px 10px 5px #888888;*/
-            background-color: #F4F4F4;
-            border-radius: 5px;
-            padding-top: 5px;
-            padding-bottom: 5px;
+            /*background-color: #F4F4F4;*/
+            /*border-radius: 5px;*/
+            background-image: url(${ctx}/images/add/noreadbg.png);
+            background-size:100% 100%;
+            padding-top: 0px;
+            padding-bottom: 10px;
         }
         .box img{
             max-width: 100px;
@@ -86,8 +88,10 @@
             float:left
         }
         .box.read{
-            background: linear-gradient(#E7E7E7,  #FFFFFF); /* 标准的语法（必须放在最后） */
-            box-shadow: 0px 5px 1px  #EBEBEB;
+            /*background: linear-gradient(#E7E7E7,  #FFFFFF); !* 标准的语法（必须放在最后） *!*/
+            /*box-shadow: 0px 5px 1px  #EBEBEB;*/
+            background-image: url(${ctx}/images/add/readbg.png);
+            background-size:100% 100%;
             /*background-color: #FFFFFF;*/
         }
         .ms{
