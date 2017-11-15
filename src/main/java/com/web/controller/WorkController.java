@@ -99,7 +99,7 @@ public class WorkController {
         json.put("FormType","349");
         json.put("data",data);
 
-
+        System.out.println(DateUtil.getCurrentTime()+"--- createleave start --- ");
         String FormConfigID= workFromService.CreateFormInstance(json.toJSONString());
         JSONObject resultJson = JSON.parseObject(FormConfigID);
         System.out.println(FormConfigID);
@@ -119,6 +119,7 @@ public class WorkController {
         map.put("processby",userid);
         String result3=workFromService.RaiseWorkflow(map);
         System.out.println(result3);
+        System.out.println(DateUtil.getCurrentTime()+"--- createleave end --- ");
         return "redirect:../approval/self-list/349";
 
     }
@@ -182,6 +183,7 @@ public class WorkController {
         json.put("FormType","321");
         json.put("data",data);
 
+        System.out.println(DateUtil.getCurrentTime()+"--- createcar start --- ");
 
         String FormConfigID= workFromService.CreateFormInstance(json.toJSONString());
         JSONObject resultJson = JSON.parseObject(FormConfigID);
@@ -211,7 +213,7 @@ public class WorkController {
         map.put("processby",userid);
         String result3=workFromService.RaiseWorkflow(map);
         System.out.println(result3);
-
+        System.out.println(DateUtil.getCurrentTime()+"--- createcar end --- ");
         return "redirect:../approval/self-list/321";
     }
 
@@ -295,6 +297,7 @@ public class WorkController {
 // {"name":"sjycsl","type":"String"},{"name":"xfje","type":"Decimal"},{"name":"yctype","type":"String"}],"FormType":323,"ShortTitle":"客饭申请单"}
 
 
+        System.out.println(DateUtil.getCurrentTime()+"--- createguestmeal start --- ");
         String FormConfigID= workFromService.CreateFormInstance(json.toJSONString());
         JSONObject resultJson = JSON.parseObject(FormConfigID);
         String result= workFromService.StartFormWorkflow(resultJson.getString("FormConfigID"));
@@ -313,6 +316,8 @@ public class WorkController {
         map.put("processby",userid);
         String result3=workFromService.RaiseWorkflow(map);
         System.out.println(result3);
+        System.out.println(DateUtil.getCurrentTime()+"--- createguestmeal end --- ");
+
         return "redirect:../approval/self-list/323";
     }
 }
