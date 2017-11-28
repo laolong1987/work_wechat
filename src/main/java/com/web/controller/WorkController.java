@@ -43,11 +43,7 @@ public class WorkController {
 
     @RequestMapping(value = "/addleave", method = RequestMethod.GET)
     public String addleave(HttpServletRequest request,HttpServletResponse response) {
-
-//        System.out.println(approvalService.getDepartments());
-//        System.out.println(approvalService.getEmployeeUsers());
-//orgService.updateDept(); 220238
-
+        
         String userid=ConvertUtil.safeToString(request.getSession().getAttribute("newsUserId"),"");
 
         if("".equals(userid)){
