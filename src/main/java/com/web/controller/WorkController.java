@@ -2,6 +2,7 @@ package com.web.controller;
 
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.utils.ConvertUtil;
 import com.utils.DateUtil;
@@ -104,12 +105,15 @@ public class WorkController {
         String result2= approvalService.getMayProcessItems(resultJson.getString("TemplateID"),resultJson.getString("DataID"),userid);
         System.out.println(result2);
 
+        JSONObject jsonObject2=JSON.parseObject(result2);
+        JSONObject jsonObject3= (JSONObject) jsonObject2.get("data");
+        JSONArray jsonArray=jsonObject3.getJSONArray("eventlist");
         Map<String,String> map=new HashMap<>();
-        map.put("formevent","FormNext");
+        map.put("formevent",jsonArray.getJSONObject(0).get("event").toString());
 //        map.put("configid",resultJson.getString("FormConfigID"));
         map.put("templateid",resultJson.getString("TemplateID"));
         map.put("dataid",resultJson.getString("DataID"));
-        map.put("statecaption","开始");
+        map.put("statecaption",jsonObject3.get("statecaption").toString());
         map.put("sendby",userid);
         map.put("content","");
         map.put("processby",userid);
@@ -197,13 +201,15 @@ public class WorkController {
 
         String result2= approvalService.getMayProcessItems(resultJson.getString("TemplateID"),resultJson.getString("DataID"),userid);
         System.out.println(result2);
-
+        JSONObject jsonObject2=JSON.parseObject(result2);
+        JSONObject jsonObject3= (JSONObject) jsonObject2.get("data");
+        JSONArray jsonArray=jsonObject3.getJSONArray("eventlist");
         Map<String,String> map=new HashMap<>();
-        map.put("formevent","FormNext");
+        map.put("formevent",jsonArray.getJSONObject(0).get("event").toString());
 //        map.put("configid",resultJson.getString("FormConfigID"));
         map.put("templateid",resultJson.getString("TemplateID"));
         map.put("dataid",resultJson.getString("DataID"));
-        map.put("statecaption","开始");
+        map.put("statecaption",jsonObject3.get("statecaption").toString());
         map.put("sendby",userid);
         map.put("content","");
         map.put("processby",userid);
@@ -300,13 +306,15 @@ public class WorkController {
         System.out.println(result);
         String result2= approvalService.getMayProcessItems(resultJson.getString("TemplateID"),resultJson.getString("DataID"),userid);
         System.out.println(result2);
-
+        JSONObject jsonObject2=JSON.parseObject(result2);
+        JSONObject jsonObject3= (JSONObject) jsonObject2.get("data");
+        JSONArray jsonArray=jsonObject3.getJSONArray("eventlist");
         Map<String,String> map=new HashMap<>();
-        map.put("formevent","FormNext");
+        map.put("formevent",jsonArray.getJSONObject(0).get("event").toString());
 //        map.put("configid",resultJson.getString("FormConfigID"));
         map.put("templateid",resultJson.getString("TemplateID"));
         map.put("dataid",resultJson.getString("DataID"));
-        map.put("statecaption","开始");
+        map.put("statecaption",jsonObject3.get("statecaption").toString());
         map.put("sendby",userid);
         map.put("content","");
         map.put("processby",userid);
