@@ -158,7 +158,7 @@
     <div class="row content">
         <label class="col-xs-2 control-label lab lab2">开始</label>
         <div class="col-xs-6">
-            <input  type="text" class="form_datetime touming" placeholder="请选择开始时间(必填)" name="date1" id="date1" value="" onchange="btnCount_Click()" required>
+            <input  type="text" class="form_datetime touming" placeholder="请选择开始时间(必填)" name="date1" id="date1" value="" onchange="btnCount_Click(this)" required>
         </div>
         <label class="col-xs-4 control-label lab lab3" for="date1">请选择(必填)</label>
     </div>
@@ -166,7 +166,7 @@
     <div class="row content">
         <label class="col-xs-2 control-label lab lab2">结束</label>
         <div class="col-xs-6">
-            <input  type="text" class="form_datetime touming" placeholder="请选择结束时间(必填)" name="date2" id="date2" value="" onchange="btnCount_Click()" required>
+            <input  type="text" class="form_datetime touming" placeholder="请选择结束时间(必填)" name="date2" id="date2" value="" onchange="btnCount_Click(this)" required>
         </div>
         <label class="col-xs-4 control-label lab lab3" for="date2">请选择(必填)</label>
     </div>
@@ -204,85 +204,8 @@
         src="http://cache.shchengdian.com/plugins/mobiscroll.custom-3.0.0-beta2.min.js"
         charset="UTF-8"></script>
 <script>
-
-$('.form_datetime').mobiscroll().datetime({
-    theme: 'Mobiscroll',
-    lang: 'zh',
-    display: 'center',
-//    dateFormat: 'yyyy-MM-dd HH:mm',
-    min: new Date(2000, 1, 1),
-    disabled: false
-});
-
-
-    function  btnCount_Click(){
-        var a=$("#date1").val();
-        var b=$("#date2").val();
-        var days='';
-        if(''!=a && !''!=b){
-            a= a.substr(0, a.length-6);
-            b= b.substr(0, b.length-6);
-            var c=DateDiff(a,b);
-            if(c>0){
-                days=c;
-            }
-        }
-//        $("#days").text(days+"天");
-        $("#day").val(days);
-    }
-    //计算天数差的函数，通用
-    function  DateDiff(sDate1,  sDate2){    //sDate1和sDate2是2006-12-18格式
-        var  aDate,  oDate1,  oDate2,  iDays
-        aDate  =  sDate1.split("/")
-        oDate1  =  new  Date(aDate[1]  +  '-'  +  aDate[2]  +  '-'  +  aDate[0])    //转换为12-18-2006格式
-        aDate  =  sDate2.split("/")
-        oDate2  =  new  Date(aDate[1]  +  '-'  +  aDate[2]  +  '-'  +  aDate[0])
-        iDays  =  parseInt(Math.abs(oDate1  -  oDate2)  /  1000  /  60  /  60  /24)+1  //把相差的毫秒数转换为天数
-        return  iDays
-    }
-
-    function add(){
-        var type=$("#type").val();
-        if(''==type){
-            alert('请选择请假类型');
-            return
-        }
-        var a=$("#date1").val();
-        var b=$("#date2").val();
-
-        if(''==a){
-            alert('请选择开始时间');
-            return
-        }
-        if(''==b){
-            alert('请选择结束时间');
-            return
-        }
-        if(''!=a && !''!=b){
-            a= a.substr(0, a.length-6);
-            b= b.substr(0, b.length-6);
-            var c=DateDiff(a,b);
-            if(c<=0){
-                alert('日期选择错误,请重新选择');
-                return
-            }
-        }
-
-        var desc=$("#desc").val();
-        if(''==desc){
-            alert('请选择请假类型');
-            return
-        }
-
-        $("#day").val(DateDiff(a,b));
-        $(".btn").attr("disabled", true);
-        $("#addform").submit();
-    }
-
-    function tolist(){
-        window.location.href='${ctx}/approval/self-list/349';
-    }
-
+    var ctx='${ctx}';
 </script>
+<script type="text/javascript" src='${ctx}/js/work/addleave.js' />
 </body>
 </html>

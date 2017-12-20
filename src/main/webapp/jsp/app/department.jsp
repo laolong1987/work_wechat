@@ -183,14 +183,13 @@
 </script>
 <script id="list_tpl1" type="text/x-dot-template">
     {{~it:val:key}}
-
     <div class="list-con yxzr" style="padding-left: 0;background: #fff;">
         <label class="weui-cell weui-check__label" peoId="{{=val.id}}">
             <div class="weui-cell__bd touxiang">
                 <img src="${ctx}/images/add/user.png">
             </div>
             <div class="weui-cell__bd">
-                <p>姓名2</p>
+                <p>{{=val.fullname}}</p>
             </div>
             <div class="weui-cell__ft">教学部
                 <i class="weui-icon-cancel"  peoId="{{=val.id}}" style="margin-top: -3px; color:#b3b3b3"></i>
