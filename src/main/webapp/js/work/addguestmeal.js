@@ -1,10 +1,8 @@
-/**
- * Created by gaoyang on 17/12/20.
- */
 $('.form_datetime').mobiscroll().date({
     theme: 'Mobiscroll',
     lang: 'zh',
     display: 'center',
+    dateFormat: 'yy/mm/dd',
     min: new Date(2000, 1, 1),
     disabled: false
 });
@@ -25,6 +23,7 @@ $(function() {
         if(t<=p){//下滚
         }
         else{//上滚
+//                $(".").show();
             $(".topbut").slideDown(300);
 
         }
@@ -73,22 +72,31 @@ function addoption(){
 
 function addoptiondetail(yctype,yczl){
     if("工作用餐"==yctype && "早餐"==yczl){
+//            $("#ycbz").html("<option value='' disabled selected>请选择用餐标准(必填)</option>");
         $("#ycbz").html("<option value='4'>4元</option>");
+
+//            $("#ycdd").html("<option value='' disabled selected>请选择用餐地点(必填)</option>");
         $("#ycdd").html("<option value='综合楼辅楼'>综合楼辅楼</option>");
         $("#ycdd").append("<option value='综合楼职工厅'>综合楼职工厅</option>");
         $("#ycdd").append("<option value='其他'>其他</option>");
     }
 
     if(("工作用餐"==yctype && "中餐"==yczl) || ("工作用餐"==yctype && "晚餐"==yczl) ){
+//            $("#ycbz").html("<option value='' disabled selected>请选择用餐标准(必填)</option>");
         $("#ycbz").html("<option value='10'>10元</option>");
+
+//            $("#ycdd").html("<option value='' disabled selected>请选择用餐地点(必填)</option>");
         $("#ycdd").html("<option value='综合楼辅楼'>综合楼辅楼</option>");
         $("#ycdd").append("<option value='综合楼职工厅'>综合楼职工厅</option>");
         $("#ycdd").append("<option value='其他'>其他</option>");
     }
 
     if("工作用餐"==yctype && "夜点"==yczl ){
+//            $("#ycbz").html("<option value='' disabled selected>请选择用餐标准(必填)</option>");
         $("#ycbz").html("<option value='4'>4元</option>");
         $("#ycbz").append("<option value='6'>6元</option>");
+
+//            $("#ycdd").html("<option value='' disabled selected>请选择用餐地点(必填)</option>");
         $("#ycdd").html("<option value='综合楼辅楼'>综合楼辅楼</option>");
         $("#ycdd").append("<option value='综合楼职工厅'>综合楼职工厅</option>");
         $("#ycdd").append("<option value='其他'>其他</option>");
@@ -96,33 +104,48 @@ function addoptiondetail(yctype,yczl){
 
 
     if("接待用餐"==yctype && "早餐"==yczl ){
+//            $("#ycbz").html("<option value='' disabled selected>请选择用餐标准(必填)</option>");
         $("#ycbz").html("<option value='4'>4元</option>");
+
+//            $("#ycdd").html("<option value='' disabled selected>请选择用餐地点(必填)</option>");
         $("#ycdd").html("<option value='综合楼辅楼'>综合楼辅楼</option>");
         $("#ycdd").append("<option value='其他'>其他</option>");
     }
 
 
     if("接待用餐"==yctype && "中餐"==yczl ){
+//            $("#ycbz").html("<option value='' disabled selected>请选择用餐标准(必填)</option>");
         $("#ycbz").html("<option value='10'>10元</option>");
         $("#ycbz").append("<option value='15'>15元</option>");
+
+//            $("#ycdd").html("<option value='' disabled selected>请选择用餐地点(必填)</option>");
         $("#ycdd").html("<option value='综合楼来宾厅'>综合楼来宾厅</option>");
         $("#ycdd").append("<option value='综合楼辅楼'>综合楼辅楼</option>");
         $("#ycdd").append("<option value='其他'>其他</option>");
     }
 
     if("接待用餐"==yctype && "晚餐"==yczl ){
+//            $("#ycbz").html("<option value='' disabled selected>请选择用餐标准(必填)</option>");
         $("#ycbz").html("<option value='10'>10元</option>");
         $("#ycbz").append("<option value='15'>15元</option>");
+
+//            $("#ycdd").html("<option value='' disabled selected>请选择用餐地点(必填)</option>");
         $("#ycdd").html("<option value='综合楼辅楼'>综合楼辅楼</option>");
         $("#ycdd").append("<option value='其他'>其他</option>");
     }
     if("接待用餐"==yctype && "夜点"==yczl ){
+//            $("#ycbz").html("<option value='' disabled selected>请选择用餐标准(必填)</option>");
         $("#ycbz").html("<option value='4'>4元</option>");
         $("#ycbz").append("<option value='6'>6元</option>");
+
+//            $("#ycdd").html("<option value='' disabled selected>请选择用餐地点(必填)</option>");
         $("#ycdd").html("<option value='综合楼辅楼'>综合楼辅楼</option>");
         $("#ycdd").append("<option value='其他'>其他</option>");
     }
 }
+
+
+
 
 function add(){
     var lfdwjry=$("#lfdwjry").val();
@@ -141,11 +164,11 @@ function add(){
         return
     }
 
-    var ycremark=$("#ycremark").val();
-    if(''==ycremark){
-        alert('请填写备注');
-        return
-    }
+//        var ycremark=$("#ycremark").val();
+//        if(''==ycremark){
+//            alert('请填写备注');
+//            return
+//        }
 
     var yczl=$("#yczl").val();
     if(''==yczl){
@@ -171,5 +194,6 @@ function tolist(){
     window.location.href=ctx+'/approval/self-list/323';
 }
 function hidejt(){
+//        $(".").hide();
     $(".topbut").slideUp(300);
 }

@@ -183,6 +183,7 @@
 </script>
 <script id="list_tpl1" type="text/x-dot-template">
     {{~it:val:key}}
+
     <div class="list-con yxzr" style="padding-left: 0;background: #fff;">
         <label class="weui-cell weui-check__label" peoId="{{=val.id}}">
             <div class="weui-cell__bd touxiang">

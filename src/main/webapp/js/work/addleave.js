@@ -1,44 +1,44 @@
-/**
- * Created by gaoyang on 17/12/20.
- */
-
 $('.form_datetime').mobiscroll().datetime({
     theme: 'Mobiscroll',
     lang: 'zh',
     display: 'center',
+//    dateFormat: 'yyyy-MM-dd HH:mm',
     min: new Date(2000, 1, 1),
     disabled: false
 });
 
-function  btnCount_Click(obj){
+
+function  btnCount_Click(){
+    //alert('aaaaa');
     var a=$("#date1").val();
+
     var b=$("#date2").val();
-    var days='';
-    console.log(a);
-    console.log(b);
-    if(''!=a && ''!=b){
+    var days='0';
+
+    if(''!=a &&  ''!=b){
         a= a.substr(0, a.length-6);
         b= b.substr(0, b.length-6);
         var c=DateDiff(a,b);
-        console.log(c);
         if(c>0){
             days=c;
-        }else{
-            obj.value='';
-            alert('结束时间不能小于开始时间');
-            return
         }
     }
+//        $("#days").text(days+"天");
     $("#day").val(days);
+
 }
 //计算天数差的函数，通用
 function  DateDiff(sDate1,  sDate2){    //sDate1和sDate2是2006-12-18格式
-    var  oDate1,  oDate2,  iDays;
-    oDate1  =  new  Date(sDate1.replace(/-/g,"/"));    //转换为12-18-2006格式
-    oDate2  =  new  Date(sDate2.replace(/-/g,"/"));
-    iDays  =  oDate2.getTime()-oDate1.getTime();
-    var time=parseInt(iDays/(1000*60*60*24))+1;
-    return  time;
+    var  aDate,  oDate1,  oDate2,  iDays;
+    aDate  =  sDate1.split("/");
+    oDate1  =  new  Date(aDate[0]  ,  aDate[1]-1  ,  aDate[2], 0, 0, 0);    //转换为12-18-2006格式
+    aDate  =  sDate2.split("/");
+    oDate2  =  new  Date(aDate[0]  , aDate[1]-1  ,  aDate[2],0,0,0);
+    var date3=oDate2.getTime()-oDate1.getTime() ;
+    iDays  =  parseInt(Math.floor(date3  / ( 24*3600*1000 )) ) //把相差的毫秒数转换为天数
+
+    //  iDays  = Math.floor(date3/(24*3600*1000))；
+    return  iDays
 }
 
 function add(){
@@ -70,7 +70,7 @@ function add(){
 
     var desc=$("#desc").val();
     if(''==desc){
-        alert('请选择请假类型');
+        alert('请填写备注');
         return
     }
 

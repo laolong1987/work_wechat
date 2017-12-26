@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: gaoyang
-  Date: 17/10/10
-  Time: 下午8:52
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -22,7 +15,8 @@
     <style>
 
         body{
-            background-image: url(${ctx}/images/add/bg.jpg);
+          /*  background-image: url(${ctx}/images/add/bg.jpg);*/
+          	  background-color: #efefef
         }
         .ziti1{
             width: 82px;
@@ -117,24 +111,26 @@
     </style>
 </head>
 <body>
-<div class="topbut">
-    <button type="button" class="btn btn-default" onclick="tolist()">查看列表</button>
-    <%--<img src="${ctx}/images/add/arrowtop.png">--%>
-</div>
+
+			
+
 <div class="container">
-    <div class="row top" style="margin-top: 60px">
+	<div class="row content "  style="margin-top: 8px">
+	 <button type="button" class="btn btn-default btn-primary pull-right"  style="margin-top: 10px;margin-right: 20px;" onclick="tolist()"><i class="fa fa-list"></i>  查看列表</button>
+</div>
+    <div class="row top" style="margin-top: 20px">
         <div class="col-xs-4">
-            <span class="ziti1">${name}</span>
+            <span class="ziti1"><i class="fa fa-user"></i> ${name}</span>
         </div>
         <div class="col-xs-8 text-right">
-            <span class="ziti2">申请部门:</span>
+            <span class="ziti2"><i class="fa fa-users"></i> 申请部门:</span>
             <span class="ziti1">${dept}</span>
         </div>
     </div>
     <form  id="addform" action="createleave" name="addform" method="post" >
         <%--<input  type="hidden" id="day" name="day" >--%>
     <div class="row content">
-        <label class="col-xs-2 control-label lab lab2">类型</label>
+        <label class="col-xs-3 control-label lab lab2"><i class="fa fa-navicon"></i> 类型</label>
         <div class="col-xs-6">
             <select class="touming" id="type" name="type">
                 <option value="" disabled selected>请选择请假类型(必填)</option>
@@ -151,44 +147,45 @@
                 <option value="授乳假">授乳假</option>
             </select>
         </div>
-        <label class="col-xs-4 control-label lab lab3" for="type">请选择(必填)
+        <label class="col-xs-3 control-label lab lab3" for="type">&nbsp;&nbsp;
         </label>
     </div>
 
     <div class="row content">
-        <label class="col-xs-2 control-label lab lab2">开始</label>
+        <label class="col-xs-3 control-label lab lab2"><i class="fa fa-calendar"></i> 开始</label>
         <div class="col-xs-6">
-            <input  type="text" class="form_datetime touming" placeholder="请选择开始时间(必填)" name="date1" id="date1" value="" onchange="btnCount_Click(this)" required>
+            <input  type="text" class="form_datetime touming" placeholder="请选择开始时间(必填)" name="date1" id="date1" value="" onchange="btnCount_Click()" required>
         </div>
-        <label class="col-xs-4 control-label lab lab3" for="date1">请选择(必填)</label>
+        <label class="col-xs-3 control-label lab lab3" for="date1">&nbsp;&nbsp;</label>
     </div>
 
     <div class="row content">
-        <label class="col-xs-2 control-label lab lab2">结束</label>
+        <label class="col-xs-3 control-label lab lab2"><i class="fa fa-calendar"></i> 结束</label>
         <div class="col-xs-6">
-            <input  type="text" class="form_datetime touming" placeholder="请选择结束时间(必填)" name="date2" id="date2" value="" onchange="btnCount_Click(this)" required>
+            <input  type="text" class="form_datetime touming" placeholder="请选择结束时间(必填)" name="date2" id="date2" value="" onchange="btnCount_Click()" required>
         </div>
-        <label class="col-xs-4 control-label lab lab3" for="date2">请选择(必填)</label>
+        <label class="col-xs-3 control-label lab lab3" for="date2">&nbsp;&nbsp;</label>
     </div>
 
     <div class="row content">
-        <label class="col-xs-2 control-label lab lab2">计</label>
+        <label class="col-xs-3 control-label lab lab2">计</label>
         <div class="col-xs-6">
             <%--<p class="form-control-static" style="margin-top: 7px" id="days"></p>--%>
             <input  type="text" class="touming"  name="day" id="day" value="" required>
         </div>
-        <label class="col-xs-4 control-label lab lab3">天</label>
+        <label class="col-xs-3 control-label lab ">天</label>
     </div>
 
-    <div class="row content2" style="margin-bottom: 50px">
-        <label class="col-xs-2 control-label lab lab2">理由</label>
-        <div class="col-xs-10">
+    <div class="row content2" style="margin-bottom: 10px">
+        <label class="col-xs-3 control-label lab lab2"><i class="fa fa-comment-o"></i> 理由</label>
+        <div class="col-xs-9">
             <textarea class="touming" rows="5" name="desc" id="desc" placeholder="请填写备注(必填)"  required></textarea>
         </div>
     </div>
     </form>
-    <div  style="position:fixed;bottom:0;margin:auto;left:0; right:0;text-align: center">
-        <button type="button" class="btn btn-primary addbtn" onclick="add()">提交审批</button>
+   <%-- <div  style="position:fixed;bottom:0;margin:auto;left:0; right:0;text-align: center"> --%>
+   	<div  class="span12"> 	 
+        <a href="#" class="btn  btn-primary btn-block  btn-lg" onclick="add()"><i class="fa fa-check"></i> 提交审批</a>
     </div>
     <%--<div class="text-right">--%>
         <%--<div style="width: 300px;text-decoration:underline;color: black">--%>
@@ -196,8 +193,8 @@
         <%--</div>--%>
     <%--</div>--%>
 </div>
-<script type="text/javascript" src='${ctx}/js/jquery.min.js'></script>
-<%--<script type="text/javascript" src='${ctx}/js/bootstrap.min.js'></script>--%>
+<script type="text/javascript" src='${ctx}/js/app/jquery.min.js'></script>
+<script type="text/javascript" src='${ctx}/js/bootstrap.min.js'></script>
 <%--<script type="text/javascript" src='${ctx}/js/bootstrap-datetimepicker.min.js'></script>--%>
 <%--<script type="text/javascript" src='${ctx}/js/bootstrap-datetimepicker.zh-CN.js'></script>--%>
 <script type="text/javascript"
@@ -206,6 +203,6 @@
 <script>
     var ctx='${ctx}';
 </script>
-<script type="text/javascript" src='${ctx}/js/work/addleave.js' />
+<script type="text/javascript" src="${ctx}/js/work/addleave.js"></script>
 </body>
 </html>
