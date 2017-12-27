@@ -36,13 +36,13 @@ settime();
 function settime(){
     var myDate = new Date();
     var h= myDate.getHours();
-    var yczl='中餐';
+    var yczl='';
     if(h >= 10 && h < 16){
-        yczl='';
+        yczl='中餐';
     }else if(h>=16 && h < 20){
         yczl='晚餐';
     }else if(h>=20 && h <24){
-        yczl='夜店';
+        yczl='夜点';
     }else{
         yczl='早餐';
     }
@@ -59,6 +59,7 @@ function settime(){
     }
 
     $("#ycrq").val(myDate.getFullYear()+'/'+m+'/'+d);
+    $("#yczl").val(yczl);
     addoptiondetail('接待用餐',yczl);
 }
 
@@ -76,8 +77,9 @@ function addoptiondetail(yctype,yczl){
         $("#ycbz").html("<option value='4'>4元</option>");
 
 //            $("#ycdd").html("<option value='' disabled selected>请选择用餐地点(必填)</option>");
-        $("#ycdd").html("<option value='综合楼辅楼'>综合楼辅楼</option>");
-        $("#ycdd").append("<option value='综合楼职工厅'>综合楼职工厅</option>");
+        $("#ycdd").html("<option value='综合楼职工厅'>综合楼职工厅</option>");
+        $("#ycdd").append("<option value='综合楼辅楼'>综合楼辅楼</option>");
+        $("#ycdd").append("<option value='综合楼来宾厅'>综合楼来宾厅</option>");
         $("#ycdd").append("<option value='其他'>其他</option>");
     }
 
@@ -86,8 +88,9 @@ function addoptiondetail(yctype,yczl){
         $("#ycbz").html("<option value='10'>10元</option>");
 
 //            $("#ycdd").html("<option value='' disabled selected>请选择用餐地点(必填)</option>");
-        $("#ycdd").html("<option value='综合楼辅楼'>综合楼辅楼</option>");
-        $("#ycdd").append("<option value='综合楼职工厅'>综合楼职工厅</option>");
+        $("#ycdd").html("<option value='综合楼职工厅'>综合楼职工厅</option>");
+        $("#ycdd").append("<option value='综合楼辅楼'>综合楼辅楼</option>");
+        $("#ycdd").append("<option value='综合楼来宾厅'>综合楼来宾厅</option>");
         $("#ycdd").append("<option value='其他'>其他</option>");
     }
 
@@ -97,8 +100,9 @@ function addoptiondetail(yctype,yczl){
         $("#ycbz").append("<option value='6'>6元</option>");
 
 //            $("#ycdd").html("<option value='' disabled selected>请选择用餐地点(必填)</option>");
-        $("#ycdd").html("<option value='综合楼辅楼'>综合楼辅楼</option>");
-        $("#ycdd").append("<option value='综合楼职工厅'>综合楼职工厅</option>");
+        $("#ycdd").html("<option value='综合楼职工厅'>综合楼职工厅</option>");
+        $("#ycdd").append("<option value='综合楼辅楼'>综合楼辅楼</option>");
+        $("#ycdd").append("<option value='综合楼来宾厅'>综合楼来宾厅</option>");
         $("#ycdd").append("<option value='其他'>其他</option>");
     }
 
@@ -108,8 +112,8 @@ function addoptiondetail(yctype,yczl){
         $("#ycbz").html("<option value='4'>4元</option>");
 
 //            $("#ycdd").html("<option value='' disabled selected>请选择用餐地点(必填)</option>");
-        $("#ycdd").html("<option value='综合楼辅楼'>综合楼辅楼</option>");
-        $("#ycdd").append("<option value='其他'>其他</option>");
+        $("#ycdd").html("<option value='其他'>其他</option>");
+        $("#ycdd").append("<option value='综合楼辅楼'>综合楼辅楼</option>");
     }
 
 
@@ -130,8 +134,8 @@ function addoptiondetail(yctype,yczl){
         $("#ycbz").append("<option value='15'>15元</option>");
 
 //            $("#ycdd").html("<option value='' disabled selected>请选择用餐地点(必填)</option>");
-        $("#ycdd").html("<option value='综合楼辅楼'>综合楼辅楼</option>");
-        $("#ycdd").append("<option value='其他'>其他</option>");
+        $("#ycdd").html("<option value='其他'>其他</option>");
+        $("#ycdd").append("<option value='综合楼辅楼'>综合楼辅楼</option>");
     }
     if("接待用餐"==yctype && "夜点"==yczl ){
 //            $("#ycbz").html("<option value='' disabled selected>请选择用餐标准(必填)</option>");
@@ -139,8 +143,8 @@ function addoptiondetail(yctype,yczl){
         $("#ycbz").append("<option value='6'>6元</option>");
 
 //            $("#ycdd").html("<option value='' disabled selected>请选择用餐地点(必填)</option>");
-        $("#ycdd").html("<option value='综合楼辅楼'>综合楼辅楼</option>");
-        $("#ycdd").append("<option value='其他'>其他</option>");
+        $("#ycdd").html("<option value='其他'>其他</option>");
+        $("#ycdd").append("<option value='综合楼辅楼'>综合楼辅楼</option>");
     }
 }
 
