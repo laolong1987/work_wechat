@@ -176,6 +176,7 @@ public class WorkController {
         data.put("clyt",clyt);
         data.put("remark",remark);
         data.put("ccry",ccry);
+        data.put("ydrq",DateUtil.getCurrentTime("yyyy-MM-dd HH:mm"));
 
         data.put("_SUBJECT",employee.getYgxm()+"用车申请单");
         data.put("Writer",userid);
