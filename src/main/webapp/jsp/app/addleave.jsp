@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: gaoyang
-  Date: 17/10/10
-  Time: 下午8:52
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -22,9 +15,8 @@
     <style>
 
         body{
-            background-image: url(${ctx}/images/add/bg.jpg);
-            -webkit-text-size-adjust: 100% !important;
-            text-size-adjust: 100% !important;
+          /*  background-image: url(${ctx}/images/add/bg.jpg);*/
+          	  background-color: #efefef
         }
         .ziti1{
             width: 82px;
@@ -120,24 +112,25 @@
 </head>
 <body>
 
-<div class="topbut">
-    <button type="button" class="btn btn-default" onclick="tolist()">查看列表</button>
-    <%--<img src="${ctx}/images/add/arrowtop.png">--%>
-</div>
+			
+
 <div class="container">
-    <div class="row top" style="margin-top: 60px">
+	<div class="row content "  style="margin-top: 8px">
+	 <button type="button" class="btn btn-default btn-primary pull-right"  style="margin-top: 10px;margin-right: 20px;" onclick="tolist()"><i class="fa fa-list"></i>  查看列表</button>
+</div>
+    <div class="row top" style="margin-top: 20px">
         <div class="col-xs-4">
-            <span class="ziti1">${name}</span>
+            <span class="ziti1"><i class="fa fa-user"></i> ${name}</span>
         </div>
         <div class="col-xs-8 text-right">
-            <span class="ziti2">申请部门:</span>
+            <span class="ziti2"><i class="fa fa-users"></i> 申请部门:</span>
             <span class="ziti1">${dept}</span>
         </div>
     </div>
     <form  id="addform" action="createleave" name="addform" method="post" >
         <%--<input  type="hidden" id="day" name="day" >--%>
     <div class="row content">
-        <label class="col-xs-2 control-label lab lab2">类型</label>
+        <label class="col-xs-3 control-label lab lab2"><i class="fa fa-navicon"></i> 类型</label>
         <div class="col-xs-6">
             <select class="touming" id="type" name="type">
                 <option value="" disabled selected>请选择请假类型(必填)</option>
@@ -154,44 +147,45 @@
                 <option value="授乳假">授乳假</option>
             </select>
         </div>
-        <label class="col-xs-4 control-label lab lab3" for="type">请选择(必填)
+        <label class="col-xs-3 control-label lab lab3" for="type">&nbsp;&nbsp;
         </label>
     </div>
 
     <div class="row content">
-        <label class="col-xs-2 control-label lab lab2">开始</label>
+        <label class="col-xs-3 control-label lab lab2"><i class="fa fa-calendar"></i> 开始</label>
         <div class="col-xs-6">
             <input  type="text" class="form_datetime touming" placeholder="请选择开始时间(必填)" name="date1" id="date1" value="" onchange="btnCount_Click()" required>
         </div>
-        <label class="col-xs-4 control-label lab lab3" for="date1">请选择(必填)</label>
+        <label class="col-xs-3 control-label lab lab3" for="date1">&nbsp;&nbsp;</label>
     </div>
 
     <div class="row content">
-        <label class="col-xs-2 control-label lab lab2">结束</label>
+        <label class="col-xs-3 control-label lab lab2"><i class="fa fa-calendar"></i> 结束</label>
         <div class="col-xs-6">
             <input  type="text" class="form_datetime touming" placeholder="请选择结束时间(必填)" name="date2" id="date2" value="" onchange="btnCount_Click()" required>
         </div>
-        <label class="col-xs-4 control-label lab lab3" for="date2">请选择(必填)</label>
+        <label class="col-xs-3 control-label lab lab3" for="date2">&nbsp;&nbsp;</label>
     </div>
 
     <div class="row content">
-        <label class="col-xs-2 control-label lab lab2">计</label>
+        <label class="col-xs-3 control-label lab lab2">计</label>
         <div class="col-xs-6">
             <%--<p class="form-control-static" style="margin-top: 7px" id="days"></p>--%>
-            <input  type="number" class="touming"  name="day" id="day" value="" required>
+            <input  type="text" class="touming"  name="day" id="day" value="" required>
         </div>
-        <label class="col-xs-4 control-label lab lab3">天</label>
+        <label class="col-xs-3 control-label lab ">天</label>
     </div>
 
-    <div class="row content2" style="margin-bottom: 50px">
-        <label class="col-xs-2 control-label lab lab2">理由</label>
-        <div class="col-xs-10">
+    <div class="row content2" style="margin-bottom: 10px">
+        <label class="col-xs-3 control-label lab lab2"><i class="fa fa-comment-o"></i> 理由</label>
+        <div class="col-xs-9">
             <textarea class="touming" rows="5" name="desc" id="desc" placeholder="请填写备注(必填)"  required></textarea>
         </div>
     </div>
     </form>
-    <div  style="position:fixed;bottom:0;margin:auto;left:0; right:0;text-align: center">
-        <button type="button" class="btn btn-primary addbtn" onclick="add()">提交审批</button>
+   <%-- <div  style="position:fixed;bottom:0;margin:auto;left:0; right:0;text-align: center"> --%>
+   	<div  class="span12"> 	 
+        <a href="#" class="btn  btn-primary btn-block  btn-lg" onclick="add()"><i class="fa fa-check"></i> 提交审批</a>
     </div>
     <%--<div class="text-right">--%>
         <%--<div style="width: 300px;text-decoration:underline;color: black">--%>
@@ -199,94 +193,17 @@
         <%--</div>--%>
     <%--</div>--%>
 </div>
-<script type="text/javascript" src='${ctx}/js/jquery.min.js'></script>
-<%--<script type="text/javascript" src='${ctx}/js/bootstrap.min.js'></script>--%>
+<script type="text/javascript" src='${ctx}/js/app/jquery.min.js'></script>
+<script type="text/javascript" src='${ctx}/js/bootstrap.min.js'></script>
 <%--<script type="text/javascript" src='${ctx}/js/bootstrap-datetimepicker.min.js'></script>--%>
 <%--<script type="text/javascript" src='${ctx}/js/bootstrap-datetimepicker.zh-CN.js'></script>--%>
 <script type="text/javascript"
         src="http://cache.shchengdian.com/plugins/mobiscroll.custom-3.0.0-beta2.min.js"
         charset="UTF-8"></script>
 <script>
-
-$('.form_datetime').mobiscroll().datetime({
-    theme: 'Mobiscroll',
-    lang: 'zh',
-    display: 'center',
-//    dateFormat: 'yyyy-MM-dd HH:mm',
-    min: new Date(2000, 1, 1),
-    disabled: false
-});
-
-
-    function  btnCount_Click(){
-        var a=$("#date1").val();
-        var b=$("#date2").val();
-        var days='';
-        if(''!=a && !''!=b){
-            a= a.substr(0, a.length-6);
-            b= b.substr(0, b.length-6);
-            var c=DateDiff(a,b);
-            if(c>0){
-                days=c;
-            }
-        }
-//        $("#days").text(days+"天");
-        $("#day").val(days);
-    }
-    //计算天数差的函数，通用
-    function  DateDiff(sDate1,  sDate2){    //sDate1和sDate2是2006-12-18格式
-        var  aDate,  oDate1,  oDate2,  iDays
-        aDate  =  sDate1.split("/")
-        oDate1  =  new  Date(aDate[1]  +  '-'  +  aDate[2]  +  '-'  +  aDate[0])    //转换为12-18-2006格式
-        aDate  =  sDate2.split("/")
-        oDate2  =  new  Date(aDate[1]  +  '-'  +  aDate[2]  +  '-'  +  aDate[0])
-        iDays  =  parseInt(Math.abs(oDate1  -  oDate2)  /  1000  /  60  /  60  /24)+1  //把相差的毫秒数转换为天数
-        return  iDays
-    }
-
-    function add(){
-        var type=$("#type").val();
-        if(''==type){
-            alert('请选择请假类型');
-            return
-        }
-        var a=$("#date1").val();
-        var b=$("#date2").val();
-
-        if(''==a){
-            alert('请选择开始时间');
-            return
-        }
-        if(''==b){
-            alert('请选择结束时间');
-            return
-        }
-        if(''!=a && !''!=b){
-            a= a.substr(0, a.length-6);
-            b= b.substr(0, b.length-6);
-            var c=DateDiff(a,b);
-            if(c<=0){
-                alert('日期选择错误,请重新选择');
-                return
-            }
-        }
-
-        var desc=$("#desc").val();
-        if(''==desc){
-            alert('请选择请假类型');
-            return
-        }
-
-        $("#day").val(DateDiff(a,b));
-        $(".btn").attr("disabled", true);
-        $("#addform").submit();
-    }
-
-    function tolist(){
-        window.location.href='${ctx}/approval/self-list/349';
-    }
-
-
+    var ctx='${ctx}';
 </script>
+<script type="text/javascript" src="${ctx}/js/work/addleave.js"></script>
+<jsp:include page="wxjs.jsp" />
 </body>
 </html>

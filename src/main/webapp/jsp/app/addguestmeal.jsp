@@ -22,7 +22,8 @@
     <style>
 
         body{
-            background-image: url(${ctx}/images/add/bg.jpg);
+                  /*  background-image: url(${ctx}/images/add/bg.jpg);*/
+          	  background-color: #efefef
         }
         .ziti1{
             width: 82px;
@@ -143,69 +144,68 @@
     </style>
 </head>
 <body>
-<div class="topbut">
-    <button type="button" class="btn btn-default" onclick="tolist()">查看列表</button>
-    <img src="${ctx}/images/add/arrowtop.png" onclick="hidejt()" >
-</div>
-<div class="container" style="margin-top: 60px">
-    <div class="row top">
-        <div class="col-xs-6">
-            <span class="ziti1">${name}</span>
+
+<div class="container">
+  <div class="row content "  style="margin-top: 8px">
+	 <button type="button" class="btn btn-default btn-primary pull-right"  style="margin-top: 10px;margin-right: 20px;" onclick="tolist()"><i class="fa fa-list"></i>  查看列表</button>
+ </div>
+    <div class="row top" style="margin-top: 20px">
+        <div class="col-xs-4">
+            <span class="ziti1"><i class="fa fa-user"></i> ${name}</span>
         </div>
-        <div class="col-xs-6">
-            <span class="ziti2">申请部门:</span>
+        <div class="col-xs-8 text-right">
+            <span class="ziti2"><i class="fa fa-users"></i> 部门:</span>
             <span class="ziti1">${dept}</span>
         </div>
     </div>
     <form  id="addform" action="createguestmeal" name="addform" method="post" >
 
     <div class="row content2">
-        <label class="col-xs-3 control-label lab lab2">人员/事由</label>
-        <div class="col-xs-9">
+        <label class="col-xs-4 control-label lab lab2"><i class="fa fa-user-circle-o"></i> 人员/事由</label>
+        <div class="col-xs-8">
             <textarea class="touming" rows="5" name="lfdwjry" id="lfdwjry" placeholder="请输入来访人员"  required></textarea>
         </div>
     </div>
-
-    <div class="row content">
-        <label class="col-xs-3 control-label lab lab2">用餐日期</label>
-        <div class="col-xs-5">
+ <div class="row content">
+        <label class="col-xs-4 control-label lab lab2"><i class="fa fa-calendar"></i> 用餐日期</label>
+        <div class="col-xs-6">
             <input  type="text" class="form_datetime touming" placeholder="请选择用餐日期" name="ycrq" id="ycrq" value="" required>
         </div>
-        <label class="col-xs-4 control-label lab lab3" for="ycrq">请选择(必填)
+        <label class="col-xs-2 control-label lab lab3" for="ycrq">&nbsp;&nbsp;
         </label>
     </div>
 
 
     <div class="row content">
-        <label class="col-xs-3 control-label lab lab2">用餐人数</label>
-        <div class="col-xs-5">
+        <label class="col-xs-4 control-label lab lab2"><i class="fa fa-users"></i> 用餐人数</label>
+        <div class="col-xs-6">
             <input  type="number" class="touming" placeholder="请填写人数"  value="1" id="ycsl" name="ycsl" required>
         </div>
-        <label class="col-xs-4 control-label lab">客
+        <label class="col-xs-2 control-label lab">客
         </label>
     </div>
 
     <div class="row content2">
-        <label class="col-xs-3 control-label lab lab2">备注</label>
-        <div class="col-xs-9">
+        <label class="col-xs-4 control-label lab lab2"><i class="fa fa-comment-o"></i> 备注</label>
+        <div class="col-xs-8">
             <textarea class="touming" rows="5" name="ycremark" id="ycremark" placeholder=""  required></textarea>
         </div>
     </div>
 
 
     <div class="row" style="margin-top: 10px">
-        <label class="col-xs-3 control-label lab lab2">用餐种类</label>
-        <div class="col-xs-9 lab">
+        <label class="col-xs-4 control-label lab lab2"><i class="fa fa-check-circle-o"></i> 用餐种类</label>
+        <div class="col-xs-8 lab">
             <input type="radio" name="yctype" id="optionsRadios1"  class="radio"  onclick="addoption()" value="工作用餐">
-            <label for="optionsRadios1" class="cr rla">工作用餐</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <label for="optionsRadios1" class="rla">工作用餐</label>&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="radio" name="yctype" id="optionsRadios2" class="radio"  onclick="addoption()" style="margin-left: 20px" value="接待用餐" checked>
-            <label for="optionsRadios2" class="rla">接待用餐</label>
+            <label for="optionsRadios2" class="cr rla">接待用餐</label>
         </div>
     </div>
 
     <div class="row content">
-        <label class="col-xs-3 control-label lab lab2">用餐时间</label>
-        <div class="col-xs-5">
+        <label class="col-xs-4 control-label lab lab2"><i class="fa fa-clock-o"></i> 用餐时间</label>
+        <div class="col-xs-6">
             <select class="touming" id="yczl" name="yczl" onchange="addoption()" >
             <%--<option value="" class="moren" disabled selected>请选择用餐时间</option>--%>
             <option value="早餐">早餐</option>
@@ -214,249 +214,51 @@
             <option value="夜点">夜点</option>
         </select>
         </div>
-        <label class="col-xs-4 control-label lab lab3" for="yczl">请选择(必填)
+        <label class="col-xs-2 control-label lab lab3" for="yczl">&nbsp;&nbsp;
         </label>
     </div>
 
     <div class="row content">
-            <label class="col-xs-3 control-label lab lab2">用餐标准</label>
-            <div class="col-xs-5">
+            <label class="col-xs-4 control-label lab lab2"><i class="fa fa-cny"></i> 用餐标准</label>
+            <div class="col-xs-6">
             <select class="touming" name="ycbz" id="ycbz">
                 <%--<option value="" class="moren" disabled selected>请选择用餐标准</option>--%>
             </select>
         </div>
-        <label class="col-xs-4 control-label lab lab3" for="ycbz">请选择(必填)
+        <label class="col-xs-2 control-label lab lab3" for="ycbz">&nbsp;&nbsp;
         </label>
     </div>
 
     <div class="row content">
-        <label class="col-xs-3 control-label lab lab2">用餐地点</label>
-        <div class="col-xs-5">
+        <label class="col-xs-4 control-label lab lab2"><i class="fa fa-bank"></i> 用餐地点</label>
+        <div class="col-xs-6">
             <select class="touming" name="ycdd" id="ycdd">
                 <%--<option value="" class="moren" disabled selected>请选择用餐地点</option>--%>
                 <option value='综合楼辅楼'>综合楼辅楼</option>
             </select>
         </div>
-        <label class="col-xs-4 control-label lab lab3" for="ycdd">请选择(必填)
+        <label class="col-xs-2 control-label lab lab3" for="ycdd">&nbsp;&nbsp;
         </label>
     </div>
+   
 </form>
-    <div class="text-center tip" style="margin-bottom: 50px">注：中餐请于1点前提交申请，晚餐请于16点前提交申请</div>
-
-    <div  style="position:fixed;bottom:0;margin:auto;left:0; right:0;text-align: center">
-        <button type="button" class="btn btn-primary addbtn" onclick="add()">提交审批</button>
-    </div>
-    <%--<div class="text-right">--%>
-        <%--<div style="width: 300px;text-decoration:underline;color: black">--%>
-            <%--<a href="${ctx}/approval/self-list/323">查看列表</a>--%>
-        <%--</div>--%>
-    <%--</div>--%>
+    <div class="text-center tip" style="margin-bottom: 20px">注：中餐请于1点前提交申请，晚餐请于16点前提交申请</div>
+  
+  
+<div  class="span12" style="margin-bottom: 20px"> 	 
+     <a href="#" class="btn  btn-primary btn-block  btn-lg" onclick="add()"><i class="fa fa-check"></i> 提交审批</a>
 </div>
-<script type="text/javascript" src='${ctx}/js/jquery.min.js'></script>
+
+</div>
+<script type="text/javascript" src='${ctx}/js/app/jquery.min.js'></script>
 <script type="text/javascript" src='${ctx}/js/bootstrap.min.js'></script>
 <script type="text/javascript"
         src="http://cache.shchengdian.com/plugins/mobiscroll.custom-3.0.0-beta2.min.js"
         charset="UTF-8"></script>
 <script>
-    $('.form_datetime').mobiscroll().date({
-        theme: 'Mobiscroll',
-        lang: 'zh',
-        display: 'center',
-//    dateFormat: 'yy-mm-dd',
-        min: new Date(2000, 1, 1),
-        disabled: false
-    });
-
-    $(function() {
-        $('.rla').click(function(){
-            var radioId = $(this).attr('name');
-            $('.rla').removeClass('cr');
-            $(this).addClass('cr');
-            $('input[type="radio"]').removeAttr('checked') && $('#' + radioId).attr('checked', 'checked');
-        });
-
-        var p=0,t=0;
-
-        $(window).scroll(function(e){
-            p = $(this).scrollTop();
-
-            if(t<=p){//下滚
-            }
-            else{//上滚
-//                $(".").show();
-                $(".topbut").slideDown(300);
-
-            }
-            setTimeout(function(){t = p;},0);
-        });
-    });
-
-    settime();
-
-    function settime(){
-        var myDate = new Date();
-        var h= myDate.getHours();
-        var yczl='中餐';
-        if(h >= 10 && h < 16){
-            yczl='';
-        }else if(h>=16 && h < 20){
-            yczl='晚餐';
-        }else if(h>=20 && h <24){
-            yczl='夜店';
-        }else{
-            yczl='早餐';
-        }
-
-        var m= myDate.getMonth();
-        m++;
-        if(m<10){
-            m='0'+m;
-        }
-
-        var d= myDate.getDate();
-        if(d<10){
-            d='0'+d;
-        }
-
-        $("#ycrq").val(myDate.getFullYear()+'/'+m+'/'+d);
-        addoptiondetail('接待用餐',yczl);
-    }
-
-
-    function addoption(){
-        var yctype= $("input[name='yctype']:checked").val();
-        var yczl= $("#yczl").val();
-        addoptiondetail(yctype,yczl);
-
-    }
-
-    function addoptiondetail(yctype,yczl){
-        if("工作用餐"==yctype && "早餐"==yczl){
-//            $("#ycbz").html("<option value='' disabled selected>请选择用餐标准(必填)</option>");
-            $("#ycbz").html("<option value='4'>4元</option>");
-
-//            $("#ycdd").html("<option value='' disabled selected>请选择用餐地点(必填)</option>");
-            $("#ycdd").html("<option value='综合楼辅楼'>综合楼辅楼</option>");
-            $("#ycdd").append("<option value='综合楼职工厅'>综合楼职工厅</option>");
-            $("#ycdd").append("<option value='其他'>其他</option>");
-        }
-
-        if(("工作用餐"==yctype && "中餐"==yczl) || ("工作用餐"==yctype && "晚餐"==yczl) ){
-//            $("#ycbz").html("<option value='' disabled selected>请选择用餐标准(必填)</option>");
-            $("#ycbz").html("<option value='10'>10元</option>");
-
-//            $("#ycdd").html("<option value='' disabled selected>请选择用餐地点(必填)</option>");
-            $("#ycdd").html("<option value='综合楼辅楼'>综合楼辅楼</option>");
-            $("#ycdd").append("<option value='综合楼职工厅'>综合楼职工厅</option>");
-            $("#ycdd").append("<option value='其他'>其他</option>");
-        }
-
-        if("工作用餐"==yctype && "夜点"==yczl ){
-//            $("#ycbz").html("<option value='' disabled selected>请选择用餐标准(必填)</option>");
-            $("#ycbz").html("<option value='4'>4元</option>");
-            $("#ycbz").append("<option value='6'>6元</option>");
-
-//            $("#ycdd").html("<option value='' disabled selected>请选择用餐地点(必填)</option>");
-            $("#ycdd").html("<option value='综合楼辅楼'>综合楼辅楼</option>");
-            $("#ycdd").append("<option value='综合楼职工厅'>综合楼职工厅</option>");
-            $("#ycdd").append("<option value='其他'>其他</option>");
-        }
-
-
-        if("接待用餐"==yctype && "早餐"==yczl ){
-//            $("#ycbz").html("<option value='' disabled selected>请选择用餐标准(必填)</option>");
-            $("#ycbz").html("<option value='4'>4元</option>");
-
-//            $("#ycdd").html("<option value='' disabled selected>请选择用餐地点(必填)</option>");
-            $("#ycdd").html("<option value='综合楼辅楼'>综合楼辅楼</option>");
-            $("#ycdd").append("<option value='其他'>其他</option>");
-        }
-
-
-        if("接待用餐"==yctype && "中餐"==yczl ){
-//            $("#ycbz").html("<option value='' disabled selected>请选择用餐标准(必填)</option>");
-            $("#ycbz").html("<option value='10'>10元</option>");
-            $("#ycbz").append("<option value='15'>15元</option>");
-
-//            $("#ycdd").html("<option value='' disabled selected>请选择用餐地点(必填)</option>");
-            $("#ycdd").html("<option value='综合楼来宾厅'>综合楼来宾厅</option>");
-            $("#ycdd").append("<option value='综合楼辅楼'>综合楼辅楼</option>");
-            $("#ycdd").append("<option value='其他'>其他</option>");
-        }
-
-        if("接待用餐"==yctype && "晚餐"==yczl ){
-//            $("#ycbz").html("<option value='' disabled selected>请选择用餐标准(必填)</option>");
-            $("#ycbz").html("<option value='10'>10元</option>");
-            $("#ycbz").append("<option value='15'>15元</option>");
-
-//            $("#ycdd").html("<option value='' disabled selected>请选择用餐地点(必填)</option>");
-            $("#ycdd").html("<option value='综合楼辅楼'>综合楼辅楼</option>");
-            $("#ycdd").append("<option value='其他'>其他</option>");
-        }
-        if("接待用餐"==yctype && "夜点"==yczl ){
-//            $("#ycbz").html("<option value='' disabled selected>请选择用餐标准(必填)</option>");
-            $("#ycbz").html("<option value='4'>4元</option>");
-            $("#ycbz").append("<option value='6'>6元</option>");
-
-//            $("#ycdd").html("<option value='' disabled selected>请选择用餐地点(必填)</option>");
-            $("#ycdd").html("<option value='综合楼辅楼'>综合楼辅楼</option>");
-            $("#ycdd").append("<option value='其他'>其他</option>");
-        }
-    }
-
-
-
-
-    function add(){
-        var lfdwjry=$("#lfdwjry").val();
-        if(''==lfdwjry){
-            alert('请填写来访人员/事由');
-            return
-        }
-        var a=$("#ycrq").val();
-        if(''==a){
-            alert('请选择用餐日期');
-            return
-        }
-        var b=$("#ycsl").val();
-        if(''==b){
-            alert('请填写人数');
-            return
-        }
-
-        var ycremark=$("#ycremark").val();
-        if(''==ycremark){
-            alert('请填写备注');
-            return
-        }
-
-        var yczl=$("#yczl").val();
-        if(''==yczl){
-            alert('请选择用餐时间');
-            return
-        }
-
-        var ycbz=$("#ycbz").val();
-        if(''==ycbz){
-            alert('请填写用餐标准');
-            return
-        }
-
-        var ycdd=$("#ycdd").val();
-        if(''==ycdd){
-            alert('请填写用餐地点');
-            return
-        }
-        $(".btn").attr("disabled", true);
-        $("#addform").submit();
-    }
-    function tolist(){
-        window.location.href='${ctx}/approval/self-list/323';
-    }
-    function hidejt(){
-//        $(".").hide();
-        $(".topbut").slideUp(300);
-    }
+    var ctx='${ctx}';
 </script>
+<script type="text/javascript" src="${ctx}/js/work/addguestmeal.js"></script>
 </body>
+<jsp:include page="wxjs.jsp" />
 </html>

@@ -190,7 +190,7 @@
                 <img src="${ctx}/images/add/user.png">
             </div>
             <div class="weui-cell__bd">
-                <p>姓名2</p>
+                <p>{{=val.fullname}}</p>
             </div>
             <div class="weui-cell__ft">教学部
                 <i class="weui-icon-cancel"  peoId="{{=val.id}}" style="margin-top: -3px; color:#b3b3b3"></i>

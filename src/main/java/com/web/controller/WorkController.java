@@ -2,6 +2,7 @@ package com.web.controller;
 
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.utils.ConvertUtil;
 import com.utils.DateUtil;
@@ -43,11 +44,7 @@ public class WorkController {
 
     @RequestMapping(value = "/addleave", method = RequestMethod.GET)
     public String addleave(HttpServletRequest request,HttpServletResponse response) {
-
-//        System.out.println(approvalService.getDepartments());
-//        System.out.println(approvalService.getEmployeeUsers());
-//orgService.updateDept(); 220238
-
+        
         String userid=ConvertUtil.safeToString(request.getSession().getAttribute("newsUserId"),"");
 
         if("".equals(userid)){
@@ -94,12 +91,13 @@ public class WorkController {
 //        data.put("Ygxm","华安");
         data.put("Writer",userid);
         data.put("_SUBJECT",employee.getYgxm()+"请假单");
+        data.put("Qjbh","_FORMNO");
 
         JSONObject json=new JSONObject();
         json.put("FormType","349");
         json.put("data",data);
 
-
+        System.out.println(DateUtil.getCurrentTime()+"--- createleave start --- ");
         String FormConfigID= workFromService.CreateFormInstance(json.toJSONString());
         JSONObject resultJson = JSON.parseObject(FormConfigID);
         System.out.println(FormConfigID);
@@ -108,17 +106,21 @@ public class WorkController {
         String result2= approvalService.getMayProcessItems(resultJson.getString("TemplateID"),resultJson.getString("DataID"),userid);
         System.out.println(result2);
 
+        JSONObject jsonObject2=JSON.parseObject(result2);
+        JSONObject jsonObject3= (JSONObject) jsonObject2.get("data");
+        JSONArray jsonArray=jsonObject3.getJSONArray("eventlist");
         Map<String,String> map=new HashMap<>();
-        map.put("formevent","FormNext");
+        map.put("formevent",jsonArray.getJSONObject(0).get("event").toString());
 //        map.put("configid",resultJson.getString("FormConfigID"));
         map.put("templateid",resultJson.getString("TemplateID"));
         map.put("dataid",resultJson.getString("DataID"));
-        map.put("statecaption","开始");
+        map.put("statecaption",jsonObject3.get("statecaption").toString());
         map.put("sendby",userid);
         map.put("content","");
         map.put("processby",userid);
         String result3=workFromService.RaiseWorkflow(map);
         System.out.println(result3);
+        System.out.println(DateUtil.getCurrentTime()+"--- createleave end --- ");
         return "redirect:../approval/self-list/349";
 
     }
@@ -175,6 +177,7 @@ public class WorkController {
         data.put("clyt",clyt);
         data.put("remark",remark);
         data.put("ccry",ccry);
+        data.put("ydrq",DateUtil.getCurrentTime("yyyy-MM-dd HH:mm"));
 
         data.put("_SUBJECT",employee.getYgxm()+"用车申请单");
         data.put("Writer",userid);
@@ -182,6 +185,7 @@ public class WorkController {
         json.put("FormType","321");
         json.put("data",data);
 
+        System.out.println(DateUtil.getCurrentTime()+"--- createcar start --- ");
 
         String FormConfigID= workFromService.CreateFormInstance(json.toJSONString());
         JSONObject resultJson = JSON.parseObject(FormConfigID);
@@ -199,19 +203,21 @@ public class WorkController {
 
         String result2= approvalService.getMayProcessItems(resultJson.getString("TemplateID"),resultJson.getString("DataID"),userid);
         System.out.println(result2);
-
+        JSONObject jsonObject2=JSON.parseObject(result2);
+        JSONObject jsonObject3= (JSONObject) jsonObject2.get("data");
+        JSONArray jsonArray=jsonObject3.getJSONArray("eventlist");
         Map<String,String> map=new HashMap<>();
-        map.put("formevent","FormNext");
+        map.put("formevent",jsonArray.getJSONObject(0).get("event").toString());
 //        map.put("configid",resultJson.getString("FormConfigID"));
         map.put("templateid",resultJson.getString("TemplateID"));
         map.put("dataid",resultJson.getString("DataID"));
-        map.put("statecaption","开始");
+        map.put("statecaption",jsonObject3.get("statecaption").toString());
         map.put("sendby",userid);
         map.put("content","");
         map.put("processby",userid);
         String result3=workFromService.RaiseWorkflow(map);
         System.out.println(result3);
-
+        System.out.println(DateUtil.getCurrentTime()+"--- createcar end --- ");
         return "redirect:../approval/self-list/321";
     }
 
@@ -295,24 +301,29 @@ public class WorkController {
 // {"name":"sjycsl","type":"String"},{"name":"xfje","type":"Decimal"},{"name":"yctype","type":"String"}],"FormType":323,"ShortTitle":"客饭申请单"}
 
 
+        System.out.println(DateUtil.getCurrentTime()+"--- createguestmeal start --- ");
         String FormConfigID= workFromService.CreateFormInstance(json.toJSONString());
         JSONObject resultJson = JSON.parseObject(FormConfigID);
         String result= workFromService.StartFormWorkflow(resultJson.getString("FormConfigID"));
         System.out.println(result);
         String result2= approvalService.getMayProcessItems(resultJson.getString("TemplateID"),resultJson.getString("DataID"),userid);
         System.out.println(result2);
-
+        JSONObject jsonObject2=JSON.parseObject(result2);
+        JSONObject jsonObject3= (JSONObject) jsonObject2.get("data");
+        JSONArray jsonArray=jsonObject3.getJSONArray("eventlist");
         Map<String,String> map=new HashMap<>();
-        map.put("formevent","FormNext");
+        map.put("formevent",jsonArray.getJSONObject(0).get("event").toString());
 //        map.put("configid",resultJson.getString("FormConfigID"));
         map.put("templateid",resultJson.getString("TemplateID"));
         map.put("dataid",resultJson.getString("DataID"));
-        map.put("statecaption","开始");
+        map.put("statecaption",jsonObject3.get("statecaption").toString());
         map.put("sendby",userid);
         map.put("content","");
         map.put("processby",userid);
         String result3=workFromService.RaiseWorkflow(map);
         System.out.println(result3);
+        System.out.println(DateUtil.getCurrentTime()+"--- createguestmeal end --- ");
+
         return "redirect:../approval/self-list/323";
     }
 }

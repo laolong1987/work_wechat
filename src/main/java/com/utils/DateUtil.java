@@ -467,8 +467,9 @@ public class DateUtil {
     }
 
     public static void main(String[] args) {
-        System.out.println(getDay());
-        System.out.println(getNumOfWeekStr(null));
+//        System.out.println(getDay());
+//        System.out.println(getNumOfWeekStr(null));
+        System.out.println(DateUtil.getCurrentTime("yyyy-MM-dd HH:mm"));
     }
 
     /**

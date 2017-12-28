@@ -53,6 +53,7 @@ public class NewsDao extends BaseDao{
             sql.append(" and title like :title ");
             map.put("title", "%" + ConvertUtil.safeToString(map.get("title"), "") + "%");
         }
+        sql.append(" order by puttime desc ");
         return super.findResult(sql.toString(), map);
     }
 

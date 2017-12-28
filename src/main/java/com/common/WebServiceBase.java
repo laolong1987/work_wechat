@@ -3,6 +3,7 @@ package com.common;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.utils.DateUtil;
 import com.utils.SettingUtil;
 import com.web.component.WebServiceApiConfig;
 import org.apache.axis.client.Call;
@@ -27,8 +28,8 @@ public class WebServiceBase {
 
     public static String call(String function,List<WSbean> wSbeans){
         String result="";
-        String serviceEpr = "http://d.bm21.com.cn:20003/Services/CoreService.asmx?WSDL";
-        serviceEpr= SettingUtil.getWSURL("base").replace("?op=","?WSDL");
+        String serviceEpr = SettingUtil.getWSURL("base").replace("?op=","?WSDL");
+        System.out.println(DateUtil.getCurrentTime()+"--- call OA start url --- ： " + serviceEpr);
         try {
             Service service = new Service();
             Call call = (Call) service.createCall();
@@ -58,6 +59,7 @@ public class WebServiceBase {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+        System.out.println(DateUtil.getCurrentTime()+"--- call OA end  --- ： " + result);
         return result;
     }
 

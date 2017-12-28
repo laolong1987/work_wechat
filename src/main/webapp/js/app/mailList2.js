@@ -228,7 +228,11 @@ function allSelectPeoInfo() {
 	var dname='';
 	for(var i in allSelctPeo) {//不使用过滤
 		var d=allSelctPeo[i].fullname.replace("<p>","").replace("</p>","");
-		dname+=d+',';
+		//dname+=d+',';
+		if(''!=dname){
+			dname+=',';
+		}
+		dname+=d;
 	}
 	$("#dname").val(dname);
 	var list_tpl = $('#list_tpl1').html();

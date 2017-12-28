@@ -211,7 +211,7 @@
 <body>
 <section class="login">
   <article class="login-article">
-    <form id="logonForm" action="login" method="post">
+    <form id="logonForm" action="${ctx}/admin/login" method="post">
 
       <ul>
         <li class="username"><label for="username">&nbsp;</label> <input

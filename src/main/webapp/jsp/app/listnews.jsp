@@ -30,10 +30,14 @@
         }
         .box{
             /*box-shadow: 10px 10px 5px #888888;*/
-            background-color: #F4F4F4;
-            border-radius: 5px;
-            padding-top: 5px;
-            padding-bottom: 5px;
+            /*background-color: #F4F4F4;*/
+            /*border-radius: 5px;*/
+            background-image: url(${ctx}/images/add/noreadbg.png);
+            background-size:100% 100%;
+            padding-top: 0px;
+            padding-bottom: 10px;
+            height: 100px;
+
         }
         .box img{
             max-width: 100px;
@@ -42,8 +46,10 @@
         .imgdiv{
             /*padding-left: 0;*/
             /*padding-right: 0;*/
-            height: 80px;
+            height: 70px;
             background-size: cover;
+            left:7px;
+            top: 10px;
         }
 
         .listdiv{
@@ -72,8 +78,8 @@
             text-overflow: ellipsis;
             display: box;
             display: -webkit-box;
-            line-clamp: 2;
-            -webkit-line-clamp: 2;
+            line-clamp: 1;
+            -webkit-line-clamp: 1;
             -webkit-box-orient: vertical;
             text-indent:25px;
             font-size: 12px;
@@ -86,8 +92,10 @@
             float:left
         }
         .box.read{
-            background: linear-gradient(#E7E7E7,  #FFFFFF); /* 标准的语法（必须放在最后） */
-            box-shadow: 0px 5px 1px  #EBEBEB;
+            /*background: linear-gradient(#E7E7E7,  #FFFFFF); !* 标准的语法（必须放在最后） *!*/
+            /*box-shadow: 0px 5px 1px  #EBEBEB;*/
+            background-image: url(${ctx}/images/add/readbg.png);
+            background-size:100% 100%;
             /*background-color: #FFFFFF;*/
         }
         .ms{
@@ -165,14 +173,14 @@
                     <div class="col-xs-3 imgdiv" style="background-image: url(${ctx}/file/doDownload/${l.topimg})">
                         <%--<img src="${ctx}/file/doDownload/${l.topimg}"  class="">--%>
                     </div>
-                    <div class="col-xs-9" style="">
+                    <div class="col-xs-9" style="margin-top: 10px;right: 5px;">
                         <div class="cut">${l.title}</div>
                         <div><p class="content">${l.cont}</p></div>
                         <div class="time">发布于
                             <fmt:formatDate value="${l.puttime}" pattern="yyyy-MM-dd HH:mm"/>
                         </div>
-                        <c:if test="${userid ne '' && l.readflag eq 0}">
-                            <div style="float:right;color: red">未读</div>
+                        <c:if test="${userid ne '' && l.readflag ne 0}">
+                            <div style="float:right;color: #777777">已读</div>
                         </c:if>
                     </div>
                 </div>
