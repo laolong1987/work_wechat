@@ -21,8 +21,33 @@ public class WechatConfig {
     @Value("${approvalAgentId}")
     private String approvalAgentId;
 
+    @Value("${approvalSecret}")
+    private String approvalSecret;
+
     @Value("${newsAgentId}")
     private String newsAgentId;
+
+    @Value("${newsSecret}")
+    private String newsSecret;
+
+    @Value("${repastApplyUserId}")
+    private String repastApplyUserId;
+
+    @Value("${repastApplySecret}")
+    private String repastApplySecret;
+
+    @Value("${leaveApplyUserId}")
+    private String leaveApplyUserId;
+
+    @Value("${leaveApplySecret}")
+    private String leaveApplySecret;
+
+    @Value("${carApplyUserId}")
+    private String carApplyUserId;
+
+    @Value("${carApplySecret}")
+    private String carApplySecret;
+
 
     @Value("${messageApi}")
     private String messageApi;
@@ -39,8 +64,6 @@ public class WechatConfig {
     @Value("${contactsSecret}")
     private String contactsSecret;
 
-    @Value("${approvalSecret}")
-    private String approvalSecret;
 
     @Value("${createDepartment}")
     private String createDepartment;
@@ -160,5 +183,61 @@ public class WechatConfig {
 
     public void setSecret(String secret) {
         this.secret = secret;
+    }
+
+    public String getNewsSecret() {
+        return newsSecret;
+    }
+
+    public void setNewsSecret(String newsSecret) {
+        this.newsSecret = newsSecret;
+    }
+
+    public String getRepastApplyUserId() {
+        return repastApplyUserId;
+    }
+
+    public void setRepastApplyUserId(String repastApplyUserId) {
+        this.repastApplyUserId = repastApplyUserId;
+    }
+
+    public String getRepastApplySecret() {
+        return repastApplySecret;
+    }
+
+    public void setRepastApplySecret(String repastApplySecret) {
+        this.repastApplySecret = repastApplySecret;
+    }
+
+    public String getLeaveApplyUserId() {
+        return leaveApplyUserId;
+    }
+
+    public void setLeaveApplyUserId(String leaveApplyUserId) {
+        this.leaveApplyUserId = leaveApplyUserId;
+    }
+
+    public String getLeaveApplySecret() {
+        return leaveApplySecret;
+    }
+
+    public void setLeaveApplySecret(String leaveApplySecret) {
+        this.leaveApplySecret = leaveApplySecret;
+    }
+
+    public String getCarApplyUserId() {
+        return carApplyUserId;
+    }
+
+    public void setCarApplyUserId(String carApplyUserId) {
+        this.carApplyUserId = carApplyUserId;
+    }
+
+    public String getCarApplySecret() {
+        return carApplySecret;
+    }
+
+    public void setCarApplySecret(String carApplySecret) {
+        this.carApplySecret = carApplySecret;
     }
 }

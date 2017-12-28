@@ -24,7 +24,8 @@ public class LoginController {
 
     @RequestMapping("/{agentId}")
     public String authorizeStart(@PathVariable("agentId") String agentId, HttpServletRequest request) {
-        String state = request.getParameter("state").replaceAll("/", "%2F");;
+        String state = request.getParameter("state").replaceAll("/", "%2F");
+        ;
         String request_url = request.getRequestURL().toString();
 
         String redirect_url = request_url + "/authorize_code";
@@ -38,20 +39,25 @@ public class LoginController {
     public String authorizeCode(@PathVariable("agentId") String agentId, HttpServletRequest request) {
         String code = request.getParameter("code");
         String state = request.getParameter("state");
-        String baseUrl= request.getScheme() +"://" + request.getServerName()  + ":" +request.getServerPort() +request.getContextPath();
-        String userId = wechatComponent.getAuthUserInfo(code);
+        String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+        String userId = wechatComponent.getAuthUserInfo(code, agentId);
 
         if (userId != null) {
-            if(agentId.equalsIgnoreCase(wechatConfig.getApprovalAgentId())){
-                request.getSession().setAttribute("approvalUserId",userId);
-                //临时使用
-                request.getSession().setAttribute("newsUserId",userId);
-            }else if (agentId.equalsIgnoreCase(wechatConfig.getNewsAgentId())){
-                request.getSession().setAttribute("newsUserId",userId);
+            if (agentId.equalsIgnoreCase(wechatConfig.getApprovalAgentId())) {
+                request.getSession().setAttribute("approvalUserId", userId);
+
+            } else if (agentId.equalsIgnoreCase(wechatConfig.getNewsAgentId())) {
+                request.getSession().setAttribute("newsUserId", userId);
+            } else if (agentId.equalsIgnoreCase(wechatConfig.getCarApplySecret())) {
+                request.getSession().setAttribute("carApplyUserId", userId);
+            } else if (agentId.equalsIgnoreCase(wechatConfig.getLeaveApplyUserId())) {
+                request.getSession().setAttribute("leaveApplyUserId", userId);
+            } else if (agentId.equalsIgnoreCase(wechatConfig.getRepastApplyUserId())) {
+                request.getSession().setAttribute("repastApplyUserId", userId);
             }
 
             state = state.replaceAll("%2F", "/");
-            baseUrl = baseUrl+state;
+            baseUrl = baseUrl + state;
             return "redirect:" + baseUrl;
         }
 
@@ -60,11 +66,11 @@ public class LoginController {
     }
 
     @RequestMapping("/test/{userId}")
-       public String testUsetid(@PathVariable("userId") String userId, HttpServletRequest request) {
-        request.getSession().setAttribute("approvalUserId",userId);
-         request.getSession().setAttribute("newsUserId",userId);
-         return "redirect:/news/listnews";
+    public String testUsetid(@PathVariable("userId") String userId, HttpServletRequest request) {
+        request.getSession().setAttribute("approvalUserId", userId);
+        request.getSession().setAttribute("newsUserId", userId);
+        return "redirect:/news/listnews";
 
-       }
+    }
 
 }

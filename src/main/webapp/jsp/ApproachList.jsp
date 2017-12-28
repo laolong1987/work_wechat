@@ -124,18 +124,50 @@
       $(_class).addClass("f-dn").siblings().removeClass("f-dn");
     });
     loadData(".waitProcess", ".data-list", "waitProcess");
-    loadData(".processed", ".data-list", "processed");
+    loadData(".processed", ".data-list", "processed",0);
 
   })
 
-  function loadData($container, $content, apiType) {
+  function loadData($container, $content, apiType,$page) {
     var pageNum = 1;
+    if($page==0){
+      var node = $($container);
+      pageNum = 0;
+      $.ajax({
+        url: "list/" + apiType + "/" + pageNum,
+        method: "get",
+        data: "",
+        dataType: "JSON",
+        success: function (res) {
+          if(res.length>0){
+            $(".none-data").hide()
+          }
+          if (res.length < 10)
+            finished = true;
+
+          var elements = "";
+          $.each(res, function (index, item) {
+            var status = item.status;
+            if (status == null)
+              status = "";
+            elements += ' <a href="apply/' + item.templateId + '/' + item.dataId + '?sentby=' + item.sendBy + '">' + '<div class="approach-list"><div class="clearfloat title">' +
+              '<span class="attr-name">单号：</span><span class="attr-value">' + item.orderNum + '</span><span class="doc-date">' + item.writeDate +
+              '</span></div><div class="content"><div class="clearfloat"><span class="attr-name">简称：</span><span class="attr-value">' + item.templateType +
+              '</span></div><div class="clearfloat"><span class="attr-name">主题：</span><span class="attr-value">' + item.subject +
+              '</span></div></div><div class="status">' + status + '</div></div></a>'
+          })
+          node.find($content).append(elements);
+          load = true;
+        }
+      });
+    }
+
     var load = true;
     var finished = false;
     $($container).scroll(function () {
       var scrollTrigger = 0.8;
       var node = $(this);
-      if ($(this).scrollTop() / ($(this).find($content).height() - $(this).height()) > scrollTrigger && load && !finished) {
+      if (($(this).scrollTop() / ($(this).find($content).height() - $(this).height()) > scrollTrigger || pageNum==0) && load && !finished ) {
         //console.log('autopagerizing triggered');
 
         //        console.log("top:" + $(this).scrollTop() + "——data-height:" + ($(".processed .data-list").height() + "——height" + $(this).height()))

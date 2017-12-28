@@ -193,6 +193,12 @@ html, body {
   font-size: .34rem;
   color: #fff;
   font-weight: 600;
+  -webkit-touch-callout:none;
+  -webkit-user-select:none;
+  -khtml-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
 }
 
 .process-button .refuse {
@@ -500,7 +506,7 @@ text-align: center;
 
 * {
 -webkit-touch-callout:none;
--webkit-user-select:none;
+/*-webkit-user-select:none;*/
 -khtml-user-select:none;
 -moz-user-select:none;
 -ms-user-select:none;
