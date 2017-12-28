@@ -416,6 +416,7 @@ public class ApprovalService {
         return response;
     }
 
+
     public String getDepartments() {
         String url = config.getBase() + config.getGetDepartments();
         List<WSbean> wSbeans = new ArrayList<>();

@@ -43,8 +43,8 @@ public class WechatComponent {
         return response;
     }
 
-    public String getAuthUserInfo(String code) {
-        String url = wechatConfig.getGetAuthUserInfoUrl(AccessToken.getInstance().getUpToken(), code);
+    public String getAuthUserInfo(String code,String agentId) {
+        String url = wechatConfig.getGetAuthUserInfoUrl(AccessToken.getInstance().getUpToken(agentId), code);
         String response = HttpUtil.httpRequest(url, "GET", null);
         String userId = null;
         JSONObject resJson = JSONObject.parseObject(response);

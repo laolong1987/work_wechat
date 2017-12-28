@@ -1,14 +1,33 @@
 package com.web.model;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.web.component.wechat.WechatConfig;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
 /**
  * Created by admin on 2017/9/20.
  */
 public class ApplyBaseModel {
+
+    private static final Properties wechatApiConfig;
+    private static final Logger logger = LoggerFactory.getLogger(ApplyBaseModel.class);
+
+        static {
+            wechatApiConfig = new Properties();
+            try (InputStream in = ApplyBaseModel.class.getClassLoader().getResourceAsStream("wechat-api.properties")) {
+                wechatApiConfig.load(in);
+            } catch (IOException ioe) {
+                logger.warn("Failed to load error configuration file", ioe);
+            }
+        }
 
     //单号
     protected String orderNum;
@@ -79,7 +98,7 @@ public class ApplyBaseModel {
             while (m.find()) {
                 String matchRes = m.group(1);
                 String name = matchRes.substring(matchRes.lastIndexOf("/") + 1);
-                String href = "<a href='http://d.bm21.com.cn:20003" + matchRes + "' >" + name + "</a>";
+                String href = "<a href='" +wechatApiConfig.getProperty("domainUrl")  + matchRes + "' >" + name + "</a>";
                 match = match + href;
             }
             this.attachment = match;

@@ -108,7 +108,7 @@ public class TestApi {
 
     }
 
-    @Test
+
     public void getWaitProcessNotice() {
         //List<WaitProcessModel> res = approvalService.getWaitProcessNotice("220238",null,null);
         List<WaitProcessModel> res = approvalService.getWaitProcessNotice("220238", "0", "500", "processed");

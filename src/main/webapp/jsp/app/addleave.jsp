@@ -23,6 +23,8 @@
 
         body{
             background-image: url(${ctx}/images/add/bg.jpg);
+            -webkit-text-size-adjust: 100% !important;
+            text-size-adjust: 100% !important;
         }
         .ziti1{
             width: 82px;
@@ -117,6 +119,7 @@
     </style>
 </head>
 <body>
+
 <div class="topbut">
     <button type="button" class="btn btn-default" onclick="tolist()">查看列表</button>
     <%--<img src="${ctx}/images/add/arrowtop.png">--%>
@@ -282,6 +285,7 @@ $('.form_datetime').mobiscroll().datetime({
     function tolist(){
         window.location.href='${ctx}/approval/self-list/349';
     }
+
 
 </script>
 </body>

@@ -5,7 +5,10 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
+
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 
 public class ConvertUtil {
 	
@@ -204,6 +207,38 @@ public class ConvertUtil {
     	SimpleDateFormat format = new SimpleDateFormat(formatStr);
     	return (format.format(new Date()) + "_" + filename);
     }
-    
+
+    /**
+     *
+     * @param field 要排序的key
+     * @param isAsc 是否升序
+     * @param arr json数组
+     * @param isAsc
+     */
+    public static JSONArray JSONArraySort(JSONArray arr,String field, boolean isAsc) {
+        JSONArray sortJsonarr=new JSONArray();
+        List<JSONObject> jsonValue=new ArrayList<JSONObject>();
+        for(int i=0;i<arr.size();i++){
+        jsonValue.add(arr.getJSONObject(i));
+        }
+        Collections.sort(jsonValue,new Comparator<JSONObject>() {
+        // private static final String key="city";
+        private  final String key=field;
+        public int compare(JSONObject a, JSONObject b) {
+        // String valA=a.getString(key);
+        // String valB=b.getString(key);
+        Integer valA=a.getIntValue(key);
+        Integer valB=b.getIntValue(key);
+        return valA.compareTo(valB);
+        }
+        });
+        if(!isAsc){
+            Collections.reverse(arr);
+        }
+        for(int i=0;i<arr.size();i++){
+            sortJsonarr.add(jsonValue.get(i));
+        }
+        return sortJsonarr;
+    }
     
 }

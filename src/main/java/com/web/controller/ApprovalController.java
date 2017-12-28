@@ -50,7 +50,7 @@ public class ApprovalController {
             request.setAttribute("aprovalSeal",0);
         }
 
-        String userId= String.valueOf(request.getSession().getAttribute("newsUserId"));
+        String userId= String.valueOf(request.getSession().getAttribute("approvalUserId"));
 
         //获取审批事件列表
         MayProcessItemsModel mayProcessItemsModel = approvalService.getMayProcessItemsModel(templateId, dataId, userId);
@@ -134,13 +134,13 @@ public class ApprovalController {
 
     @RequestMapping("list")
     public String list(HttpServletRequest request, HttpServletResponse response) {
-        String userId= String.valueOf(request.getSession().getAttribute("newsUserId"));
+        String userId= String.valueOf(request.getSession().getAttribute("approvalUserId"));
 
         List<WaitProcessModel> waitProcessList = approvalService.getWaitProcessNotice(userId, "0", "10", "waitProcess");
         request.setAttribute("waitProcessList", waitProcessList);
 
-        List<WaitProcessModel> processedList = approvalService.getWaitProcessNotice(userId, "0", "10", "processed");
-        request.setAttribute("processedList", processedList);
+//        List<WaitProcessModel> processedList = approvalService.getWaitProcessNotice(userId, "0", "10", "processed");
+//        request.setAttribute("processedList", processedList);
         return "jsp/ApproachList";
     }
 
@@ -148,7 +148,7 @@ public class ApprovalController {
     @ResponseBody
     public List<WaitProcessModel> nextPageList(@PathVariable("type") String type, @PathVariable("page") String page,HttpServletRequest request) {
         List<WaitProcessModel> list = new ArrayList<>();
-        String userId= String.valueOf(request.getSession().getAttribute("newsUserId"));
+        String userId= String.valueOf(request.getSession().getAttribute("approvalUserId"));
 
         if ("waitProcess".equalsIgnoreCase(type)) {
             list = approvalService.getWaitProcessNotice(userId, page, "10", "waitProcess");
@@ -163,7 +163,7 @@ public class ApprovalController {
 
     @RequestMapping("/self-list/{templateId}")
     public String selfList(@PathVariable("templateId") String templateId, HttpServletRequest request, HttpServletResponse response) {
-        String userId= String.valueOf(request.getSession().getAttribute("newsUserId"));
+        String userId= String.valueOf(request.getSession().getAttribute("approvalUserId"));
 
         List<WaitProcessModel> processedList = approvalService.getSelfProcessedNotice(userId, "0", "20", "2", templateId);
         request.setAttribute("processedList", processedList);
@@ -174,7 +174,7 @@ public class ApprovalController {
     @RequestMapping("/self-list/{templateId}/{page}")
     @ResponseBody
     public List<WaitProcessModel> nextPageSelfList(@PathVariable("templateId") String templateId, @PathVariable("page") String page, HttpServletRequest request) {
-        String userId= String.valueOf(request.getSession().getAttribute("newsUserId"));
+        String userId= String.valueOf(request.getSession().getAttribute("approvalUserId"));
 
         List<WaitProcessModel> list = approvalService.getSelfProcessedNotice(userId, page, "10", "2", templateId);
 
@@ -184,7 +184,7 @@ public class ApprovalController {
     @RequestMapping(value = "doApproval", method = RequestMethod.POST)
     @ResponseBody
     public String raiseWorkflow(@RequestParam Map<String, String> parameterMap, HttpServletRequest request) {
-        String processBy =  String.valueOf(request.getSession().getAttribute("newsUserId"));
+        String processBy =  String.valueOf(request.getSession().getAttribute("approvalUserId"));
 
 
         String event = null;

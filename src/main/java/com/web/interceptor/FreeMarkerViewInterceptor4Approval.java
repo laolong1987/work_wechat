@@ -46,15 +46,40 @@ public class FreeMarkerViewInterceptor4Approval implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
                              Object object) throws Exception {
         // TODO Auto-generated method stub
-        String name = StringUtil.safeToString(request.getSession().getAttribute("approvalUserId"), "");
-        if (!StringUtils.isEmpty(name)) {
-            return true;
-        } else {
-            String path = request.getServletPath();
-            path = path.replaceAll("/", "%2F");
-            response.sendRedirect(request.getContextPath() + "/login/" + wechatConfig.getApprovalAgentId() + "?state=" + path);
-            return false;
+        String path = request.getServletPath();
+        path = path.replaceAll("/", "%2F");
+        String agentId=null;
+        if (path.startsWith("%2Fapproval")) {
+            String name = StringUtil.safeToString(request.getSession().getAttribute("approvalUserId"), "");
+            if (!StringUtils.isEmpty(name))
+                return true;
+            agentId= wechatConfig.getApprovalAgentId();
+        } else if (path.startsWith("%2Fnews")) {
+            String name = StringUtil.safeToString(request.getSession().getAttribute("newsUserId"), "");
+            if (!StringUtils.isEmpty(name))
+                return true;
+            agentId= wechatConfig.getNewsAgentId();
+        } else if (path.startsWith("%2Fwork%2Faddleave") || path.startsWith("%2Fwork%2Fcreateleave")) {
+            String name = StringUtil.safeToString(request.getSession().getAttribute("leaveApplyUserId"), "");
+            if (!StringUtils.isEmpty(name))
+                return true;
+            agentId= wechatConfig.getLeaveApplyUserId();
+        } else if (path.startsWith("%2Fwork%2Faddguestmeal") || path.startsWith("%2Fwork%2Fcreateguestmeal")) {
+            String name = StringUtil.safeToString(request.getSession().getAttribute("repastApplyUserId"), "");
+            if (!StringUtils.isEmpty(name))
+                return true;
+            agentId= wechatConfig.getRepastApplyUserId();
+        } else if (path.startsWith("%2Fwork%2Faddcar") || path.startsWith("%2Fwork%2Fcreatecar")) {
+            String name = StringUtil.safeToString(request.getSession().getAttribute("carApplyUserId"), "");
+            if (!StringUtils.isEmpty(name))
+                return true;
+            agentId= wechatConfig.getCarApplyUserId();
         }
+
+
+        response.sendRedirect(request.getContextPath() + "/login/" + agentId  + "?state=" + path);
+        return false;
+
     }
 
 }

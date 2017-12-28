@@ -36,7 +36,7 @@
 <div class="container pd-lr">
 
 
-  <div class="processed">
+  <div class="processed" style="top:0;padding-top:0;padding-bottom:0 ">
     <div class="data-list">
       <c:forEach var="item" items="${processedList}">
         <a href="<%=webRoot%>/approval/apply/${item.templateId}/${item.dataId}">
@@ -93,7 +93,7 @@
         //        console.log($(this).scrollTop() / ($(this).find(".data-list").height() - $(this).height()))
         load = false;
         $.ajax({
-          url: "self-list/" + apiType +"/"+ pageNum,
+          url: apiType +"/"+ pageNum,
           method: "get",
           data: "",
           dataType: "JSON",

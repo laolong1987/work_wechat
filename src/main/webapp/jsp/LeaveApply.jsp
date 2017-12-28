@@ -32,6 +32,9 @@
       document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
     };
   </script>
+  <style>
+    
+  </style>
 </head>
 <body>
 <div class="container-detail">
