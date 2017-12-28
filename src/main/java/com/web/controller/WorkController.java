@@ -45,7 +45,7 @@ public class WorkController {
     @RequestMapping(value = "/addleave", method = RequestMethod.GET)
     public String addleave(HttpServletRequest request,HttpServletResponse response) {
         
-        String userid=ConvertUtil.safeToString(request.getSession().getAttribute("newsUserId"),"");
+        String userid=ConvertUtil.safeToString(request.getSession().getAttribute("leaveApplyUserId"),"");
 
         if("".equals(userid)){
             return "/jsp/app/noquanxian";
@@ -73,7 +73,7 @@ public class WorkController {
         String desc=ConvertUtil.safeToString(request.getParameter("desc"),"");
 
 
-        String userid=ConvertUtil.safeToString(request.getSession().getAttribute("newsUserId"),"");
+        String userid=ConvertUtil.safeToString(request.getSession().getAttribute("leaveApplyUserId"),"");
 
         Employee employee= orgService.findEmployee(userid);
         Dept dept=orgService.findDept(employee.getZzdwbm());
@@ -128,7 +128,7 @@ public class WorkController {
 
     @RequestMapping(value = "/addcar", method = RequestMethod.GET)
     public String addcar(HttpServletRequest request,HttpServletResponse response) {
-        String userid=ConvertUtil.safeToString(request.getSession().getAttribute("newsUserId"),"");
+        String userid=ConvertUtil.safeToString(request.getSession().getAttribute("carApplyUserId"),"");
         if("".equals(userid)){
             return "/jsp/app/noquanxian";
         }
@@ -156,7 +156,7 @@ public class WorkController {
         String remark=ConvertUtil.safeToString(request.getParameter("remark"),"");
         String ccry=ConvertUtil.safeToString(request.getParameter("usernames"),"");
 
-        String userid=ConvertUtil.safeToString(request.getSession().getAttribute("newsUserId"),"");
+        String userid=ConvertUtil.safeToString(request.getSession().getAttribute("carApplyUserId"),"");
 
         Employee employee= orgService.findEmployee(userid);
         Dept dept=orgService.findDept(employee.getZzdwbm());
@@ -225,7 +225,7 @@ public class WorkController {
 
     @RequestMapping(value = "/addguestmeal", method = RequestMethod.GET)
     public String addguestmeal(HttpServletRequest request,HttpServletResponse response) {
-        String userid=ConvertUtil.safeToString(request.getSession().getAttribute("newsUserId"),"");
+        String userid=ConvertUtil.safeToString(request.getSession().getAttribute("repastApplyUserId"),"");
         if("".equals(userid)){
             return "/jsp/app/noquanxian";
         }
@@ -259,7 +259,7 @@ public class WorkController {
         String ycdd=ConvertUtil.safeToString(request.getParameter("ycdd"),"");
 
 
-        String userid=ConvertUtil.safeToString(request.getSession().getAttribute("newsUserId"),"");
+        String userid=ConvertUtil.safeToString(request.getSession().getAttribute("repastApplyUserId"),"");
 
         Employee employee= orgService.findEmployee(userid);
         Dept dept=orgService.findDept(employee.getZzdwbm());
