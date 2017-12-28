@@ -40,6 +40,21 @@ public class SettingUtil {
 		return result;
 	}
 
+	public static String getWXURL(String name) {
+		Properties p = new Properties();
+		String result="";
+		try {
+			InputStream in = SettingUtil.class.getResourceAsStream("/wechat-api.properties");
+			p.load(in);
+			in.close();
+			if(p.containsKey(name)){
+				result=String.valueOf(p.get(name));
+			}
+		} catch (IOException ex) {
+
+		}
+		return result;
+	}
 
 	public static void main(String[] args) {
 		SettingUtil s=new SettingUtil();

@@ -204,5 +204,6 @@
     var ctx='${ctx}';
 </script>
 <script type="text/javascript" src="${ctx}/js/work/addleave.js"></script>
+<jsp:include page="wxjs.jsp" />
 </body>
 </html>

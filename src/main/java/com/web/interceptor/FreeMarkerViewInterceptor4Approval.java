@@ -3,6 +3,9 @@ package com.web.interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.utils.SettingUtil;
+import com.web.component.JsapiTicket;
+import com.web.component.Sign;
 import com.web.component.wechat.WechatConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -32,6 +35,21 @@ public class FreeMarkerViewInterceptor4Approval implements HandlerInterceptor {
     // 在业务处理器处理请求执行完成后,生成视图之前执行的动作
     public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1,
                            Object arg2, ModelAndView arg3) throws Exception {
+        System.out.println("-----postHandle-------");
+        String appid=SettingUtil.getWXURL("corpID");
+        String jsapi_ticket= JsapiTicket.getInstance().getUpToken();
+        String timestamp= StringUtil.safeToString(System.currentTimeMillis(),"");
+        String noncestr= "Wm3WZYTPz0wzccnW";
+        String url = "http://" + arg0.getServerName() //服务器地址
+                + ":"
+                + arg0.getServerPort()           //端口号
+                + arg0.getContextPath()      //项目名称
+                + arg0.getServletPath();      //请求页面或其他地址
+        arg0.setAttribute("appId", appid);
+        arg0.setAttribute("timestamp", timestamp);
+        arg0.setAttribute("noncestr", noncestr);
+        arg0.setAttribute("sign", Sign.jsTicketSign(jsapi_ticket,noncestr,timestamp,url));
+
 
 
     }

@@ -91,6 +91,7 @@ public class WorkController {
 //        data.put("Ygxm","华安");
         data.put("Writer",userid);
         data.put("_SUBJECT",employee.getYgxm()+"请假单");
+        data.put("Qjbh","_FORMNO");
 
         JSONObject json=new JSONObject();
         json.put("FormType","349");

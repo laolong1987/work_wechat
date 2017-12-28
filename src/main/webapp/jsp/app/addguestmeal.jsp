@@ -260,4 +260,5 @@
 </script>
 <script type="text/javascript" src="${ctx}/js/work/addguestmeal.js"></script>
 </body>
+<jsp:include page="wxjs.jsp" />
 </html>
