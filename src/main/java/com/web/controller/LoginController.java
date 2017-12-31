@@ -48,7 +48,7 @@ public class LoginController {
 
             } else if (agentId.equalsIgnoreCase(wechatConfig.getNewsAgentId())) {
                 request.getSession().setAttribute("newsUserId", userId);
-            } else if (agentId.equalsIgnoreCase(wechatConfig.getCarApplySecret())) {
+            } else if (agentId.equalsIgnoreCase(wechatConfig.getCarApplyUserId())) {
                 request.getSession().setAttribute("carApplyUserId", userId);
             } else if (agentId.equalsIgnoreCase(wechatConfig.getLeaveApplyUserId())) {
                 request.getSession().setAttribute("leaveApplyUserId", userId);

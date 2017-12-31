@@ -123,7 +123,7 @@ public class AccessToken {
     }
 
     public static void main(String[] args) {
-        String t = AccessToken.getInstance().getUpToken();
+        String t = AccessToken.getInstance().getUpToken("1000005");
         System.out.println(t);
     }
 
