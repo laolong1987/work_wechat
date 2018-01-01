@@ -48,7 +48,7 @@ public class LoginController {
 
             } else if (agentId.equalsIgnoreCase(wechatConfig.getNewsAgentId())) {
                 request.getSession().setAttribute("newsUserId", userId);
-            } else if (agentId.equalsIgnoreCase(wechatConfig.getCarApplySecret())) {
+            } else if (agentId.equalsIgnoreCase(wechatConfig.getCarApplyUserId())) {
                 request.getSession().setAttribute("carApplyUserId", userId);
             } else if (agentId.equalsIgnoreCase(wechatConfig.getLeaveApplyUserId())) {
                 request.getSession().setAttribute("leaveApplyUserId", userId);
@@ -69,6 +69,9 @@ public class LoginController {
     public String testUsetid(@PathVariable("userId") String userId, HttpServletRequest request) {
         request.getSession().setAttribute("approvalUserId", userId);
         request.getSession().setAttribute("newsUserId", userId);
+        request.getSession().setAttribute("repastApplyUserId", userId);
+        request.getSession().setAttribute("leaveApplyUserId", userId);
+        request.getSession().setAttribute("carApplyUserId", userId);
         return "redirect:/news/listnews";
 
     }

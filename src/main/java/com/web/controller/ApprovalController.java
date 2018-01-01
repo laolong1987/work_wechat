@@ -165,7 +165,7 @@ public class ApprovalController {
     public String selfList(@PathVariable("templateId") String templateId, HttpServletRequest request, HttpServletResponse response) {
         String userId= String.valueOf(request.getSession().getAttribute("approvalUserId"));
 
-        List<WaitProcessModel> processedList = approvalService.getSelfProcessedNotice(userId, "0", "20", "2", templateId);
+        List<WaitProcessModel> processedList = approvalService.getSelfProcessedNotice(userId, "0", "6", "2", templateId);
         request.setAttribute("processedList", processedList);
         request.setAttribute("templateId", templateId);
         return "jsp/SelfApplyList";
