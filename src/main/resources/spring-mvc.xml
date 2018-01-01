@@ -26,7 +26,9 @@
   <mvc:resources location="/ligerUI/" mapping="/ligerUI/**" />
   <mvc:resources location="/attached/" mapping="/attached/**" />
   <mvc:resources location="/fonts/" mapping="/fonts/**" />
+  <mvc:resources location="/UploadFiles/" mapping="/UploadFiles/**" />
   <mvc:resources location="/font-awesome/" mapping="/font-awesome/**" />
+
   <!-- 拦截器 -->
   <mvc:interceptors>
     <!-- 多个拦截器,顺序执行 -->
