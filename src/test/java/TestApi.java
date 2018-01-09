@@ -6,6 +6,8 @@ import java.util.regex.Pattern;
 
 import com.alibaba.fastjson.*;
 import com.common.HttpHelper;
+import com.sgm.doe.service.integrate.shipping.ShipmentService;
+import com.sgm.doe.service.integrate.shipping.ShipmentServiceImplService;
 import com.web.component.wechat.WechatConfig;
 import com.web.component.wechat.api.WechatComponent;
 import com.web.model.WaitProcessModel;
@@ -353,6 +355,14 @@ public class TestApi {
     public void getPropertyValue(){
         System.out.println(wechatConfig.getApprovalAgentId());
     }
+
+//    @Test
+//       public void ShipmentService(){
+//        ShipmentService shipmentService = (ShipmentService) new ShipmentServiceImplService();
+//        String url shipmentService.getShipmentInfo("");
+//       }
+
+
 
 
 
